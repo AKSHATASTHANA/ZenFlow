@@ -1,19 +1,8 @@
-import { 
-  users, 
-  meditationSessions, 
-  userPreferences, 
-  userStats, 
-  achievements,
-  type User, 
-  type InsertUser,
-  type MeditationSession,
-  type InsertSession,
-  type UserPreferences,
-  type InsertPreferences,
-  type UserStats,
-  type InsertStats,
-  type Achievement,
-  type InsertAchievement
+import type { 
+  User, InsertUser, 
+  Appointment, InsertAppointment,
+  Department, InsertDepartment,
+  Doctor, InsertDoctor
 } from "@shared/schema";
 
 export interface IStorage {
@@ -22,50 +11,129 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
 
-  // Session methods
-  createSession(userId: number, session: InsertSession): Promise<MeditationSession>;
-  getUserSessions(userId: number, limit?: number): Promise<MeditationSession[]>;
-  getSessionsByDateRange(userId: number, startDate: Date, endDate: Date): Promise<MeditationSession[]>;
+  // Appointment methods
+  createAppointment(appointment: InsertAppointment): Promise<Appointment>;
+  getAppointments(limit?: number): Promise<Appointment[]>;
+  getAppointmentById(id: number): Promise<Appointment | undefined>;
+  updateAppointmentStatus(id: number, status: string): Promise<Appointment | undefined>;
+  getAppointmentsByDateRange(startDate: Date, endDate: Date): Promise<Appointment[]>;
 
-  // Preferences methods
-  getUserPreferences(userId: number): Promise<UserPreferences | undefined>;
-  updateUserPreferences(userId: number, preferences: Partial<InsertPreferences>): Promise<UserPreferences>;
+  // Department methods
+  getDepartments(): Promise<Department[]>;
+  createDepartment(department: InsertDepartment): Promise<Department>;
 
-  // Stats methods
-  getUserStats(userId: number): Promise<UserStats | undefined>;
-  updateUserStats(userId: number, stats: Partial<InsertStats>): Promise<UserStats>;
-
-  // Achievement methods
-  getUserAchievements(userId: number): Promise<Achievement[]>;
-  createAchievement(userId: number, achievement: InsertAchievement): Promise<Achievement>;
+  // Doctor methods
+  getDoctors(): Promise<Doctor[]>;
+  getDoctorsByDepartment(departmentId: number): Promise<Doctor[]>;
+  createDoctor(doctor: InsertDoctor): Promise<Doctor>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
-  private sessions: Map<number, MeditationSession>;
-  private preferences: Map<number, UserPreferences>;
-  private stats: Map<number, UserStats>;
-  private achievements: Map<number, Achievement>;
+  private appointments: Map<number, Appointment>;
+  private departments: Map<number, Department>;
+  private doctors: Map<number, Doctor>;
   private currentUserId: number;
-  private currentSessionId: number;
-  private currentPreferencesId: number;
-  private currentStatsId: number;
-  private currentAchievementId: number;
+  private currentAppointmentId: number;
+  private currentDepartmentId: number;
+  private currentDoctorId: number;
 
   constructor() {
     this.users = new Map();
-    this.sessions = new Map();
-    this.preferences = new Map();
-    this.stats = new Map();
-    this.achievements = new Map();
+    this.appointments = new Map();
+    this.departments = new Map();
+    this.doctors = new Map();
     this.currentUserId = 1;
-    this.currentSessionId = 1;
-    this.currentPreferencesId = 1;
-    this.currentStatsId = 1;
-    this.currentAchievementId = 1;
+    this.currentAppointmentId = 1;
+    this.currentDepartmentId = 1;
+    this.currentDoctorId = 1;
 
-    // Create a default user for demo purposes
-    this.createUser({ username: "demo", password: "demo" });
+    // Initialize with sample data
+    this.initializeSampleData();
+  }
+
+  private async initializeSampleData() {
+    // Create admin user
+    const adminUser: User = {
+      id: this.currentUserId++,
+      username: "admin",
+      password: "admin123",
+      role: "admin",
+      createdAt: new Date(),
+    };
+    this.users.set(adminUser.id, adminUser);
+
+    // Create departments
+    const departments = [
+      { name: "Cardiology", description: "Heart and cardiovascular system", headDoctor: "Dr. Smith" },
+      { name: "Neurology", description: "Brain and nervous system", headDoctor: "Dr. Johnson" },
+      { name: "Orthopedics", description: "Bones, joints, and muscles", headDoctor: "Dr. Williams" },
+      { name: "Pediatrics", description: "Children's health", headDoctor: "Dr. Brown" },
+      { name: "Emergency", description: "Emergency medical care", headDoctor: "Dr. Davis" },
+    ];
+
+    for (const dept of departments) {
+      const department: Department = {
+        id: this.currentDepartmentId++,
+        ...dept,
+      };
+      this.departments.set(department.id, department);
+    }
+
+    // Create doctors
+    const doctors = [
+      { name: "Dr. Sarah Smith", specialization: "Cardiologist", departmentId: 1, qualifications: "MD, FACC", experience: 15 },
+      { name: "Dr. Michael Johnson", specialization: "Neurologist", departmentId: 2, qualifications: "MD, PhD", experience: 12 },
+      { name: "Dr. Lisa Williams", specialization: "Orthopedic Surgeon", departmentId: 3, qualifications: "MD, FAAOS", experience: 18 },
+      { name: "Dr. David Brown", specialization: "Pediatrician", departmentId: 4, qualifications: "MD, FAAP", experience: 10 },
+      { name: "Dr. Jennifer Davis", specialization: "Emergency Medicine", departmentId: 5, qualifications: "MD, FACEP", experience: 8 },
+    ];
+
+    for (const doc of doctors) {
+      const doctor: Doctor = {
+        id: this.currentDoctorId++,
+        ...doc,
+        image: null,
+      };
+      this.doctors.set(doctor.id, doctor);
+    }
+
+    // Create sample appointments
+    const sampleAppointments = [
+      {
+        patientName: "John Doe",
+        email: "john.doe@email.com",
+        phone: "555-0123",
+        age: 35,
+        gender: "Male",
+        department: "Cardiology",
+        preferredDate: new Date("2025-01-15"),
+        preferredTime: "10:00 AM",
+        reasonForVisit: "Chest pain and shortness of breath",
+        status: "pending"
+      },
+      {
+        patientName: "Jane Smith",
+        email: "jane.smith@email.com",
+        phone: "555-0124",
+        age: 28,
+        gender: "Female",
+        department: "Neurology",
+        preferredDate: new Date("2025-01-16"),
+        preferredTime: "2:00 PM",
+        reasonForVisit: "Frequent headaches",
+        status: "confirmed"
+      },
+    ];
+
+    for (const apt of sampleAppointments) {
+      const appointment: Appointment = {
+        id: this.currentAppointmentId++,
+        ...apt,
+        createdAt: new Date(),
+      };
+      this.appointments.set(appointment.id, appointment);
+    }
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -73,225 +141,98 @@ export class MemStorage implements IStorage {
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(user => user.username === username);
+    const users = Array.from(this.users.values());
+    return users.find(user => user.username === username);
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { 
-      ...insertUser, 
-      id, 
-      createdAt: new Date() 
+    const user: User = {
+      id: this.currentUserId++,
+      username: insertUser.username,
+      password: insertUser.password,
+      role: insertUser.role || "patient",
+      createdAt: new Date(),
     };
-    this.users.set(id, user);
-
-    // Create default preferences and stats
-    await this.updateUserPreferences(id, {});
-    await this.updateUserStats(id, {});
-
+    this.users.set(user.id, user);
     return user;
   }
 
-  async createSession(userId: number, insertSession: InsertSession): Promise<MeditationSession> {
-    const id = this.currentSessionId++;
-    const session: MeditationSession = {
-      ...insertSession,
-      id,
-      userId,
-      completedAt: new Date(),
+  async createAppointment(insertAppointment: InsertAppointment): Promise<Appointment> {
+    const appointment: Appointment = {
+      id: this.currentAppointmentId++,
+      ...insertAppointment,
+      preferredDate: new Date(insertAppointment.preferredDate),
+      status: "pending",
+      createdAt: new Date(),
     };
-    this.sessions.set(id, session);
-
-    // Update user stats
-    const stats = await this.getUserStats(userId);
-    if (stats && insertSession.wasCompleted) {
-      const durationMinutes = Math.floor(insertSession.duration / 60);
-      await this.updateUserStats(userId, {
-        totalMinutes: stats.totalMinutes + durationMinutes,
-        totalSessions: stats.totalSessions + 1,
-        lastSessionDate: new Date(),
-      });
-
-      // Check for streak update
-      await this.updateStreak(userId);
-      // Check for achievements
-      await this.checkAchievements(userId);
-    }
-
-    return session;
+    this.appointments.set(appointment.id, appointment);
+    return appointment;
   }
 
-  async getUserSessions(userId: number, limit = 10): Promise<MeditationSession[]> {
-    return Array.from(this.sessions.values())
-      .filter(session => session.userId === userId)
-      .sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime())
+  async getAppointments(limit = 50): Promise<Appointment[]> {
+    const appointments = Array.from(this.appointments.values());
+    return appointments
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
       .slice(0, limit);
   }
 
-  async getSessionsByDateRange(userId: number, startDate: Date, endDate: Date): Promise<MeditationSession[]> {
-    return Array.from(this.sessions.values())
-      .filter(session => 
-        session.userId === userId &&
-        session.completedAt >= startDate &&
-        session.completedAt <= endDate
-      )
-      .sort((a, b) => a.completedAt.getTime() - b.completedAt.getTime());
+  async getAppointmentById(id: number): Promise<Appointment | undefined> {
+    return this.appointments.get(id);
   }
 
-  async getUserPreferences(userId: number): Promise<UserPreferences | undefined> {
-    return Array.from(this.preferences.values()).find(pref => pref.userId === userId);
-  }
-
-  async updateUserPreferences(userId: number, updates: Partial<InsertPreferences>): Promise<UserPreferences> {
-    const existing = await this.getUserPreferences(userId);
-    
-    if (existing) {
-      const updated: UserPreferences = { ...existing, ...updates };
-      this.preferences.set(existing.id, updated);
-      return updated;
-    } else {
-      const id = this.currentPreferencesId++;
-      const preferences: UserPreferences = {
-        id,
-        userId,
-        soundVolumes: {},
-        masterVolume: 85,
-        breathingPattern: "4-7-8",
-        intervalBells: true,
-        intervalDuration: 120,
-        voiceGuidance: false,
-        dailyGoal: 30,
-        ...updates,
-      };
-      this.preferences.set(id, preferences);
-      return preferences;
+  async updateAppointmentStatus(id: number, status: string): Promise<Appointment | undefined> {
+    const appointment = this.appointments.get(id);
+    if (appointment) {
+      appointment.status = status;
+      this.appointments.set(id, appointment);
+      return appointment;
     }
+    return undefined;
   }
 
-  async getUserStats(userId: number): Promise<UserStats | undefined> {
-    return Array.from(this.stats.values()).find(stat => stat.userId === userId);
+  async getAppointmentsByDateRange(startDate: Date, endDate: Date): Promise<Appointment[]> {
+    const appointments = Array.from(this.appointments.values());
+    return appointments.filter(apt => 
+      apt.preferredDate >= startDate && apt.preferredDate <= endDate
+    );
   }
 
-  async updateUserStats(userId: number, updates: Partial<InsertStats>): Promise<UserStats> {
-    const existing = await this.getUserStats(userId);
-    
-    if (existing) {
-      const updated: UserStats = { ...existing, ...updates };
-      this.stats.set(existing.id, updated);
-      return updated;
-    } else {
-      const id = this.currentStatsId++;
-      const stats: UserStats = {
-        id,
-        userId,
-        totalMinutes: 0,
-        totalSessions: 0,
-        currentStreak: 0,
-        longestStreak: 0,
-        lastSessionDate: null,
-        ...updates,
-      };
-      this.stats.set(id, stats);
-      return stats;
-    }
+  async getDepartments(): Promise<Department[]> {
+    return Array.from(this.departments.values());
   }
 
-  async getUserAchievements(userId: number): Promise<Achievement[]> {
-    return Array.from(this.achievements.values())
-      .filter(achievement => achievement.userId === userId)
-      .sort((a, b) => b.unlockedAt.getTime() - a.unlockedAt.getTime());
-  }
-
-  async createAchievement(userId: number, insertAchievement: InsertAchievement): Promise<Achievement> {
-    const id = this.currentAchievementId++;
-    const achievement: Achievement = {
-      ...insertAchievement,
-      id,
-      userId,
-      unlockedAt: new Date(),
+  async createDepartment(insertDepartment: InsertDepartment): Promise<Department> {
+    const department: Department = {
+      id: this.currentDepartmentId++,
+      name: insertDepartment.name,
+      description: insertDepartment.description || null,
+      headDoctor: insertDepartment.headDoctor || null,
     };
-    this.achievements.set(id, achievement);
-    return achievement;
+    this.departments.set(department.id, department);
+    return department;
   }
 
-  private async updateStreak(userId: number): Promise<void> {
-    const sessions = await this.getUserSessions(userId, 100);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    let streak = 0;
-    let currentDate = new Date(today);
-    
-    while (true) {
-      const hasSessionOnDate = sessions.some(session => {
-        const sessionDate = new Date(session.completedAt);
-        sessionDate.setHours(0, 0, 0, 0);
-        return sessionDate.getTime() === currentDate.getTime() && session.wasCompleted;
-      });
-      
-      if (hasSessionOnDate) {
-        streak++;
-        currentDate.setDate(currentDate.getDate() - 1);
-      } else {
-        break;
-      }
-    }
-
-    const stats = await this.getUserStats(userId);
-    if (stats) {
-      await this.updateUserStats(userId, {
-        currentStreak: streak,
-        longestStreak: Math.max(stats.longestStreak, streak),
-      });
-    }
+  async getDoctors(): Promise<Doctor[]> {
+    return Array.from(this.doctors.values());
   }
 
-  private async checkAchievements(userId: number): Promise<void> {
-    const stats = await this.getUserStats(userId);
-    const existingAchievements = await this.getUserAchievements(userId);
-    
-    if (!stats) return;
+  async getDoctorsByDepartment(departmentId: number): Promise<Doctor[]> {
+    const doctors = Array.from(this.doctors.values());
+    return doctors.filter(doc => doc.departmentId === departmentId);
+  }
 
-    const hasAchievement = (type: string) => 
-      existingAchievements.some(a => a.achievementType === type);
-
-    // First session achievement
-    if (stats.totalSessions === 1 && !hasAchievement("first_session")) {
-      await this.createAchievement(userId, {
-        achievementType: "first_session",
-        value: 1,
-      });
-    }
-
-    // Streak achievements
-    if (stats.currentStreak >= 7 && !hasAchievement("7_day_streak")) {
-      await this.createAchievement(userId, {
-        achievementType: "7_day_streak",
-        value: 7,
-      });
-    }
-
-    if (stats.currentStreak >= 30 && !hasAchievement("30_day_streak")) {
-      await this.createAchievement(userId, {
-        achievementType: "30_day_streak",
-        value: 30,
-      });
-    }
-
-    // Time milestones
-    if (stats.totalMinutes >= 100 && !hasAchievement("100_minutes")) {
-      await this.createAchievement(userId, {
-        achievementType: "100_minutes",
-        value: 100,
-      });
-    }
-
-    if (stats.totalMinutes >= 500 && !hasAchievement("500_minutes")) {
-      await this.createAchievement(userId, {
-        achievementType: "500_minutes",
-        value: 500,
-      });
-    }
+  async createDoctor(insertDoctor: InsertDoctor): Promise<Doctor> {
+    const doctor: Doctor = {
+      id: this.currentDoctorId++,
+      name: insertDoctor.name,
+      specialization: insertDoctor.specialization,
+      departmentId: insertDoctor.departmentId || null,
+      qualifications: insertDoctor.qualifications,
+      experience: insertDoctor.experience,
+      image: insertDoctor.image || null,
+    };
+    this.doctors.set(doctor.id, doctor);
+    return doctor;
   }
 }
 

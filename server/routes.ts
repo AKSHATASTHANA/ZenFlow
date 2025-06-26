@@ -1,149 +1,158 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertSessionSchema, insertPreferencesSchema } from "@shared/schema";
-import { z } from "zod";
+import { 
+  insertAppointmentSchema, 
+  insertDepartmentSchema, 
+  insertDoctorSchema,
+  insertUserSchema 
+} from "@shared/schema";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  const DEFAULT_USER_ID = 1; // Using demo user for this implementation
+export function registerRoutes(app: Express): Server {
+  // Appointment routes
+  app.post("/api/appointments", async (req, res) => {
+    try {
+      const data = insertAppointmentSchema.parse(req.body);
+      const appointment = await storage.createAppointment(data);
+      res.json(appointment);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
 
-  // Get user stats
+  app.get("/api/appointments", async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+      const appointments = await storage.getAppointments(limit);
+      res.json(appointments);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/appointments/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const appointment = await storage.getAppointmentById(id);
+      if (!appointment) {
+        return res.status(404).json({ error: "Appointment not found" });
+      }
+      res.json(appointment);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/appointments/:id/status", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status } = req.body;
+      
+      if (!["pending", "confirmed", "cancelled", "completed"].includes(status)) {
+        return res.status(400).json({ error: "Invalid status" });
+      }
+      
+      const appointment = await storage.updateAppointmentStatus(id, status);
+      if (!appointment) {
+        return res.status(404).json({ error: "Appointment not found" });
+      }
+      res.json(appointment);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Department routes
+  app.get("/api/departments", async (req, res) => {
+    try {
+      const departments = await storage.getDepartments();
+      res.json(departments);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/departments", async (req, res) => {
+    try {
+      const data = insertDepartmentSchema.parse(req.body);
+      const department = await storage.createDepartment(data);
+      res.json(department);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Doctor routes
+  app.get("/api/doctors", async (req, res) => {
+    try {
+      const departmentId = req.query.departmentId ? parseInt(req.query.departmentId as string) : undefined;
+      
+      if (departmentId) {
+        const doctors = await storage.getDoctorsByDepartment(departmentId);
+        res.json(doctors);
+      } else {
+        const doctors = await storage.getDoctors();
+        res.json(doctors);
+      }
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/doctors", async (req, res) => {
+    try {
+      const data = insertDoctorSchema.parse(req.body);
+      const doctor = await storage.createDoctor(data);
+      res.json(doctor);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // User/Auth routes (for admin panel)
+  app.post("/api/users", async (req, res) => {
+    try {
+      const data = insertUserSchema.parse(req.body);
+      const user = await storage.createUser(data);
+      res.json({ id: user.id, username: user.username, role: user.role });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/auth/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const user = await storage.getUserByUsername(username);
+      
+      if (!user || user.password !== password) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+      
+      res.json({ id: user.id, username: user.username, role: user.role });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Stats endpoint for dashboard
   app.get("/api/stats", async (req, res) => {
     try {
-      const stats = await storage.getUserStats(DEFAULT_USER_ID);
-      const preferences = await storage.getUserPreferences(DEFAULT_USER_ID);
+      const appointments = await storage.getAppointments();
+      const departments = await storage.getDepartments();
+      const doctors = await storage.getDoctors();
       
-      if (!stats) {
-        return res.status(404).json({ message: "Stats not found" });
-      }
-
-      res.json({ stats, preferences });
-    } catch (error) {
-      res.status(500).json({ message: "Failed to get stats" });
-    }
-  });
-
-  // Get recent sessions
-  app.get("/api/sessions", async (req, res) => {
-    try {
-      const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
-      const sessions = await storage.getUserSessions(DEFAULT_USER_ID, limit);
-      res.json(sessions);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to get sessions" });
-    }
-  });
-
-  // Get sessions by date range for progress tracking
-  app.get("/api/sessions/range", async (req, res) => {
-    try {
-      const { startDate, endDate } = req.query;
+      const stats = {
+        totalAppointments: appointments.length,
+        pendingAppointments: appointments.filter(a => a.status === "pending").length,
+        confirmedAppointments: appointments.filter(a => a.status === "confirmed").length,
+        totalDepartments: departments.length,
+        totalDoctors: doctors.length,
+      };
       
-      if (!startDate || !endDate) {
-        return res.status(400).json({ message: "Start date and end date are required" });
-      }
-
-      const sessions = await storage.getSessionsByDateRange(
-        DEFAULT_USER_ID,
-        new Date(startDate as string),
-        new Date(endDate as string)
-      );
-      
-      res.json(sessions);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to get sessions by date range" });
-    }
-  });
-
-  // Create a new meditation session
-  app.post("/api/sessions", async (req, res) => {
-    try {
-      const validatedData = insertSessionSchema.parse(req.body);
-      const session = await storage.createSession(DEFAULT_USER_ID, validatedData);
-      res.status(201).json(session);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: "Invalid session data", errors: error.errors });
-      }
-      res.status(500).json({ message: "Failed to create session" });
-    }
-  });
-
-  // Get user preferences
-  app.get("/api/preferences", async (req, res) => {
-    try {
-      const preferences = await storage.getUserPreferences(DEFAULT_USER_ID);
-      if (!preferences) {
-        return res.status(404).json({ message: "Preferences not found" });
-      }
-      res.json(preferences);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to get preferences" });
-    }
-  });
-
-  // Update user preferences
-  app.patch("/api/preferences", async (req, res) => {
-    try {
-      const updates = req.body;
-      const preferences = await storage.updateUserPreferences(DEFAULT_USER_ID, updates);
-      res.json(preferences);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to update preferences" });
-    }
-  });
-
-  // Get user achievements
-  app.get("/api/achievements", async (req, res) => {
-    try {
-      const achievements = await storage.getUserAchievements(DEFAULT_USER_ID);
-      res.json(achievements);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to get achievements" });
-    }
-  });
-
-  // Get weekly progress data
-  app.get("/api/progress/weekly", async (req, res) => {
-    try {
-      const today = new Date();
-      const startOfWeek = new Date(today);
-      startOfWeek.setDate(today.getDate() - today.getDay());
-      startOfWeek.setHours(0, 0, 0, 0);
-      
-      const endOfWeek = new Date(startOfWeek);
-      endOfWeek.setDate(startOfWeek.getDate() + 6);
-      endOfWeek.setHours(23, 59, 59, 999);
-
-      const sessions = await storage.getSessionsByDateRange(DEFAULT_USER_ID, startOfWeek, endOfWeek);
-      
-      // Group sessions by day
-      const weeklyData = [];
-      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      
-      for (let i = 0; i < 7; i++) {
-        const currentDay = new Date(startOfWeek);
-        currentDay.setDate(startOfWeek.getDate() + i);
-        
-        const daySessions = sessions.filter(session => {
-          const sessionDate = new Date(session.completedAt);
-          return sessionDate.toDateString() === currentDay.toDateString() && session.wasCompleted;
-        });
-        
-        const totalMinutes = daySessions.reduce((sum, session) => 
-          sum + Math.floor(session.duration / 60), 0);
-
-        weeklyData.push({
-          day: dayNames[i],
-          date: currentDay.toISOString().split('T')[0],
-          minutes: totalMinutes,
-          sessions: daySessions.length,
-        });
-      }
-
-      res.json(weeklyData);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to get weekly progress" });
+      res.json(stats);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
     }
   });
 

@@ -1,8 +1,8 @@
-# Serenity - Meditation App
+# MediCare Hospital - Hospital Management System
 
 ## Overview
 
-Serenity is a full-stack meditation application built with React, Express, and PostgreSQL. It provides a comprehensive meditation experience with features like guided meditation sessions, ambient sounds, breathing exercises, and progress tracking. The app uses a modern tech stack with TypeScript, Tailwind CSS, and shadcn/ui components for a polished user interface.
+MediCare Hospital is a full-stack hospital management system built with React, Express, and in-memory storage. It provides a comprehensive hospital website with patient appointment booking and an admin panel for managing appointments. The app uses a modern tech stack with TypeScript, Tailwind CSS, and shadcn/ui components for a professional medical interface.
 
 ## System Architecture
 
@@ -10,51 +10,49 @@ Serenity is a full-stack meditation application built with React, Express, and P
 - **Framework**: React 18 with TypeScript
 - **Routing**: Wouter for lightweight client-side routing
 - **State Management**: TanStack Query (React Query) for server state management
-- **Styling**: Tailwind CSS with shadcn/ui component library
+- **Styling**: Tailwind CSS with shadcn/ui component library and medical blue theme
 - **Build Tool**: Vite for fast development and optimized builds
 
 ### Backend Architecture
 - **Server**: Express.js with TypeScript
-- **Database**: PostgreSQL with Drizzle ORM
-- **Session Management**: In-memory storage with fallback to PostgreSQL
-- **API Design**: RESTful endpoints with proper error handling
+- **Storage**: In-memory storage with sample data for appointments and hospital information
+- **API Design**: RESTful endpoints for appointments, departments, doctors, and admin authentication
 - **Development**: Hot module replacement via Vite integration
 
 ### Database Schema
-- **Users**: Authentication and user management
-- **Meditation Sessions**: Track completed meditation sessions with duration, type, and completion status
-- **User Preferences**: Customizable settings for sounds, breathing patterns, and goals
-- **User Stats**: Aggregate statistics including streaks and total time
-- **Achievements**: Milestone tracking system
+- **Users**: Admin and patient authentication with role-based access
+- **Appointments**: Patient appointment bookings with status management
+- **Departments**: Hospital departments (Cardiology, Neurology, etc.)
+- **Doctors**: Doctor profiles with specializations and experience
 
 ## Key Components
 
-### Meditation Features
-- **Timer Sessions**: Customizable meditation timers with interval bells
-- **Guided Breathing**: Multiple breathing patterns (4-7-8, Box Breathing, etc.)
-- **Ambient Sounds**: Nature sounds and ambient audio with individual volume controls
-- **Progress Tracking**: Visual progress charts and achievement system
+### Hospital Website Features
+- **Landing Page**: Professional hospital website with department information and doctor profiles
+- **Appointment Booking**: Comprehensive form for patients to schedule appointments
+- **Department Listings**: Display of medical departments with descriptions and head doctors
+- **Contact Information**: Hospital contact details and emergency information
+
+### Admin Panel Features
+- **Authentication**: Secure admin login with role-based access control
+- **Appointment Management**: View, filter, and update appointment statuses
+- **Dashboard Statistics**: Real-time stats showing appointment counts and department information
+- **Status Updates**: Change appointment status (pending, confirmed, cancelled, completed)
 
 ### UI Components
-- **Meditation Timer**: Core timer component with play/pause functionality
-- **Ambient Sounds**: Audio mixer with multiple sound layers
-- **Breathing Animation**: Visual breathing guides with customizable patterns
-- **Progress Dashboard**: Charts and statistics visualization
-
-### Audio System
-- **Web Audio API**: Custom audio manager for precise sound control
-- **Multi-layered Audio**: Simultaneous playback of multiple ambient sounds
-- **Volume Controls**: Individual and master volume management
-- **Cross-browser Compatibility**: Fallback support for different browsers
+- **Appointment Form**: Multi-step form with validation for patient information and scheduling
+- **Admin Dashboard**: Comprehensive management interface with search and filtering
+- **Statistics Cards**: Visual display of key hospital metrics
+- **Responsive Tables**: Mobile-friendly appointment management interface
 
 ## Data Flow
 
-1. **User Interaction**: User selects meditation type and duration
-2. **Session Creation**: Timer starts and session data is prepared
-3. **Audio Management**: Ambient sounds are loaded and played as needed
-4. **Progress Tracking**: Session data is continuously updated
-5. **Session Completion**: Data is saved to database and stats are updated
-6. **Achievement Processing**: Milestones are checked and unlocked as appropriate
+1. **Patient Interaction**: Patient visits hospital website and views services
+2. **Appointment Booking**: Patient fills out appointment form with personal and medical information
+3. **Data Validation**: Form data is validated on both client and server sides
+4. **Appointment Storage**: Appointment is stored in memory with pending status
+5. **Admin Management**: Admin can view, filter, and update appointment statuses
+6. **Status Updates**: Real-time updates to appointment statuses and dashboard statistics
 
 ## External Dependencies
 
@@ -92,9 +90,15 @@ Serenity is a full-stack meditation application built with React, Express, and P
 - **NODE_ENV**: Environment-specific configuration
 - **Port Configuration**: Configurable server port (default 5000)
 
-## Changelog
+## Recent Changes
 
-- June 25, 2025. Initial setup
+- June 26, 2025: Transformed meditation app into comprehensive hospital management system
+  - Created hospital landing page with department and doctor information
+  - Implemented patient appointment booking form with validation
+  - Built admin panel with login authentication and appointment management
+  - Added real-time statistics dashboard for hospital metrics
+  - Updated schema to support appointments, departments, and doctors
+  - Configured medical blue theme for professional healthcare appearance
 
 ## User Preferences
 
