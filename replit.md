@@ -1,8 +1,8 @@
-# MediCare Hospital - Hospital Management System
+# Enhanced Project Management Dashboard
 
 ## Overview
 
-MediCare Hospital is a full-stack hospital management system built with React, Express, and in-memory storage. It provides a comprehensive hospital website with patient appointment booking and an admin panel for managing appointments. The app uses a modern tech stack with TypeScript, Tailwind CSS, and shadcn/ui components for a professional medical interface.
+A modern React-based project management dashboard that transforms VB.NET Gantt chart functionality into a comprehensive web application. Built with React, Express, and in-memory storage, it provides interactive Gantt charts, Kanban boards, milestone tracking, and project analytics. The app uses TypeScript, Tailwind CSS, and shadcn/ui components for a professional project management interface.
 
 ## System Architecture
 

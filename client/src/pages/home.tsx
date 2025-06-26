@@ -515,6 +515,7 @@ export default function HomePage() {
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#services" className="hover:text-white">Services</a></li>
                 <li><a href="#doctors" className="hover:text-white">Doctors</a></li>
+                <li><a href="/projects" className="hover:text-white">Project Dashboard</a></li>
                 <li><a href="#contact" className="hover:text-white">Contact</a></li>
               </ul>
             </div>

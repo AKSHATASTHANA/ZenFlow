@@ -2,7 +2,11 @@ import type {
   User, InsertUser, 
   Appointment, InsertAppointment,
   Department, InsertDepartment,
-  Doctor, InsertDoctor
+  Doctor, InsertDoctor,
+  Project, InsertProject,
+  Task, InsertTask,
+  Milestone, InsertMilestone,
+  TaskDependency, InsertTaskDependency
 } from "@shared/schema";
 
 export interface IStorage {
@@ -26,6 +30,30 @@ export interface IStorage {
   getDoctors(): Promise<Doctor[]>;
   getDoctorsByDepartment(departmentId: number): Promise<Doctor[]>;
   createDoctor(doctor: InsertDoctor): Promise<Doctor>;
+
+  // Project methods
+  getProjects(): Promise<Project[]>;
+  getProjectById(id: number): Promise<Project | undefined>;
+  createProject(project: InsertProject): Promise<Project>;
+  updateProject(id: number, updates: Partial<InsertProject>): Promise<Project | undefined>;
+
+  // Task methods
+  getTasks(projectId?: number): Promise<Task[]>;
+  getTaskById(id: number): Promise<Task | undefined>;
+  createTask(task: InsertTask): Promise<Task>;
+  updateTask(id: number, updates: Partial<InsertTask>): Promise<Task | undefined>;
+  deleteTask(id: number): Promise<boolean>;
+
+  // Milestone methods
+  getMilestones(projectId?: number): Promise<Milestone[]>;
+  getMilestoneById(id: number): Promise<Milestone | undefined>;
+  createMilestone(milestone: InsertMilestone): Promise<Milestone>;
+  updateMilestone(id: number, updates: Partial<InsertMilestone>): Promise<Milestone | undefined>;
+
+  // Task dependency methods
+  getTaskDependencies(taskId: number): Promise<TaskDependency[]>;
+  createTaskDependency(dependency: InsertTaskDependency): Promise<TaskDependency>;
+  deleteTaskDependency(id: number): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -33,23 +61,40 @@ export class MemStorage implements IStorage {
   private appointments: Map<number, Appointment>;
   private departments: Map<number, Department>;
   private doctors: Map<number, Doctor>;
+  private projects: Map<number, Project>;
+  private tasks: Map<number, Task>;
+  private milestones: Map<number, Milestone>;
+  private taskDependencies: Map<number, TaskDependency>;
   private currentUserId: number;
   private currentAppointmentId: number;
   private currentDepartmentId: number;
   private currentDoctorId: number;
+  private currentProjectId: number;
+  private currentTaskId: number;
+  private currentMilestoneId: number;
+  private currentDependencyId: number;
 
   constructor() {
     this.users = new Map();
     this.appointments = new Map();
     this.departments = new Map();
     this.doctors = new Map();
+    this.projects = new Map();
+    this.tasks = new Map();
+    this.milestones = new Map();
+    this.taskDependencies = new Map();
     this.currentUserId = 1;
     this.currentAppointmentId = 1;
     this.currentDepartmentId = 1;
     this.currentDoctorId = 1;
+    this.currentProjectId = 1;
+    this.currentTaskId = 1;
+    this.currentMilestoneId = 1;
+    this.currentDependencyId = 1;
 
     // Initialize with sample data
     this.initializeSampleData();
+    this.initializeProjectData();
   }
 
   private async initializeSampleData() {
@@ -233,6 +278,321 @@ export class MemStorage implements IStorage {
     };
     this.doctors.set(doctor.id, doctor);
     return doctor;
+  }
+
+  // Project methods
+  async getProjects(): Promise<Project[]> {
+    return Array.from(this.projects.values());
+  }
+
+  async getProjectById(id: number): Promise<Project | undefined> {
+    return this.projects.get(id);
+  }
+
+  async createProject(insertProject: InsertProject): Promise<Project> {
+    const project: Project = {
+      id: this.currentProjectId++,
+      name: insertProject.name,
+      description: insertProject.description || null,
+      startDate: new Date(insertProject.startDate),
+      endDate: new Date(insertProject.endDate),
+      status: insertProject.status || "active",
+      progress: insertProject.progress || 0,
+      priority: insertProject.priority || "medium",
+      managerId: insertProject.managerId || null,
+      createdAt: new Date(),
+    };
+    this.projects.set(project.id, project);
+    return project;
+  }
+
+  async updateProject(id: number, updates: Partial<InsertProject>): Promise<Project | undefined> {
+    const project = this.projects.get(id);
+    if (project) {
+      const updatedProject = { ...project, ...updates };
+      if (updates.startDate) updatedProject.startDate = new Date(updates.startDate);
+      if (updates.endDate) updatedProject.endDate = new Date(updates.endDate);
+      this.projects.set(id, updatedProject);
+      return updatedProject;
+    }
+    return undefined;
+  }
+
+  // Task methods
+  async getTasks(projectId?: number): Promise<Task[]> {
+    const tasks = Array.from(this.tasks.values());
+    return projectId ? tasks.filter(task => task.projectId === projectId) : tasks;
+  }
+
+  async getTaskById(id: number): Promise<Task | undefined> {
+    return this.tasks.get(id);
+  }
+
+  async createTask(insertTask: InsertTask): Promise<Task> {
+    const task: Task = {
+      id: this.currentTaskId++,
+      projectId: insertTask.projectId,
+      parentId: insertTask.parentId || null,
+      name: insertTask.name,
+      description: insertTask.description || null,
+      activity: insertTask.activity || null,
+      subActivity: insertTask.subActivity || null,
+      startDate: new Date(insertTask.startDate),
+      endDate: new Date(insertTask.endDate),
+      actualStartDate: insertTask.actualStartDate ? new Date(insertTask.actualStartDate) : null,
+      actualEndDate: insertTask.actualEndDate ? new Date(insertTask.actualEndDate) : null,
+      duration: insertTask.duration || 1,
+      progress: insertTask.progress || 0,
+      status: insertTask.status || "pending",
+      priority: insertTask.priority || "medium",
+      assigneeId: insertTask.assigneeId || null,
+      contractor: insertTask.contractor || null,
+      location: insertTask.location || null,
+      hierarchy: insertTask.hierarchy || null,
+      materials: insertTask.materials || null,
+      photoUrl: insertTask.photoUrl || null,
+      notes: insertTask.notes || null,
+      updatedBy: insertTask.updatedBy || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.tasks.set(task.id, task);
+    return task;
+  }
+
+  async updateTask(id: number, updates: Partial<InsertTask>): Promise<Task | undefined> {
+    const task = this.tasks.get(id);
+    if (task) {
+      const updatedTask = { ...task, ...updates, updatedAt: new Date() };
+      if (updates.startDate) updatedTask.startDate = new Date(updates.startDate);
+      if (updates.endDate) updatedTask.endDate = new Date(updates.endDate);
+      if (updates.actualStartDate) updatedTask.actualStartDate = new Date(updates.actualStartDate);
+      if (updates.actualEndDate) updatedTask.actualEndDate = new Date(updates.actualEndDate);
+      this.tasks.set(id, updatedTask);
+      return updatedTask;
+    }
+    return undefined;
+  }
+
+  async deleteTask(id: number): Promise<boolean> {
+    return this.tasks.delete(id);
+  }
+
+  // Milestone methods
+  async getMilestones(projectId?: number): Promise<Milestone[]> {
+    const milestones = Array.from(this.milestones.values());
+    return projectId ? milestones.filter(milestone => milestone.projectId === projectId) : milestones;
+  }
+
+  async getMilestoneById(id: number): Promise<Milestone | undefined> {
+    return this.milestones.get(id);
+  }
+
+  async createMilestone(insertMilestone: InsertMilestone): Promise<Milestone> {
+    const milestone: Milestone = {
+      id: this.currentMilestoneId++,
+      projectId: insertMilestone.projectId,
+      name: insertMilestone.name,
+      description: insertMilestone.description || null,
+      targetDate: new Date(insertMilestone.targetDate),
+      actualDate: insertMilestone.actualDate ? new Date(insertMilestone.actualDate) : null,
+      status: insertMilestone.status || "pending",
+      ownerId: insertMilestone.ownerId || null,
+      createdAt: new Date(),
+    };
+    this.milestones.set(milestone.id, milestone);
+    return milestone;
+  }
+
+  async updateMilestone(id: number, updates: Partial<InsertMilestone>): Promise<Milestone | undefined> {
+    const milestone = this.milestones.get(id);
+    if (milestone) {
+      const updatedMilestone = { ...milestone, ...updates };
+      if (updates.targetDate) updatedMilestone.targetDate = new Date(updates.targetDate);
+      if (updates.actualDate) updatedMilestone.actualDate = new Date(updates.actualDate);
+      this.milestones.set(id, updatedMilestone);
+      return updatedMilestone;
+    }
+    return undefined;
+  }
+
+  // Task dependency methods
+  async getTaskDependencies(taskId: number): Promise<TaskDependency[]> {
+    const dependencies = Array.from(this.taskDependencies.values());
+    return dependencies.filter(dep => dep.taskId === taskId);
+  }
+
+  async createTaskDependency(insertDependency: InsertTaskDependency): Promise<TaskDependency> {
+    const dependency: TaskDependency = {
+      id: this.currentDependencyId++,
+      taskId: insertDependency.taskId,
+      dependsOnTaskId: insertDependency.dependsOnTaskId,
+      type: insertDependency.type || "finish-to-start",
+    };
+    this.taskDependencies.set(dependency.id, dependency);
+    return dependency;
+  }
+
+  async deleteTaskDependency(id: number): Promise<boolean> {
+    return this.taskDependencies.delete(id);
+  }
+
+  private async initializeProjectData() {
+    // Create sample projects
+    const sampleProjects = [
+      {
+        name: "Hospital Construction Phase 1",
+        description: "Main building structure and foundation work",
+        startDate: new Date("2024-01-01"),
+        endDate: new Date("2024-06-30"),
+        status: "active",
+        progress: 65,
+        priority: "high",
+        managerId: 1,
+      },
+      {
+        name: "Medical Equipment Installation", 
+        description: "Installation of critical medical equipment",
+        startDate: new Date("2024-04-01"),
+        endDate: new Date("2024-08-31"),
+        status: "active",
+        progress: 30,
+        priority: "critical",
+        managerId: 1,
+      },
+    ];
+
+    for (const projectData of sampleProjects) {
+      const project: Project = {
+        id: this.currentProjectId++,
+        name: projectData.name,
+        description: projectData.description,
+        startDate: projectData.startDate,
+        endDate: projectData.endDate,
+        status: projectData.status,
+        progress: projectData.progress,
+        priority: projectData.priority,
+        managerId: projectData.managerId,
+        createdAt: new Date(),
+      };
+      this.projects.set(project.id, project);
+    }
+
+    // Create sample tasks for first project
+    const sampleTasks = [
+      {
+        projectId: 1,
+        name: "Foundation Excavation",
+        description: "Excavate foundation area according to architectural plans",
+        activity: "Civil Work",
+        subActivity: "Foundation",
+        startDate: new Date("2024-01-01"),
+        endDate: new Date("2024-01-15"),
+        duration: 15,
+        progress: 100,
+        status: "completed",
+        priority: "high",
+        contractor: "ABC Construction Co.",
+        location: "Building A - Ground Level",
+      },
+      {
+        projectId: 1,
+        name: "Concrete Pouring",
+        description: "Pour concrete for foundation base",
+        activity: "Civil Work", 
+        subActivity: "Foundation",
+        startDate: new Date("2024-01-16"),
+        endDate: new Date("2024-01-25"),
+        duration: 10,
+        progress: 85,
+        status: "in-progress",
+        priority: "high",
+        contractor: "ABC Construction Co.",
+        location: "Building A - Ground Level",
+      },
+      {
+        projectId: 1,
+        name: "Steel Frame Installation",
+        description: "Install main steel framework structure",
+        activity: "Structural Work",
+        subActivity: "Frame Installation", 
+        startDate: new Date("2024-02-01"),
+        endDate: new Date("2024-03-15"),
+        duration: 44,
+        progress: 40,
+        status: "in-progress",
+        priority: "critical",
+        contractor: "Steel Works Ltd.",
+        location: "Building A - Levels 1-5",
+      },
+    ];
+
+    for (const taskData of sampleTasks) {
+      const task: Task = {
+        id: this.currentTaskId++,
+        projectId: taskData.projectId,
+        parentId: null,
+        name: taskData.name,
+        description: taskData.description,
+        activity: taskData.activity,
+        subActivity: taskData.subActivity,
+        startDate: taskData.startDate,
+        endDate: taskData.endDate,
+        actualStartDate: taskData.status === "completed" ? taskData.startDate : null,
+        actualEndDate: taskData.status === "completed" ? taskData.endDate : null,
+        duration: taskData.duration,
+        progress: taskData.progress,
+        status: taskData.status,
+        priority: taskData.priority,
+        assigneeId: null,
+        contractor: taskData.contractor || null,
+        location: taskData.location || null,
+        hierarchy: null,
+        materials: null,
+        photoUrl: null,
+        notes: null,
+        updatedBy: "System",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      this.tasks.set(task.id, task);
+    }
+
+    // Create sample milestones
+    const sampleMilestones = [
+      {
+        projectId: 1,
+        name: "Foundation Complete",
+        description: "All foundation work completed and approved",
+        targetDate: new Date("2024-01-31"),
+        actualDate: new Date("2024-01-28"),
+        status: "completed",
+        ownerId: 1,
+      },
+      {
+        projectId: 1,
+        name: "Structural Frame Complete",
+        description: "Main steel framework installation finished",
+        targetDate: new Date("2024-03-31"),
+        status: "in-progress", 
+        ownerId: 1,
+      },
+    ];
+
+    for (const milestoneData of sampleMilestones) {
+      const milestone: Milestone = {
+        id: this.currentMilestoneId++,
+        projectId: milestoneData.projectId,
+        name: milestoneData.name,
+        description: milestoneData.description,
+        targetDate: milestoneData.targetDate,
+        actualDate: milestoneData.actualDate || null,
+        status: milestoneData.status,
+        ownerId: milestoneData.ownerId,
+        createdAt: new Date(),
+      };
+      this.milestones.set(milestone.id, milestone);
+    }
   }
 }
 

@@ -5,7 +5,10 @@ import {
   insertAppointmentSchema, 
   insertDepartmentSchema, 
   insertDoctorSchema,
-  insertUserSchema 
+  insertUserSchema,
+  insertProjectSchema,
+  insertTaskSchema,
+  insertMilestoneSchema
 } from "@shared/schema";
 
 export function registerRoutes(app: Express): Server {
@@ -142,15 +145,153 @@ export function registerRoutes(app: Express): Server {
       const departments = await storage.getDepartments();
       const doctors = await storage.getDoctors();
       
+      const projects = await storage.getProjects();
+      const tasks = await storage.getTasks();
+      
       const stats = {
         totalAppointments: appointments.length,
         pendingAppointments: appointments.filter(a => a.status === "pending").length,
         confirmedAppointments: appointments.filter(a => a.status === "confirmed").length,
         totalDepartments: departments.length,
         totalDoctors: doctors.length,
+        totalProjects: projects.length,
+        activeProjects: projects.filter(p => p.status === "active").length,
+        totalTasks: tasks.length,
+        completedTasks: tasks.filter(t => t.status === "completed").length,
       };
       
       res.json(stats);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Project Management Routes
+  app.get("/api/projects", async (req, res) => {
+    try {
+      const projects = await storage.getProjects();
+      res.json(projects);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/projects/:id", async (req, res) => {
+    try {
+      const project = await storage.getProjectById(parseInt(req.params.id));
+      if (!project) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+      res.json(project);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/projects", async (req, res) => {
+    try {
+      const data = insertProjectSchema.parse(req.body);
+      const project = await storage.createProject(data);
+      res.status(201).json(project);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/projects/:id", async (req, res) => {
+    try {
+      const project = await storage.updateProject(parseInt(req.params.id), req.body);
+      if (!project) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+      res.json(project);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Task Routes
+  app.get("/api/tasks", async (req, res) => {
+    try {
+      const projectId = req.query.projectId ? parseInt(req.query.projectId as string) : undefined;
+      const tasks = await storage.getTasks(projectId);
+      res.json(tasks);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/tasks/:id", async (req, res) => {
+    try {
+      const task = await storage.getTaskById(parseInt(req.params.id));
+      if (!task) {
+        return res.status(404).json({ error: "Task not found" });
+      }
+      res.json(task);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/tasks", async (req, res) => {
+    try {
+      const data = insertTaskSchema.parse(req.body);
+      const task = await storage.createTask(data);
+      res.status(201).json(task);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/tasks/:id", async (req, res) => {
+    try {
+      const task = await storage.updateTask(parseInt(req.params.id), req.body);
+      if (!task) {
+        return res.status(404).json({ error: "Task not found" });
+      }
+      res.json(task);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.delete("/api/tasks/:id", async (req, res) => {
+    try {
+      await storage.deleteTask(parseInt(req.params.id));
+      res.status(204).send();
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Milestone Routes
+  app.get("/api/milestones", async (req, res) => {
+    try {
+      const projectId = req.query.projectId ? parseInt(req.query.projectId as string) : undefined;
+      const milestones = await storage.getMilestones(projectId);
+      res.json(milestones);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/milestones", async (req, res) => {
+    try {
+      const data = insertMilestoneSchema.parse(req.body);
+      const milestone = await storage.createMilestone(data);
+      res.status(201).json(milestone);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/milestones/:id", async (req, res) => {
+    try {
+      const milestone = await storage.updateMilestone(parseInt(req.params.id), req.body);
+      if (!milestone) {
+        return res.status(404).json({ error: "Milestone not found" });
+      }
+      res.json(milestone);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
