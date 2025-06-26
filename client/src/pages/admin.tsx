@@ -18,9 +18,12 @@ import {
   Filter,
   CheckCircle,
   XCircle,
-  AlertCircle
+  AlertCircle,
+  BarChart3,
+  TrendingUp
 } from "lucide-react";
 import { useLocation } from "wouter";
+import { AnalyticsDashboard } from "@/components/analytics-dashboard";
 import type { Appointment } from "@shared/schema";
 
 export default function AdminPage() {
@@ -28,6 +31,7 @@ export default function AdminPage() {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [activeTab, setActiveTab] = useState("appointments");
 
   // Check if user is logged in and is admin
   useEffect(() => {
@@ -173,6 +177,32 @@ export default function AdminPage() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Navigation Tabs */}
+        <div className="flex space-x-1 mb-8 bg-gray-100 p-1 rounded-lg w-fit">
+          <button
+            onClick={() => setActiveTab("appointments")}
+            className={`px-4 py-2 rounded-md font-medium transition-colors ${
+              activeTab === "appointments"
+                ? "bg-white text-blue-600 shadow-sm"
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
+            <Calendar className="w-4 h-4 inline mr-2" />
+            Appointments
+          </button>
+          <button
+            onClick={() => setActiveTab("analytics")}
+            className={`px-4 py-2 rounded-md font-medium transition-colors ${
+              activeTab === "analytics"
+                ? "bg-white text-blue-600 shadow-sm"
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
+            <BarChart3 className="w-4 h-4 inline mr-2" />
+            Analytics
+          </button>
+        </div>
+
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card>
@@ -224,120 +254,133 @@ export default function AdminPage() {
           </Card>
         </div>
 
-        {/* Appointments Table */}
-        <Card>
-          <CardHeader>
-            <div className="flex justify-between items-center">
-              <CardTitle>Appointments Management</CardTitle>
-              <div className="flex space-x-4">
-                <div className="relative">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <Input
-                    placeholder="Search appointments..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 w-64"
-                  />
+        {/* Tab Content */}
+        {activeTab === "appointments" && (
+          <Card>
+            <CardHeader>
+              <div className="flex justify-between items-center">
+                <CardTitle>Appointments Management</CardTitle>
+                <div className="flex space-x-4">
+                  <div className="relative">
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <Input
+                      placeholder="Search appointments..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10 w-64"
+                    />
+                  </div>
+                  <Select value={statusFilter} onValueChange={setStatusFilter}>
+                    <SelectTrigger className="w-32">
+                      <Filter className="w-4 h-4 mr-2" />
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Status</SelectItem>
+                      <SelectItem value="pending">Pending</SelectItem>
+                      <SelectItem value="confirmed">Confirmed</SelectItem>
+                      <SelectItem value="cancelled">Cancelled</SelectItem>
+                      <SelectItem value="completed">Completed</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="w-32">
-                    <Filter className="w-4 h-4 mr-2" />
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="pending">Pending</SelectItem>
-                    <SelectItem value="confirmed">Confirmed</SelectItem>
-                    <SelectItem value="cancelled">Cancelled</SelectItem>
-                    <SelectItem value="completed">Completed</SelectItem>
-                  </SelectContent>
-                </Select>
               </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            {appointmentsLoading ? (
-              <div className="text-center py-8">Loading appointments...</div>
-            ) : filteredAppointments?.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">No appointments found</div>
-            ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Patient</TableHead>
-                    <TableHead>Contact</TableHead>
-                    <TableHead>Department</TableHead>
-                    <TableHead>Date & Time</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Reason</TableHead>
-                    <TableHead>Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredAppointments?.map((appointment) => (
-                    <TableRow key={appointment.id}>
-                      <TableCell>
-                        <div>
-                          <div className="font-medium">{appointment.patientName}</div>
-                          <div className="text-sm text-gray-500">
-                            {appointment.age} years, {appointment.gender}
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="text-sm">
-                          <div>{appointment.email}</div>
-                          <div className="text-gray-500">{appointment.phone}</div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="outline">{appointment.department}</Badge>
-                      </TableCell>
-                      <TableCell>
-                        <div className="text-sm">
-                          <div>{formatDate(appointment.preferredDate.toString())}</div>
-                          <div className="text-gray-500">{appointment.preferredTime}</div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <Badge className={getStatusColor(appointment.status)}>
-                          <div className="flex items-center space-x-1">
-                            {getStatusIcon(appointment.status)}
-                            <span className="capitalize">{appointment.status}</span>
-                          </div>
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <div className="max-w-xs truncate text-sm" title={appointment.reasonForVisit}>
-                          {appointment.reasonForVisit}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <Select
-                          value={appointment.status}
-                          onValueChange={(newStatus) => 
-                            updateStatusMutation.mutate({ id: appointment.id, status: newStatus })
-                          }
-                          disabled={updateStatusMutation.isPending}
-                        >
-                          <SelectTrigger className="w-32">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="pending">Pending</SelectItem>
-                            <SelectItem value="confirmed">Confirmed</SelectItem>
-                            <SelectItem value="cancelled">Cancelled</SelectItem>
-                            <SelectItem value="completed">Completed</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </TableCell>
+            </CardHeader>
+            <CardContent>
+              {appointmentsLoading ? (
+                <div className="text-center py-8">Loading appointments...</div>
+              ) : filteredAppointments?.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">No appointments found</div>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Patient</TableHead>
+                      <TableHead>Contact</TableHead>
+                      <TableHead>Department</TableHead>
+                      <TableHead>Date & Time</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Reason</TableHead>
+                      <TableHead>Actions</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            )}
-          </CardContent>
-        </Card>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredAppointments?.map((appointment) => (
+                      <TableRow key={appointment.id}>
+                        <TableCell>
+                          <div>
+                            <div className="font-medium">{appointment.patientName}</div>
+                            <div className="text-sm text-gray-500">
+                              {appointment.age} years, {appointment.gender}
+                            </div>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm">
+                            <div>{appointment.email}</div>
+                            <div className="text-gray-500">{appointment.phone}</div>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline">{appointment.department}</Badge>
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm">
+                            <div>{formatDate(appointment.preferredDate.toString())}</div>
+                            <div className="text-gray-500">{appointment.preferredTime}</div>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Badge className={getStatusColor(appointment.status)}>
+                            <div className="flex items-center space-x-1">
+                              {getStatusIcon(appointment.status)}
+                              <span className="capitalize">{appointment.status}</span>
+                            </div>
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <div className="max-w-xs truncate text-sm" title={appointment.reasonForVisit}>
+                            {appointment.reasonForVisit}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Select
+                            value={appointment.status}
+                            onValueChange={(newStatus) => 
+                              updateStatusMutation.mutate({ id: appointment.id, status: newStatus })
+                            }
+                            disabled={updateStatusMutation.isPending}
+                          >
+                            <SelectTrigger className="w-32">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="pending">Pending</SelectItem>
+                              <SelectItem value="confirmed">Confirmed</SelectItem>
+                              <SelectItem value="cancelled">Cancelled</SelectItem>
+                              <SelectItem value="completed">Completed</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Analytics Dashboard */}
+        {activeTab === "analytics" && appointments && (
+          <div>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Analytics Dashboard</h2>
+              <p className="text-gray-600">Visual insights into hospital appointment data and trends</p>
+            </div>
+            <AnalyticsDashboard appointments={appointments} />
+          </div>
+        )}
       </div>
     </div>
   );
