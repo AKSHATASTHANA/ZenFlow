@@ -40,15 +40,39 @@ export default function AboutSection() {
             </h3>
             <ReactMarkdown>
               {`
-It gives me immense pride and satisfaction to welcome you to *Shri Krishna Mission Hospital* – a place where compassion meets care, and healing is guided by dedication and ethics.
-Since its inception, our hospital has stood as a beacon of hope for countless individuals and families. Inspired by the teachings of Lord Shri Krishna, we believe in serving humanity with devotion, dignity, and the highest standard of medical excellence. Our mission has always been to provide accessible, affordable, and world-class healthcare to all, regardless of background or circumstance.
-With a team of highly skilled doctors, compassionate nurses, and dedicated staff, we aim to bring the best in modern medicine while staying rooted in values that nurture humanity. We are continuously investing in advanced technology, infrastructure, and training so that we can respond effectively to the evolving healthcare needs of our community.
+It gives me immense pride and satisfaction to welcome you to **Shri Krishna Mission Hospital** – a place where compassion meets care, and healing is guided by dedication and ethics.
+
+## Our Legacy
+Since its inception in 1985, our hospital has stood as a beacon of hope for countless individuals and families across Uttar Pradesh. Inspired by the teachings of Lord Shri Krishna, we believe in serving humanity with devotion, dignity, and the highest standard of medical excellence.
+
+## Our Mission
+Our mission has always been to provide accessible, affordable, and world-class healthcare to all, regardless of background or circumstance. We serve over **50,000 patients annually** with a commitment to excellence that has earned us recognition as one of the leading healthcare institutions in Eastern Uttar Pradesh.
+
+## Centers of Excellence
+- **Cardiac Care Center** - Advanced cardiac surgery and interventional cardiology
+- **Neuroscience Institute** - Comprehensive neurological and neurosurgical services
+- **Orthopedic & Joint Replacement Center** - State-of-the-art orthopedic treatments
+- **Oncology Department** - Comprehensive cancer care with latest treatment protocols
+- **Emergency & Trauma Center** - 24/7 emergency services with Level-1 trauma care
+- **Maternity & Child Care** - Complete mother and child healthcare services
+
+## Our Commitment
+With a team of **200+ highly skilled doctors**, compassionate nurses, and dedicated staff, we aim to bring the best in modern medicine while staying rooted in values that nurture humanity. We are continuously investing in advanced technology, infrastructure, and training to respond effectively to the evolving healthcare needs of our community.
+
+## Recognition & Accreditations
+- **NABH Accredited** - National Accreditation Board for Hospitals
+- **ISO 9001:2015 Certified** - Quality Management System
+- **Best Hospital Award** - Healthcare Excellence Awards 2023
+- **Green Hospital Initiative** - Environment-friendly healthcare practices
+
 I am deeply grateful to everyone – our team, our patients, and our well-wishers – who have placed their trust in us. Together, we move forward with the vision of a healthier and more hopeful tomorrow.
 
-Regards,  
-*Shri Basant Chaudhary*  
-(Chairman )  
-Shri Krishna Mission Hospital- Basti
+---
+
+*With warmest regards,*  
+**Shri Basant Chaudhary**  
+*Chairman*  
+Shri Krishna Mission Hospital, Basti
               `}
             </ReactMarkdown>
             {/* Optional decorative float icon */}

@@ -41,15 +41,27 @@ function AboutSection() {
             </h3>
             <ReactMarkdown>
               {`
-It gives me immense pride and satisfaction to welcome you to *Shri Krishna Mission Hospital* – a place where compassion meets care, and healing is guided by dedication and ethics.
-Since its inception, our hospital has stood as a beacon of hope for countless individuals and families. Inspired by the teachings of Lord Shri Krishna, we believe in serving humanity with devotion, dignity, and the highest standard of medical excellence. Our mission has always been to provide accessible, affordable, and world-class healthcare to all, regardless of background or circumstance.
-With a team of highly skilled doctors, compassionate nurses, and dedicated staff, we aim to bring the best in modern medicine while staying rooted in values that nurture humanity. We are continuously investing in advanced technology, infrastructure, and training so that we can respond effectively to the evolving healthcare needs of our community.
-I am deeply grateful to everyone – our team, our patients, and our well-wishers – who have placed their trust in us. Together, we move forward with the vision of a healthier and more hopeful tomorrow.
+It gives me immense pride and satisfaction to welcome you to **Shri Krishna Mission Hospital** – a place where compassion meets care, and healing is guided by dedication and ethics.
 
-Regards,  
-*Shri Basant Chaudhary*  
-(Chairman )  
-Shri Krishna Mission Hospital- Basti
+## Our Legacy & Mission
+Since 1985, our hospital has served as a beacon of hope for countless individuals and families across Uttar Pradesh. Inspired by the teachings of Lord Shri Krishna, we provide accessible, affordable, and world-class healthcare to all.
+
+## Key Achievements
+- **50,000+ patients** served annually
+- **200+ skilled doctors** and healthcare professionals
+- **NABH Accredited** & ISO 9001:2015 Certified
+- **24/7 Emergency Services** with Level-1 trauma care
+
+## Centers of Excellence
+**Cardiac Care** • **Neuroscience** • **Orthopedics** • **Oncology** • **Maternity Care** • **Emergency & Trauma**
+
+With continuous investment in advanced technology, infrastructure, and training, we respond effectively to the evolving healthcare needs of our community.
+
+---
+
+*With warmest regards,*  
+**Shri Basant Chaudhary**, *Chairman*  
+Shri Krishna Mission Hospital, Basti
               `}
             </ReactMarkdown>
           </div>
