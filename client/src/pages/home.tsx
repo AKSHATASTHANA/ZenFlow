@@ -7,6 +7,67 @@ import { Calendar, Clock, Users, Award, Phone, Mail, MapPin } from "lucide-react
 import { AppointmentForm } from "@/components/appointment-form";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { Department, Doctor } from "@shared/schema";
+import ReactMarkdown from "react-markdown";
+
+
+function AboutSection() {
+  return (
+    <section id="about" className="py-20 bg-gradient-to-b from-white to-blue-50 flex items-center justify-center">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12 md:gap-24">
+        {/* Hospital image (left, large rectangle) */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-8 md:mb-0">
+          <div className="relative w-full md:w-[38rem] lg:w-[48rem] h-64 md:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-gradient-to-br from-blue-200 to-blue-50">
+            <img
+              src="src/images/hospital.jpeg"
+              alt="Shri Krishna Mission Hospital"
+              className="object-cover w-full h-full rounded-2xl border-8 border-white shadow-xl"
+            />
+          </div>
+        </div>
+        {/* Letter (right): wider and shorter */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-start">
+          <div
+            className="prose prose-lg text-gray-700 leading-relaxed bg-white/90 border border-blue-100 rounded-2xl shadow-2xl px-14 py-6 relative float-animation"
+            style={{
+              boxShadow: "0 8px 32px rgba(44, 76, 120, 0.13)",
+              minWidth: "350px",
+              maxWidth: "700px",
+              height: "auto",
+              zIndex: 2,
+            }}
+          >
+            <h3 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6 text-center md:text-left">
+              About Shri Krishna Mission Hospital
+            </h3>
+            <ReactMarkdown>
+              {`
+It gives me immense pride and satisfaction to welcome you to *Shri Krishna Mission Hospital* – a place where compassion meets care, and healing is guided by dedication and ethics.
+Since its inception, our hospital has stood as a beacon of hope for countless individuals and families. Inspired by the teachings of Lord Shri Krishna, we believe in serving humanity with devotion, dignity, and the highest standard of medical excellence. Our mission has always been to provide accessible, affordable, and world-class healthcare to all, regardless of background or circumstance.
+With a team of highly skilled doctors, compassionate nurses, and dedicated staff, we aim to bring the best in modern medicine while staying rooted in values that nurture humanity. We are continuously investing in advanced technology, infrastructure, and training so that we can respond effectively to the evolving healthcare needs of our community.
+I am deeply grateful to everyone – our team, our patients, and our well-wishers – who have placed their trust in us. Together, we move forward with the vision of a healthier and more hopeful tomorrow.
+
+Regards,  
+*Shri Basant Chaudhary*  
+(Chairman )  
+Shri Krishna Mission Hospital- Basti
+              `}
+            </ReactMarkdown>
+          </div>
+        </div>
+      </div>
+      {/* floating animation for letter */}
+      <style>{`
+        .float-animation {
+          animation: floatLetter 4s ease-in-out infinite;
+        }
+        @keyframes floatLetter {
+          0%,100% { transform: translateY(0); }
+          50% { transform: translateY(-16px); }
+        }
+      `}</style>
+    </section>
+  );
+}
 
 export default function HomePage() {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
@@ -41,13 +102,13 @@ export default function HomePage() {
                   <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">MediCare Hospital</h1>
+              <h1 className="text-2xl font-bold text-gray-900"> Hospital</h1>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#services" className="text-gray-600 hover:text-blue-600">Services</a>
               <a href="#doctors" className="text-gray-600 hover:text-blue-600">Doctors</a>
               <a href="#contact" className="text-gray-600 hover:text-blue-600">Contact</a>
-              <Button 
+              <Button
                 onClick={() => setShowAppointmentForm(true)}
                 className="bg-blue-600 hover:bg-blue-700"
               >
@@ -66,29 +127,29 @@ export default function HomePage() {
             <svg className="w-full h-full" viewBox="0 0 100 100" fill="none">
               <defs>
                 <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
                 </pattern>
               </defs>
               <rect width="100" height="100" fill="url(#grid)" />
             </svg>
           </div>
         </div>
-        
+
         {/* Floating Medical Icons */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 text-blue-200 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
             <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
           </div>
           <div className="absolute top-40 right-20 text-green-200 animate-pulse" style={{ animationDelay: '1s' }}>
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z"/>
+              <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
             </svg>
           </div>
           <div className="absolute bottom-32 left-20 text-blue-300 animate-bounce" style={{ animationDelay: '2s', animationDuration: '4s' }}>
             <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </div>
         </div>
@@ -100,22 +161,22 @@ export default function HomePage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800"> Priority</span>
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
-              Experience world-class healthcare with our team of expert doctors and state-of-the-art facilities. 
+              Experience world-class healthcare with our team of expert doctors and state-of-the-art facilities.
               We provide comprehensive medical care with compassion and excellence.
             </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               onClick={() => setShowAppointmentForm(true)}
               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               <Calendar className="w-5 h-5 mr-3" />
               Book Appointment
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
               className="text-lg px-10 py-4 rounded-full border-2 border-red-500 text-red-600 hover:bg-red-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
@@ -131,7 +192,7 @@ export default function HomePage() {
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                 ))}
                 <span className="ml-2 text-sm text-gray-600">4.9/5 Rating</span>
@@ -141,6 +202,13 @@ export default function HomePage() {
         </div>
       </section>
 
+
+
+
+      <AboutSection />
+
+
+
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
         {/* Background Pattern */}
@@ -148,10 +216,10 @@ export default function HomePage() {
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="grid grid-cols-8 grid-rows-8 w-full h-full">
               {[...Array(64)].map((_, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className="border border-white/20"
-                  style={{ 
+                  style={{
                     animationDelay: `${i * 0.1}s`,
                     animation: 'pulse 4s ease-in-out infinite'
                   }}
@@ -177,7 +245,7 @@ export default function HomePage() {
                 <div className="w-12 h-1 bg-white/30 rounded-full mx-auto mt-3 group-hover:bg-white/60 transition-colors duration-300"></div>
               </div>
             </div>
-            
+
             <div className="group animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -187,7 +255,7 @@ export default function HomePage() {
                 <div className="w-12 h-1 bg-white/30 rounded-full mx-auto mt-3 group-hover:bg-white/60 transition-colors duration-300"></div>
               </div>
             </div>
-            
+
             <div className="group animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -197,7 +265,7 @@ export default function HomePage() {
                 <div className="w-12 h-1 bg-white/30 rounded-full mx-auto mt-3 group-hover:bg-white/60 transition-colors duration-300"></div>
               </div>
             </div>
-            
+
             <div className="group animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -228,22 +296,22 @@ export default function HomePage() {
               Comprehensive healthcare services across multiple specialties with state-of-the-art facilities
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {departments?.map((department, index) => (
-              <Card 
-                key={department.id} 
+              <Card
+                key={department.id}
                 className="card-hover hover-lift group relative overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur-sm animate-fadeInUp"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Card Background Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
+
                 <CardHeader className="relative">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="medical-icon animate-float">
                       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z"/>
+                        <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
                       </svg>
                     </div>
                     <CardTitle className="text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
@@ -260,7 +328,7 @@ export default function HomePage() {
                       <span className="ml-1">{department.headDoctor}</span>
                     </div>
                   )}
-                  
+
                   {/* Hover Effect Arrow */}
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -291,11 +359,11 @@ export default function HomePage() {
               Experienced professionals dedicated to your health and wellbeing with years of specialized training
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {doctors?.slice(0, 6).map((doctor, index) => (
-              <Card 
-                key={doctor.id} 
+              <Card
+                key={doctor.id}
                 className="text-center card-hover hover-lift group bg-white/90 backdrop-blur-sm border-0 shadow-xl animate-fadeInUp"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
@@ -308,23 +376,23 @@ export default function HomePage() {
                     {/* Online Indicator */}
                     <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-md animate-pulse"></div>
                   </div>
-                  
+
                   <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                     {doctor.name}
                   </CardTitle>
-                  <Badge 
-                    variant="secondary" 
+                  <Badge
+                    variant="secondary"
                     className="mt-3 px-4 py-2 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border-0 font-medium"
                   >
                     {doctor.specialization}
                   </Badge>
                 </CardHeader>
-                
+
                 <CardContent className="space-y-4">
                   <div className="bg-gray-50 rounded-lg p-4">
                     <p className="text-gray-700 font-medium text-sm">{doctor.qualifications}</p>
                   </div>
-                  
+
                   <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3">
                     <Award className="w-4 h-4 text-green-600" />
                     <span className="font-semibold text-green-700">{doctor.experience} years</span>
@@ -335,15 +403,15 @@ export default function HomePage() {
                   <div className="flex justify-center items-center space-x-1 mt-4">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                     ))}
                     <span className="ml-2 text-xs text-gray-500">(4.9)</span>
                   </div>
 
                   {/* Contact Button */}
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     className="mt-4 w-full border-blue-200 text-blue-600 hover:bg-blue-50 group-hover:border-blue-400 transition-all duration-300"
                   >
@@ -356,7 +424,7 @@ export default function HomePage() {
 
           {/* View All Doctors Button */}
           <div className="text-center mt-16 animate-fadeInUp" style={{ animationDelay: '0.9s' }}>
-            <Button 
+            <Button
               size="lg"
               variant="outline"
               className="px-8 py-3 border-2 border-blue-500 text-blue-600 hover:bg-blue-50 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
@@ -404,8 +472,8 @@ export default function HomePage() {
                 rating: 5
               }
             ].map((testimonial, index) => (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
                 className="p-8 border-0 shadow-xl bg-white/80 backdrop-blur-sm hover-lift animate-fadeInUp"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
@@ -413,7 +481,7 @@ export default function HomePage() {
                   {/* Quote */}
                   <div className="relative">
                     <svg className="absolute -top-2 -left-2 w-8 h-8 text-blue-200" fill="currentColor" viewBox="0 0 32 32">
-                      <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/>
+                      <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                     </svg>
                     <p className="text-gray-700 italic text-lg leading-relaxed pl-6">
                       "{testimonial.quote}"
@@ -424,7 +492,7 @@ export default function HomePage() {
                   <div className="flex justify-center space-x-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                     ))}
                   </div>
@@ -478,7 +546,7 @@ export default function HomePage() {
             <h3 className="text-3xl font-bold mb-4">Contact Us</h3>
             <p className="text-xl opacity-90">Get in touch for appointments and inquiries</p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <Phone className="w-8 h-8 mx-auto mb-4" />
@@ -489,8 +557,8 @@ export default function HomePage() {
             <div>
               <Mail className="w-8 h-8 mx-auto mb-4" />
               <h4 className="text-xl font-semibold mb-2">Email</h4>
-              <p className="opacity-90">info@medicare-hospital.com</p>
-              <p className="opacity-90">appointments@medicare-hospital.com</p>
+              <p className="opacity-90">info@Shri Krishna Mission -hospital.com</p>
+              <p className="opacity-90">appointments@Shri Krishna Mission -hospital.com</p>
             </div>
             <div>
               <MapPin className="w-8 h-8 mx-auto mb-4" />
@@ -507,7 +575,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h5 className="text-lg font-semibold mb-4">MediCare Hospital</h5>
+              <h5 className="text-lg font-semibold mb-4">Shri Krishna Mission Hospital</h5>
               <p className="text-gray-400">Providing exceptional healthcare services with compassion and excellence.</p>
             </div>
             <div>
@@ -538,7 +606,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 MediCare Hospital. All rights reserved.</p>
+            <p>&copy; 2025  Hospital. All rights reserved.</p>
           </div>
         </div>
       </footer>

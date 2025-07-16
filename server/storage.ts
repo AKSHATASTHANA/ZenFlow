@@ -111,10 +111,12 @@ export class MemStorage implements IStorage {
     // Create departments
     const departments = [
       { name: "Cardiology", description: "Heart and cardiovascular system", headDoctor: "Dr. Smith" },
-      { name: "Neurology", description: "Brain and nervous system", headDoctor: "Dr. Johnson" },
-      { name: "Orthopedics", description: "Bones, joints, and muscles", headDoctor: "Dr. Williams" },
-      { name: "Pediatrics", description: "Children's health", headDoctor: "Dr. Brown" },
-      { name: "Emergency", description: "Emergency medical care", headDoctor: "Dr. Davis" },
+      { name: "General Medicine", description: "Brain and nervous system", headDoctor: "Dr. Johnson" },
+      { name: "General Surgery", description: "Bones, joints, and muscles", headDoctor: "Dr. Williams" },
+      { name: "Gynecology and Obstetrics", description: "Children's health", headDoctor: "Dr. Brown" },
+      { name: "Pediatrics", description: "Emergency medical care", headDoctor: "Dr. Davis" }, 
+      { name: "Dentistry", description: "Emergency medical care", headDoctor: "Dr. Davis" },
+
     ];
 
     for (const dept of departments) {
@@ -127,11 +129,11 @@ export class MemStorage implements IStorage {
 
     // Create doctors
     const doctors = [
-      { name: "Dr. Sarah Smith", specialization: "Cardiologist", departmentId: 1, qualifications: "MD, FACC", experience: 15 },
-      { name: "Dr. Michael Johnson", specialization: "Neurologist", departmentId: 2, qualifications: "MD, PhD", experience: 12 },
-      { name: "Dr. Lisa Williams", specialization: "Orthopedic Surgeon", departmentId: 3, qualifications: "MD, FAAOS", experience: 18 },
-      { name: "Dr. David Brown", specialization: "Pediatrician", departmentId: 4, qualifications: "MD, FAAP", experience: 10 },
-      { name: "Dr. Jennifer Davis", specialization: "Emergency Medicine", departmentId: 5, qualifications: "MD, FACEP", experience: 8 },
+      { name: "Dr. Soma Shaw Gupta", specialization: "Consultant Gynecologist & Obstetrician", departmentId: 1, qualifications: "MBBS, MS", experience: 15 },
+      { name: "Dr. P.P. Mishra", specialization: "Consultant General Medicine", departmentId: 2, qualifications: "MBBS, MD (Medicine)", experience: 12 },
+      { name: "Dr. Rajeev Krishna Chaudhary", specialization: "Consultant Interventional Cardiology", departmentId: 3, qualifications: "MBBS, DCH, MD(Medicine), DM(Cardiology)", experience: 18 },
+      { name: "Dr. Amit Nayak", specialization: "Surgeon", departmentId: 4, qualifications: "MBBS, MS", experience: 10 },
+      { name: "Dr. Mohammad Aamir", specialization: "Consultant Paediatrician & Neonatologist", departmentId: 5, qualifications: "MBBS, DCH", experience: 8 },
     ];
 
     for (const doc of doctors) {
