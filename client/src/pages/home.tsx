@@ -12,69 +12,154 @@ import ReactMarkdown from "react-markdown";
 
 function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-white to-blue-50 flex items-center justify-center">
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12 md:gap-24">
-        {/* Hospital image (left, large rectangle) */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-8 md:mb-0">
-          <div className="relative w-full md:w-[38rem] lg:w-[48rem] h-64 md:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-gradient-to-br from-blue-200 to-blue-50">
-            <img
-              src="src/images/hospital.jpeg"
-              alt="Shri Krishna Mission Hospital"
-              className="object-cover w-full h-full rounded-2xl border-8 border-white shadow-xl"
-            />
-          </div>
+    <section id="about" className="py-20 bg-gradient-to-b from-white via-blue-50 to-white relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-100 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-blue-200 rounded-full opacity-30 animate-bounce"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-300 rounded-full opacity-10 animate-float"></div>
+      </div>
+
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6">
+            About Shri Krishna Mission Hospital
+          </h2>
+          <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
         </div>
-        {/* Letter (right): wider and shorter */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-start">
-          <div
-            className="prose prose-lg text-gray-700 leading-relaxed bg-white/90 border border-blue-100 rounded-2xl shadow-2xl px-14 py-6 relative float-animation"
-            style={{
-              boxShadow: "0 8px 32px rgba(44, 76, 120, 0.13)",
-              minWidth: "350px",
-              maxWidth: "700px",
-              height: "auto",
-              zIndex: 2,
-            }}
-          >
-            <h3 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6 text-center md:text-left">
-              About Shri Krishna Mission Hospital
-            </h3>
-            <ReactMarkdown>
-              {`
-It gives me immense pride and satisfaction to welcome you to **Shri Krishna Mission Hospital** – a place where compassion meets care, and healing is guided by dedication and ethics.
 
-## Our Legacy & Mission
-Since 1985, our hospital has served as a beacon of hope for countless individuals and families across Uttar Pradesh. Inspired by the teachings of Lord Shri Krishna, we provide accessible, affordable, and world-class healthcare to all.
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16">
+          {/* Hospital Image Section - Enhanced */}
+          <div className="w-full lg:w-1/2 flex justify-center">
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
+              <div className="relative w-full max-w-md h-80 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-200 to-blue-50 transform group-hover:scale-105 transition duration-300">
+                <img
+                  src="src/images/hospital.jpeg"
+                  alt="Shri Krishna Mission Hospital"
+                  className="object-cover w-full h-full rounded-2xl border-4 border-white shadow-xl"
+                />
+                {/* Overlay with hospital stats */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                  <div className="text-white text-center">
+                    <div className="text-xl font-bold">Since 1985</div>
+                    <div className="text-sm opacity-90">Serving with Excellence</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-## Key Achievements
-- **50,000+ patients** served annually
-- **200+ skilled doctors** and healthcare professionals
-- **NABH Accredited** & ISO 9001:2015 Certified
-- **24/7 Emergency Services** with Level-1 trauma care
+          {/* Content Section - Enhanced */}
+          <div className="w-full lg:w-1/2">
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <Users className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold text-blue-800">50K+</div>
+                    <div className="text-xs text-gray-600">Patients</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Users className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold text-green-700">200+</div>
+                    <div className="text-xs text-gray-600">Doctors</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-purple-100 rounded-lg">
+                    <Award className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-purple-700">NABH</div>
+                    <div className="text-xs text-gray-600">Accredited</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-red-100 rounded-lg">
+                    <Clock className="h-5 w-5 text-red-600" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-red-700">24/7</div>
+                    <div className="text-xs text-gray-600">Emergency</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-## Centers of Excellence
-**Cardiac Care** • **Neuroscience** • **Orthopedics** • **Oncology** • **Maternity Care** • **Emergency & Trauma**
-
-With continuous investment in advanced technology, infrastructure, and training, we respond effectively to the evolving healthcare needs of our community.
-
----
-
-*With warmest regards,*  
-**Shri Basant Chaudhary**, *Chairman*  
-Shri Krishna Mission Hospital, Basti
-              `}
-            </ReactMarkdown>
+            {/* Main Content */}
+            <div className="bg-white/90 backdrop-blur-sm border border-blue-100 rounded-2xl shadow-xl p-6 relative overflow-hidden">
+              {/* Decorative corner element */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-600/10 to-transparent rounded-bl-full"></div>
+              
+              <div className="prose prose-sm text-gray-700 leading-relaxed">
+                <p className="mb-4">
+                  Welcome to <strong>Shri Krishna Mission Hospital</strong> – where compassion meets care, and healing is guided by dedication and ethics.
+                </p>
+                <p className="mb-4">
+                  Since 1985, we've served as a beacon of hope across Uttar Pradesh, providing accessible, affordable, and world-class healthcare inspired by Lord Shri Krishna's teachings.
+                </p>
+                <div className="mb-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Centers of Excellence:</h4>
+                  <div className="text-sm text-gray-600">
+                    Cardiac Care • Neuroscience • Orthopedics • Oncology • Maternity Care • Emergency & Trauma
+                  </div>
+                </div>
+              </div>
+              
+              {/* Signature section */}
+              <div className="mt-6 pt-4 border-t border-blue-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-white font-bold text-sm">BC</span>
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-blue-800">Shri Basant Chaudhary</div>
+                    <div className="text-xs text-gray-600">Chairman</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      {/* floating animation for letter */}
+
+      {/* Enhanced animations */}
       <style>{`
-        .float-animation {
-          animation: floatLetter 4s ease-in-out infinite;
+        .animate-float {
+          animation: floatImage 6s ease-in-out infinite;
         }
-        @keyframes floatLetter {
-          0%,100% { transform: translateY(0); }
-          50% { transform: translateY(-16px); }
+        @keyframes floatImage {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-pulse {
+          animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.6; }
+        }
+        .animate-bounce {
+          animation: bounce 3s ease-in-out infinite;
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
         }
       `}</style>
     </section>
