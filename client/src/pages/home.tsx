@@ -17,6 +17,8 @@ import {
   Baby,
   User,
   ChevronDown,
+  Menu,
+  X,
 } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -204,6 +206,7 @@ function AboutSection() {
 
 export default function HomePage() {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { data: departments } = useQuery<Department[]>({
     queryKey: ["/api/departments"],
@@ -248,6 +251,7 @@ export default function HomePage() {
                 Shri Ram Krishan Mission Hospital
               </h1>
             </div>
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8 items-center">
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-blue-600">
@@ -300,8 +304,105 @@ export default function HomePage() {
                 Book Appointment
               </Button>
             </nav>
+
+            {/* Mobile Menu Toggle */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle mobile menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </Button>
+            </div>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t shadow-lg">
+            <div className="px-4 py-2 space-y-2">
+              {/* Mobile Departments Section */}
+              <div className="py-2">
+                <div className="text-sm font-semibold text-gray-700 mb-2">Departments</div>
+                <div className="space-y-2 pl-4">
+                  <Link 
+                    href="/departments/cardiology" 
+                    className="flex items-center py-2 text-gray-600 hover:text-red-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Heart className="mr-2 h-4 w-4 text-red-600" />
+                    Cardiology
+                  </Link>
+                  <Link 
+                    href="/departments/neurology" 
+                    className="flex items-center py-2 text-gray-600 hover:text-purple-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Brain className="mr-2 h-4 w-4 text-purple-600" />
+                    Neurology
+                  </Link>
+                  <Link 
+                    href="/departments/orthopedics" 
+                    className="flex items-center py-2 text-gray-600 hover:text-orange-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Bone className="mr-2 h-4 w-4 text-orange-600" />
+                    Orthopedics
+                  </Link>
+                  <Link 
+                    href="/departments/pediatrics" 
+                    className="flex items-center py-2 text-gray-600 hover:text-green-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Baby className="mr-2 h-4 w-4 text-green-600" />
+                    Pediatrics
+                  </Link>
+                  <Link 
+                    href="/departments/gynecology" 
+                    className="flex items-center py-2 text-gray-600 hover:text-pink-600"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <User className="mr-2 h-4 w-4 text-pink-600" />
+                    Gynecology
+                  </Link>
+                </div>
+              </div>
+              
+              {/* Mobile Navigation Links */}
+              <div className="border-t pt-2">
+                <a 
+                  href="#doctors" 
+                  className="block py-2 text-gray-600 hover:text-blue-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Doctors
+                </a>
+                <a 
+                  href="#contact" 
+                  className="block py-2 text-gray-600 hover:text-blue-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </a>
+                <Button
+                  onClick={() => {
+                    setShowAppointmentForm(true);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full mt-2 bg-blue-600 hover:bg-blue-700"
+                >
+                  Book Appointment
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
