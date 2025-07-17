@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -207,6 +207,7 @@ function AboutSection() {
 export default function HomePage() {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const { data: departments } = useQuery<Department[]>({
     queryKey: ["/api/departments"],
@@ -225,6 +226,53 @@ export default function HomePage() {
   }>({
     queryKey: ["/api/stats"],
   });
+
+  // Auto-scroll functionality for testimonials
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let intervalId: NodeJS.Timeout;
+    let isHovered = false;
+
+    const startAutoScroll = () => {
+      intervalId = setInterval(() => {
+        if (!isHovered && scrollContainer) {
+          const scrollWidth = scrollContainer.scrollWidth;
+          const clientWidth = scrollContainer.clientWidth;
+          const maxScroll = scrollWidth - clientWidth;
+          
+          if (scrollContainer.scrollLeft >= maxScroll) {
+            scrollContainer.scrollLeft = 0;
+          } else {
+            scrollContainer.scrollLeft += 1;
+          }
+        }
+      }, 50);
+    };
+
+    const handleMouseEnter = () => {
+      isHovered = true;
+    };
+
+    const handleMouseLeave = () => {
+      isHovered = false;
+    };
+
+    // Start auto-scroll after component mounts
+    setTimeout(() => {
+      startAutoScroll();
+    }, 1000);
+
+    scrollContainer.addEventListener('mouseenter', handleMouseEnter);
+    scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      clearInterval(intervalId);
+      scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
+      scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
@@ -822,7 +870,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="overflow-x-auto scrollbar-hide">
+          <div className="overflow-x-auto scrollbar-hide" ref={scrollRef}>
             <div className="flex space-x-8 pb-4" style={{ width: 'max-content' }}>
               {[
                 {
@@ -927,7 +975,7 @@ export default function HomePage() {
           {/* Scroll Indicator */}
           <div className="text-center mt-8">
             <p className="text-gray-500 text-sm">
-              ← Scroll to see more testimonials →
+              Auto-scrolling testimonials • Hover to pause
             </p>
           </div>
 
