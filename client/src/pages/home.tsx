@@ -3,16 +3,39 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, Users, Award, Phone, Mail, MapPin } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  Users,
+  Award,
+  Phone,
+  Mail,
+  MapPin,
+  Heart,
+  Brain,
+  Bone,
+  Baby,
+  User,
+  ChevronDown,
+} from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { Department, Doctor } from "@shared/schema";
 import ReactMarkdown from "react-markdown";
-
+import { Link } from "wouter";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-white via-blue-50 to-white relative overflow-hidden">
+    <section
+      id="about"
+      className="py-20 bg-gradient-to-b from-white via-blue-50 to-white relative overflow-hidden"
+    >
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-blue-100 rounded-full opacity-20 animate-pulse"></div>
@@ -44,7 +67,9 @@ function AboutSection() {
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                   <div className="text-white text-center">
                     <div className="text-xl font-bold">Since 1985</div>
-                    <div className="text-sm opacity-90">Serving with Excellence</div>
+                    <div className="text-sm opacity-90">
+                      Serving with Excellence
+                    </div>
                   </div>
                 </div>
               </div>
@@ -83,7 +108,9 @@ function AboutSection() {
                     <Award className="h-5 w-5 text-purple-600" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-purple-700">NABH</div>
+                    <div className="text-lg font-bold text-purple-700">
+                      NABH
+                    </div>
                     <div className="text-xs text-gray-600">Accredited</div>
                   </div>
                 </div>
@@ -105,22 +132,29 @@ function AboutSection() {
             <div className="bg-white/90 backdrop-blur-sm border border-blue-100 rounded-2xl shadow-xl p-6 relative overflow-hidden">
               {/* Decorative corner element */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-600/10 to-transparent rounded-bl-full"></div>
-              
+
               <div className="prose prose-sm text-gray-700 leading-relaxed">
                 <p className="mb-4">
-                  Welcome to <strong>Shri Krishna Mission Hospital</strong> – where compassion meets care, and healing is guided by dedication and ethics.
+                  Welcome to <strong>Shri Krishna Mission Hospital</strong> –
+                  where compassion meets care, and healing is guided by
+                  dedication and ethics.
                 </p>
                 <p className="mb-4">
-                  Since 1985, we've served as a beacon of hope across Uttar Pradesh, providing accessible, affordable, and world-class healthcare inspired by Lord Shri Krishna's teachings.
+                  Since 1985, we've served as a beacon of hope across Uttar
+                  Pradesh, providing accessible, affordable, and world-class
+                  healthcare inspired by Lord Shri Krishna's teachings.
                 </p>
                 <div className="mb-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Centers of Excellence:</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">
+                    Centers of Excellence:
+                  </h4>
                   <div className="text-sm text-gray-600">
-                    Cardiac Care • Neuroscience • Orthopedics • Oncology • Maternity Care • Emergency & Trauma
+                    Cardiac Care • Neuroscience • Orthopedics • Oncology •
+                    Maternity Care • Emergency & Trauma
                   </div>
                 </div>
               </div>
-              
+
               {/* Signature section */}
               <div className="mt-6 pt-4 border-t border-blue-200">
                 <div className="flex items-center gap-3">
@@ -128,7 +162,9 @@ function AboutSection() {
                     <span className="text-white font-bold text-sm">BC</span>
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-blue-800">Shri Basant Chaudhary</div>
+                    <div className="text-sm font-semibold text-blue-800">
+                      Shri Basant Chaudhary
+                    </div>
                     <div className="text-xs text-gray-600">Chairman</div>
                   </div>
                 </div>
@@ -195,16 +231,68 @@ export default function HomePage() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900"> Hospital</h1>
+              <h1 className="text-2xl font-bold text-gray-900">
+                {" "}
+                Shri Ram Krishan Mission Hospital
+              </h1>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#services" className="text-gray-600 hover:text-blue-600">Services</a>
-              <a href="#doctors" className="text-gray-600 hover:text-blue-600">Doctors</a>
-              <a href="#contact" className="text-gray-600 hover:text-blue-600">Contact</a>
+            <nav className="hidden md:flex space-x-8 items-center">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-blue-600">
+                  Departments
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <Link href="/departments/cardiology" className="flex items-center w-full">
+                      <Heart className="mr-2 h-4 w-4 text-red-600" />
+                      Cardiology
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/departments/neurology" className="flex items-center w-full">
+                      <Brain className="mr-2 h-4 w-4 text-purple-600" />
+                      Neurology
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/departments/orthopedics" className="flex items-center w-full">
+                      <Bone className="mr-2 h-4 w-4 text-orange-600" />
+                      Orthopedics
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/departments/pediatrics" className="flex items-center w-full">
+                      <Baby className="mr-2 h-4 w-4 text-green-600" />
+                      Pediatrics
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/departments/gynecology" className="flex items-center w-full">
+                      <User className="mr-2 h-4 w-4 text-pink-600" />
+                      Gynecology
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <a href="#doctors" className="text-gray-600 hover:text-blue-600">
+                Doctors
+              </a>
+              <a href="#contact" className="text-gray-600 hover:text-blue-600">
+                Contact
+              </a>
               <Button
                 onClick={() => setShowAppointmentForm(true)}
                 className="bg-blue-600 hover:bg-blue-700"
@@ -223,8 +311,18 @@ export default function HomePage() {
           <div className="absolute inset-0 opacity-5">
             <svg className="w-full h-full" viewBox="0 0 100 100" fill="none">
               <defs>
-                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <pattern
+                  id="grid"
+                  width="10"
+                  height="10"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 10 0 L 0 0 0 10"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="0.5"
+                  />
                 </pattern>
               </defs>
               <rect width="100" height="100" fill="url(#grid)" />
@@ -234,17 +332,26 @@ export default function HomePage() {
 
         {/* Floating Medical Icons */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 text-blue-200 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
+          <div
+            className="absolute top-20 left-10 text-blue-200 animate-bounce"
+            style={{ animationDelay: "0s", animationDuration: "3s" }}
+          >
             <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
           </div>
-          <div className="absolute top-40 right-20 text-green-200 animate-pulse" style={{ animationDelay: '1s' }}>
+          <div
+            className="absolute top-40 right-20 text-green-200 animate-pulse"
+            style={{ animationDelay: "1s" }}
+          >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
             </svg>
           </div>
-          <div className="absolute bottom-32 left-20 text-blue-300 animate-bounce" style={{ animationDelay: '2s', animationDuration: '4s' }}>
+          <div
+            className="absolute bottom-32 left-20 text-blue-300 animate-bounce"
+            style={{ animationDelay: "2s", animationDuration: "4s" }}
+          >
             <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
@@ -255,15 +362,22 @@ export default function HomePage() {
           <div className="animate-fadeInUp">
             <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
               Your Health is Our
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800"> Priority</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
+                {" "}
+                Priority
+              </span>
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
-              Experience world-class healthcare with our team of expert doctors and state-of-the-art facilities.
-              We provide comprehensive medical care with compassion and excellence.
+              Experience world-class healthcare with our team of expert doctors
+              and state-of-the-art facilities. We provide comprehensive medical
+              care with compassion and excellence.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+          <div
+            className="flex flex-col sm:flex-row gap-6 justify-center animate-fadeInUp"
+            style={{ animationDelay: "0.3s" }}
+          >
             <Button
               size="lg"
               onClick={() => setShowAppointmentForm(true)}
@@ -283,12 +397,21 @@ export default function HomePage() {
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-16 animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
-            <p className="text-sm text-gray-500 mb-4">Trusted by 10,000+ patients</p>
+          <div
+            className="mt-16 animate-fadeInUp"
+            style={{ animationDelay: "0.6s" }}
+          >
+            <p className="text-sm text-gray-500 mb-4">
+              Trusted by 10,000+ patients
+            </p>
             <div className="flex justify-center items-center space-x-8 opacity-60">
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                  <svg
+                    key={i}
+                    className="w-4 h-4 text-yellow-400 fill-current"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                 ))}
@@ -299,12 +422,7 @@ export default function HomePage() {
         </div>
       </section>
 
-
-
-
       <AboutSection />
-
-
 
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
@@ -318,7 +436,7 @@ export default function HomePage() {
                   className="border border-white/20"
                   style={{
                     animationDelay: `${i * 0.1}s`,
-                    animation: 'pulse 4s ease-in-out infinite'
+                    animation: "pulse 4s ease-in-out infinite",
                   }}
                 ></div>
               ))}
@@ -328,12 +446,19 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-12 animate-fadeInUp">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">Healthcare Excellence in Numbers</h3>
-            <p className="text-xl text-blue-100">Trusted by thousands, delivering exceptional care every day</p>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              Healthcare Excellence in Numbers
+            </h3>
+            <p className="text-xl text-blue-100">
+              Trusted by thousands, delivering exceptional care every day
+            </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="group animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+            <div
+              className="group animate-fadeInUp"
+              style={{ animationDelay: "0.1s" }}
+            >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                   {stats?.totalDoctors || 0}+
@@ -343,7 +468,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="group animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+            <div
+              className="group animate-fadeInUp"
+              style={{ animationDelay: "0.2s" }}
+            >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                   {stats?.totalDepartments || 0}+
@@ -353,7 +481,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="group animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+            <div
+              className="group animate-fadeInUp"
+              style={{ animationDelay: "0.3s" }}
+            >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                   10,000+
@@ -363,7 +494,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="group animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+            <div
+              className="group animate-fadeInUp"
+              style={{ animationDelay: "0.4s" }}
+            >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                   24/7
@@ -377,7 +511,10 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+      <section
+        id="services"
+        className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
+      >
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-5">
           <div className="absolute top-20 left-20 w-32 h-32 bg-blue-300 rounded-full blur-3xl"></div>
@@ -390,7 +527,8 @@ export default function HomePage() {
               Our Medical Departments
             </h3>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive healthcare services across multiple specialties with state-of-the-art facilities
+              Comprehensive healthcare services across multiple specialties with
+              state-of-the-art facilities
             </p>
           </div>
 
@@ -407,7 +545,11 @@ export default function HomePage() {
                 <CardHeader className="relative">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="medical-icon animate-float">
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        className="w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
                       </svg>
                     </div>
@@ -417,7 +559,9 @@ export default function HomePage() {
                   </div>
                 </CardHeader>
                 <CardContent className="relative">
-                  <p className="text-gray-600 mb-6 leading-relaxed">{department.description}</p>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {department.description}
+                  </p>
                   {department.headDoctor && (
                     <div className="flex items-center text-sm text-gray-500 bg-gray-50 rounded-lg p-3">
                       <Users className="w-4 h-4 mr-2 text-blue-500" />
@@ -428,8 +572,18 @@ export default function HomePage() {
 
                   {/* Hover Effect Arrow */}
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-5 h-5 text-blue-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </div>
                 </CardContent>
@@ -440,7 +594,10 @@ export default function HomePage() {
       </section>
 
       {/* Doctors Section */}
-      <section id="doctors" className="py-24 bg-gradient-to-b from-white to-blue-50 relative">
+      <section
+        id="doctors"
+        className="py-24 bg-gradient-to-b from-white to-blue-50 relative"
+      >
         {/* Background Decorations */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 -left-20 w-64 h-64 bg-blue-200 rounded-full blur-3xl opacity-20"></div>
@@ -453,7 +610,8 @@ export default function HomePage() {
               Meet Our <span className="gradient-text">Expert Doctors</span>
             </h3>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-              Experienced professionals dedicated to your health and wellbeing with years of specialized training
+              Experienced professionals dedicated to your health and wellbeing
+              with years of specialized training
             </p>
           </div>
 
@@ -487,19 +645,27 @@ export default function HomePage() {
 
                 <CardContent className="space-y-4">
                   <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-gray-700 font-medium text-sm">{doctor.qualifications}</p>
+                    <p className="text-gray-700 font-medium text-sm">
+                      {doctor.qualifications}
+                    </p>
                   </div>
 
                   <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3">
                     <Award className="w-4 h-4 text-green-600" />
-                    <span className="font-semibold text-green-700">{doctor.experience} years</span>
+                    <span className="font-semibold text-green-700">
+                      {doctor.experience} years
+                    </span>
                     <span>experience</span>
                   </div>
 
                   {/* Rating Stars */}
                   <div className="flex justify-center items-center space-x-1 mt-4">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                      <svg
+                        key={i}
+                        className="w-4 h-4 text-yellow-400 fill-current"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                     ))}
@@ -520,7 +686,10 @@ export default function HomePage() {
           </div>
 
           {/* View All Doctors Button */}
-          <div className="text-center mt-16 animate-fadeInUp" style={{ animationDelay: '0.9s' }}>
+          <div
+            className="text-center mt-16 animate-fadeInUp"
+            style={{ animationDelay: "0.9s" }}
+          >
             <Button
               size="lg"
               variant="outline"
@@ -536,7 +705,10 @@ export default function HomePage() {
       <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30 animate-float"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-green-100 rounded-full blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div
+          className="absolute bottom-0 left-0 w-80 h-80 bg-green-100 rounded-full blur-3xl opacity-30 animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-20 animate-fadeInUp">
@@ -544,7 +716,8 @@ export default function HomePage() {
               What Our <span className="gradient-text">Patients Say</span>
             </h3>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-              Real stories from real patients who trusted us with their healthcare
+              Real stories from real patients who trusted us with their
+              healthcare
             </p>
           </div>
 
@@ -553,21 +726,24 @@ export default function HomePage() {
               {
                 name: "Sarah Johnson",
                 condition: "Cardiology Patient",
-                quote: "The care I received was exceptional. Dr. Smith and the entire team made me feel comfortable throughout my treatment.",
-                rating: 5
+                quote:
+                  "The care I received was exceptional. Dr. Smith and the entire team made me feel comfortable throughout my treatment.",
+                rating: 5,
               },
               {
                 name: "Michael Chen",
                 condition: "Orthopedic Surgery",
-                quote: "From diagnosis to recovery, every step was handled with professionalism. I'm back to my active lifestyle thanks to the amazing team.",
-                rating: 5
+                quote:
+                  "From diagnosis to recovery, every step was handled with professionalism. I'm back to my active lifestyle thanks to the amazing team.",
+                rating: 5,
               },
               {
                 name: "Emily Rodriguez",
                 condition: "Pediatric Care",
-                quote: "The pediatric team was wonderful with my daughter. They made what could have been a scary experience feel safe and comfortable.",
-                rating: 5
-              }
+                quote:
+                  "The pediatric team was wonderful with my daughter. They made what could have been a scary experience feel safe and comfortable.",
+                rating: 5,
+              },
             ].map((testimonial, index) => (
               <Card
                 key={index}
@@ -577,7 +753,11 @@ export default function HomePage() {
                 <CardContent className="space-y-6">
                   {/* Quote */}
                   <div className="relative">
-                    <svg className="absolute -top-2 -left-2 w-8 h-8 text-blue-200" fill="currentColor" viewBox="0 0 32 32">
+                    <svg
+                      className="absolute -top-2 -left-2 w-8 h-8 text-blue-200"
+                      fill="currentColor"
+                      viewBox="0 0 32 32"
+                    >
                       <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                     </svg>
                     <p className="text-gray-700 italic text-lg leading-relaxed pl-6">
@@ -588,7 +768,11 @@ export default function HomePage() {
                   {/* Rating */}
                   <div className="flex justify-center space-x-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                      <svg
+                        key={i}
+                        className="w-5 h-5 text-yellow-400 fill-current"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                     ))}
@@ -598,11 +782,18 @@ export default function HomePage() {
                   <div className="text-center border-t pt-6">
                     <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                       <span className="text-white font-bold text-lg">
-                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                        {testimonial.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
                       </span>
                     </div>
-                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-gray-500 text-sm">{testimonial.condition}</p>
+                    <h4 className="font-bold text-gray-900">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-gray-500 text-sm">
+                      {testimonial.condition}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -610,26 +801,37 @@ export default function HomePage() {
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-20 text-center animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
-            <p className="text-gray-500 mb-8">Accredited by leading healthcare organizations</p>
+          <div
+            className="mt-20 text-center animate-fadeInUp"
+            style={{ animationDelay: "0.8s" }}
+          >
+            <p className="text-gray-500 mb-8">
+              Accredited by leading healthcare organizations
+            </p>
             <div className="flex justify-center items-center space-x-12 opacity-60">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                   <Award className="w-4 h-4 text-blue-600" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">Joint Commission</span>
+                <span className="text-sm font-medium text-gray-600">
+                  Joint Commission
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
                   <Award className="w-4 h-4 text-green-600" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">AAAHC Accredited</span>
+                <span className="text-sm font-medium text-gray-600">
+                  AAAHC Accredited
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
                   <Award className="w-4 h-4 text-purple-600" />
                 </div>
-                <span className="text-sm font-medium text-gray-600">Magnet Recognition</span>
+                <span className="text-sm font-medium text-gray-600">
+                  Magnet Recognition
+                </span>
               </div>
             </div>
           </div>
@@ -641,7 +843,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h3 className="text-3xl font-bold mb-4">Contact Us</h3>
-            <p className="text-xl opacity-90">Get in touch for appointments and inquiries</p>
+            <p className="text-xl opacity-90">
+              Get in touch for appointments and inquiries
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -654,8 +858,12 @@ export default function HomePage() {
             <div>
               <Mail className="w-8 h-8 mx-auto mb-4" />
               <h4 className="text-xl font-semibold mb-2">Email</h4>
-              <p className="opacity-90">info@Shri Krishna Mission -hospital.com</p>
-              <p className="opacity-90">appointments@Shri Krishna Mission -hospital.com</p>
+              <p className="opacity-90">
+                info@Shri Krishna Mission -hospital.com
+              </p>
+              <p className="opacity-90">
+                appointments@Shri Krishna Mission -hospital.com
+              </p>
             </div>
             <div>
               <MapPin className="w-8 h-8 mx-auto mb-4" />
@@ -672,16 +880,37 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h5 className="text-lg font-semibold mb-4">Shri Krishna Mission Hospital</h5>
-              <p className="text-gray-400">Providing exceptional healthcare services with compassion and excellence.</p>
+              <h5 className="text-lg font-semibold mb-4">
+                Shri Krishna Mission Hospital
+              </h5>
+              <p className="text-gray-400">
+                Providing exceptional healthcare services with compassion and
+                excellence.
+              </p>
             </div>
             <div>
               <h5 className="text-lg font-semibold mb-4">Quick Links</h5>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#services" className="hover:text-white">Services</a></li>
-                <li><a href="#doctors" className="hover:text-white">Doctors</a></li>
-                <li><a href="/projects" className="hover:text-white">Project Dashboard</a></li>
-                <li><a href="#contact" className="hover:text-white">Contact</a></li>
+                <li>
+                  <a href="#services" className="hover:text-white">
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a href="#doctors" className="hover:text-white">
+                    Doctors
+                  </a>
+                </li>
+                <li>
+                  <a href="/projects" className="hover:text-white">
+                    Project Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="hover:text-white">
+                    Contact
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
@@ -703,7 +932,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025  Hospital. All rights reserved.</p>
+            <p>&copy; 2025 Hospital. All rights reserved.</p>
           </div>
         </div>
       </footer>
