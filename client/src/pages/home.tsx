@@ -822,83 +822,113 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Sarah Johnson",
-                condition: "Cardiology Patient",
-                quote:
-                  "The care I received was exceptional. Dr. Smith and the entire team made me feel comfortable throughout my treatment.",
-                rating: 5,
-              },
-              {
-                name: "Michael Chen",
-                condition: "Orthopedic Surgery",
-                quote:
-                  "From diagnosis to recovery, every step was handled with professionalism. I'm back to my active lifestyle thanks to the amazing team.",
-                rating: 5,
-              },
-              {
-                name: "Emily Rodriguez",
-                condition: "Pediatric Care",
-                quote:
-                  "The pediatric team was wonderful with my daughter. They made what could have been a scary experience feel safe and comfortable.",
-                rating: 5,
-              },
-            ].map((testimonial, index) => (
-              <Card
-                key={index}
-                className="p-8 border-0 shadow-xl bg-white/80 backdrop-blur-sm hover-lift animate-fadeInUp"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <CardContent className="space-y-6">
-                  {/* Quote */}
-                  <div className="relative">
-                    <svg
-                      className="absolute -top-2 -left-2 w-8 h-8 text-blue-200"
-                      fill="currentColor"
-                      viewBox="0 0 32 32"
-                    >
-                      <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                    </svg>
-                    <p className="text-gray-700 italic text-lg leading-relaxed pl-6">
-                      "{testimonial.quote}"
-                    </p>
-                  </div>
-
-                  {/* Rating */}
-                  <div className="flex justify-center space-x-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-8 pb-4" style={{ width: 'max-content' }}>
+              {[
+                {
+                  name: "Sarah Johnson",
+                  condition: "Cardiology Patient",
+                  quote:
+                    "The care I received was exceptional. Dr. Smith and the entire team made me feel comfortable throughout my treatment.",
+                  rating: 5,
+                },
+                {
+                  name: "Michael Chen",
+                  condition: "Orthopedic Surgery",
+                  quote:
+                    "From diagnosis to recovery, every step was handled with professionalism. I'm back to my active lifestyle thanks to the amazing team.",
+                  rating: 5,
+                },
+                {
+                  name: "Emily Rodriguez",
+                  condition: "Pediatric Care",
+                  quote:
+                    "The pediatric team was wonderful with my daughter. They made what could have been a scary experience feel safe and comfortable.",
+                  rating: 5,
+                },
+                {
+                  name: "David Wilson",
+                  condition: "Neurology Patient",
+                  quote:
+                    "The neurological team provided exceptional care during my treatment. Their expertise and compassion made all the difference.",
+                  rating: 5,
+                },
+                {
+                  name: "Lisa Thompson",
+                  condition: "Gynecology Patient",
+                  quote:
+                    "Professional, caring, and thorough. The entire women's health team exceeded my expectations at every visit.",
+                  rating: 5,
+                },
+                {
+                  name: "James Miller",
+                  condition: "Emergency Care",
+                  quote:
+                    "When I needed emergency care, the team acted quickly and professionally. I'm grateful for their life-saving expertise.",
+                  rating: 5,
+                },
+              ].map((testimonial, index) => (
+                <Card
+                  key={index}
+                  className="p-8 border-0 shadow-xl bg-white/80 backdrop-blur-sm hover-lift animate-fadeInUp flex-shrink-0"
+                  style={{ animationDelay: `${index * 0.2}s`, width: '380px' }}
+                >
+                  <CardContent className="space-y-6">
+                    {/* Quote */}
+                    <div className="relative">
                       <svg
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                        viewBox="0 0 24 24"
+                        className="absolute -top-2 -left-2 w-8 h-8 text-blue-200"
+                        fill="currentColor"
+                        viewBox="0 0 32 32"
                       >
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                       </svg>
-                    ))}
-                  </div>
-
-                  {/* Patient Info */}
-                  <div className="text-center border-t pt-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </span>
+                      <p className="text-gray-700 italic text-lg leading-relaxed pl-6">
+                        "{testimonial.quote}"
+                      </p>
                     </div>
-                    <h4 className="font-bold text-gray-900">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-gray-500 text-sm">
-                      {testimonial.condition}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+
+                    {/* Rating */}
+                    <div className="flex justify-center space-x-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className="w-5 h-5 text-yellow-400 fill-current"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                      ))}
+                    </div>
+
+                    {/* Patient Info */}
+                    <div className="text-center border-t pt-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span className="text-white font-bold text-lg">
+                          {testimonial.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </span>
+                      </div>
+                      <h4 className="font-bold text-gray-900">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-gray-500 text-sm">
+                        {testimonial.condition}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="text-center mt-8">
+            <p className="text-gray-500 text-sm">
+              ← Scroll to see more testimonials →
+            </p>
           </div>
 
           {/* Trust Badges */}

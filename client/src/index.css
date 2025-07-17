@@ -168,6 +168,16 @@
   border-color: rgba(59, 130, 246, 0.2);
 }
 
+/* Scrollbar Hide */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 @layer base {
   * {
     @apply border-border;
