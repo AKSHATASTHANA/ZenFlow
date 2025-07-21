@@ -81,7 +81,54 @@ function AboutSection() {
           {/* Content Section - Enhanced */}
           <div className="w-full lg:w-1/2">
             {/* Stats Cards */}
-            .
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <Users className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold text-blue-800">50K+</div>
+                    <div className="text-xs text-gray-600">Patients</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Users className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold text-green-700">200+</div>
+                    <div className="text-xs text-gray-600">Doctors</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-purple-100 rounded-lg">
+                    <Award className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-purple-700">
+                      NABH
+                    </div>
+                    <div className="text-xs text-gray-600">Accredited</div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-red-100 rounded-lg">
+                    <Clock className="h-5 w-5 text-red-600" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-red-700">24/7</div>
+                    <div className="text-xs text-gray-600">Emergency</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Main Content */}
             <div className="bg-white/90 backdrop-blur-sm border border-blue-100 rounded-2xl shadow-xl p-6 relative overflow-hidden">
@@ -127,57 +174,6 @@ function AboutSection() {
             </div>
           </div>
         </div>
-
-        <div className="w-full lg:w-1/2">
-          {/* Stats Cards */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Users className="h-5 w-5 text-blue-600" />
-                </div>
-                <div>
-                  <div className="text-xl font-bold text-blue-800">50K+</div>
-                  <div className="text-xs text-gray-600">Patients</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <Users className="h-5 w-5 text-green-600" />
-                </div>
-                <div>
-                  <div className="text-xl font-bold text-green-700">200+</div>
-                  <div className="text-xs text-gray-600">Doctors</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <Award className="h-5 w-5 text-purple-600" />
-                </div>
-                <div>
-                  <div className="text-lg font-bold text-purple-700">
-                    NABH
-                  </div>
-                  <div className="text-xs text-gray-600">Accredited</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-blue-100">
-              <div className="flex items-center gap-2">
-                <div className="p-2 bg-red-100 rounded-lg">
-                  <Clock className="h-5 w-5 text-red-600" />
-                </div>
-                <div>
-                  <div className="text-lg font-bold text-red-700">24/7</div>
-                  <div className="text-xs text-gray-600">Emergency</div>
-                </div>
-              </div>
-            </div>
-          </div>
       </div>
 
       {/* Enhanced animations */}
@@ -245,7 +241,7 @@ export default function HomePage() {
           const scrollWidth = scrollContainer.scrollWidth;
           const clientWidth = scrollContainer.clientWidth;
           const maxScroll = scrollWidth - clientWidth;
-
+          
           if (scrollContainer.scrollLeft >= maxScroll) {
             scrollContainer.scrollLeft = 0;
           } else {
@@ -268,13 +264,13 @@ export default function HomePage() {
       startAutoScroll();
     }, 1000);
 
-    scrollContainer.addEventListener("mouseenter", handleMouseEnter);
-    scrollContainer.addEventListener("mouseleave", handleMouseLeave);
+    scrollContainer.addEventListener('mouseenter', handleMouseEnter);
+    scrollContainer.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       clearInterval(intervalId);
-      scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
-      scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
+      scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
+      scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -312,46 +308,31 @@ export default function HomePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <Link
-                      href="/departments/cardiology"
-                      className="flex items-center w-full"
-                    >
+                    <Link href="/departments/cardiology" className="flex items-center w-full">
                       <Heart className="mr-2 h-4 w-4 text-red-600" />
                       Cardiology
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link
-                      href="/departments/neurology"
-                      className="flex items-center w-full"
-                    >
+                    <Link href="/departments/neurology" className="flex items-center w-full">
                       <Brain className="mr-2 h-4 w-4 text-purple-600" />
                       Neurology
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link
-                      href="/departments/orthopedics"
-                      className="flex items-center w-full"
-                    >
+                    <Link href="/departments/orthopedics" className="flex items-center w-full">
                       <Bone className="mr-2 h-4 w-4 text-orange-600" />
                       Orthopedics
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link
-                      href="/departments/pediatrics"
-                      className="flex items-center w-full"
-                    >
+                    <Link href="/departments/pediatrics" className="flex items-center w-full">
                       <Baby className="mr-2 h-4 w-4 text-green-600" />
                       Pediatrics
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link
-                      href="/departments/gynecology"
-                      className="flex items-center w-full"
-                    >
+                    <Link href="/departments/gynecology" className="flex items-center w-full">
                       <User className="mr-2 h-4 w-4 text-pink-600" />
                       Gynecology
                     </Link>
@@ -396,44 +377,42 @@ export default function HomePage() {
             <div className="px-4 py-2 space-y-2">
               {/* Mobile Departments Section */}
               <div className="py-2">
-                <div className="text-sm font-semibold text-gray-700 mb-2">
-                  Departments
-                </div>
+                <div className="text-sm font-semibold text-gray-700 mb-2">Departments</div>
                 <div className="space-y-2 pl-4">
-                  <Link
-                    href="/departments/cardiology"
+                  <Link 
+                    href="/departments/cardiology" 
                     className="flex items-center py-2 text-gray-600 hover:text-red-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Heart className="mr-2 h-4 w-4 text-red-600" />
                     Cardiology
                   </Link>
-                  <Link
-                    href="/departments/neurology"
+                  <Link 
+                    href="/departments/neurology" 
                     className="flex items-center py-2 text-gray-600 hover:text-purple-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Brain className="mr-2 h-4 w-4 text-purple-600" />
                     Neurology
                   </Link>
-                  <Link
-                    href="/departments/orthopedics"
+                  <Link 
+                    href="/departments/orthopedics" 
                     className="flex items-center py-2 text-gray-600 hover:text-orange-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Bone className="mr-2 h-4 w-4 text-orange-600" />
                     Orthopedics
                   </Link>
-                  <Link
-                    href="/departments/pediatrics"
+                  <Link 
+                    href="/departments/pediatrics" 
                     className="flex items-center py-2 text-gray-600 hover:text-green-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Baby className="mr-2 h-4 w-4 text-green-600" />
                     Pediatrics
                   </Link>
-                  <Link
-                    href="/departments/gynecology"
+                  <Link 
+                    href="/departments/gynecology" 
                     className="flex items-center py-2 text-gray-600 hover:text-pink-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -442,18 +421,18 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-
+              
               {/* Mobile Navigation Links */}
               <div className="border-t pt-2">
-                <a
-                  href="#doctors"
+                <a 
+                  href="#doctors" 
                   className="block py-2 text-gray-600 hover:text-blue-600"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Doctors
                 </a>
-                <a
-                  href="#contact"
+                <a 
+                  href="#contact" 
                   className="block py-2 text-gray-600 hover:text-blue-600"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -562,7 +541,7 @@ export default function HomePage() {
               className="text-lg px-10 py-4 rounded-full border-2 border-red-500 text-red-600 hover:bg-red-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               <Phone className="w-5 h-5 mr-3" />
-              Emergency: 101
+              Emergency: 911
             </Button>
           </div>
 
@@ -892,10 +871,7 @@ export default function HomePage() {
           </div>
 
           <div className="overflow-x-auto scrollbar-hide" ref={scrollRef}>
-            <div
-              className="flex space-x-8 pb-4"
-              style={{ width: "max-content" }}
-            >
+            <div className="flex space-x-8 pb-4" style={{ width: 'max-content' }}>
               {[
                 {
                   name: "Sarah Johnson",
@@ -943,7 +919,7 @@ export default function HomePage() {
                 <Card
                   key={index}
                   className="p-8 border-0 shadow-xl bg-white/80 backdrop-blur-sm hover-lift animate-fadeInUp flex-shrink-0"
-                  style={{ animationDelay: `${index * 0.2}s`, width: "380px" }}
+                  style={{ animationDelay: `${index * 0.2}s`, width: '380px' }}
                 >
                   <CardContent className="space-y-6">
                     {/* Quote */}
