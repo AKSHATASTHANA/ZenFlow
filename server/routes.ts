@@ -158,6 +158,10 @@ export function registerRoutes(app: Express): Server {
         activeProjects: projects.filter(p => p.status === "active").length,
         totalTasks: tasks.length,
         completedTasks: tasks.filter(t => t.status === "completed").length,
+        totalPatients: 245000, // 2.45 lakh patients served
+        emergencyServices: 24,
+        bedCapacity: 850,
+        surgicalProcedures: 15000
       };
       
       res.json(stats);

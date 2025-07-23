@@ -110,13 +110,20 @@ export class MemStorage implements IStorage {
 
     // Create departments
     const departments = [
-      { name: "Cardiology", description: "Heart and cardiovascular system", headDoctor: "Dr. Smith" },
-      { name: "General Medicine", description: "Brain and nervous system", headDoctor: "Dr. Johnson" },
-      { name: "General Surgery", description: "Bones, joints, and muscles", headDoctor: "Dr. Williams" },
-      { name: "Gynecology and Obstetrics", description: "Children's health", headDoctor: "Dr. Brown" },
-      { name: "Pediatrics", description: "Emergency medical care", headDoctor: "Dr. Davis" }, 
-      { name: "Dentistry", description: "Emergency medical care", headDoctor: "Dr. Davis" },
-
+      { name: "Cardiology", description: "Heart and cardiovascular system", headDoctor: "Dr. Rajesh Kumar" },
+      { name: "Neurology", description: "Brain and nervous system disorders", headDoctor: "Dr. Priya Sharma" },
+      { name: "Orthopedics", description: "Bones, joints, and musculoskeletal system", headDoctor: "Dr. Amit Singh" },
+      { name: "Gynecology", description: "Women's reproductive health", headDoctor: "Dr. Sunita Gupta" },
+      { name: "Pediatrics", description: "Children's health and medical care", headDoctor: "Dr. Anand Mehta" },
+      { name: "General Surgery", description: "Surgical procedures and operations", headDoctor: "Dr. Vikram Patel" },
+      { name: "Emergency Medicine", description: "Critical care and emergency treatment", headDoctor: "Dr. Kavita Reddy" },
+      { name: "Oncology", description: "Cancer diagnosis and treatment", headDoctor: "Dr. Suresh Rao" },
+      { name: "Dermatology", description: "Skin, hair and nail disorders", headDoctor: "Dr. Neha Jain" },
+      { name: "Psychiatry", description: "Mental health and psychological disorders", headDoctor: "Dr. Arjun Malhotra" },
+      { name: "Ophthalmology", description: "Eye care and vision disorders", headDoctor: "Dr. Ritu Agarwal" },
+      { name: "ENT", description: "Ear, nose and throat specialists", headDoctor: "Dr. Manoj Verma" },
+      { name: "Gastroenterology", description: "Digestive system disorders", headDoctor: "Dr. Sanjay Nair" },
+      { name: "Pulmonology", description: "Lung and respiratory system", headDoctor: "Dr. Deepika Soni" },
     ];
 
     for (const dept of departments) {
@@ -129,11 +136,21 @@ export class MemStorage implements IStorage {
 
     // Create doctors
     const doctors = [
-      { name: "Dr. Soma Shaw Gupta", specialization: "Consultant Gynecologist & Obstetrician", departmentId: 1, qualifications: "MBBS, MS", experience: 15 },
-      { name: "Dr. P.P. Mishra", specialization: "Consultant General Medicine", departmentId: 2, qualifications: "MBBS, MD (Medicine)", experience: 12 },
-      { name: "Dr. Rajeev Krishna Chaudhary", specialization: "Consultant Interventional Cardiology", departmentId: 3, qualifications: "MBBS, DCH, MD(Medicine), DM(Cardiology)", experience: 18 },
-      { name: "Dr. Amit Nayak", specialization: "Surgeon", departmentId: 4, qualifications: "MBBS, MS", experience: 10 },
-      { name: "Dr. Mohammad Aamir", specialization: "Consultant Paediatrician & Neonatologist", departmentId: 5, qualifications: "MBBS, DCH", experience: 8 },
+      { name: "Dr. Rajesh Kumar", specialization: "Senior Cardiologist", departmentId: 1, qualifications: "MBBS, MD, DM Cardiology", experience: 15 },
+      { name: "Dr. Priya Sharma", specialization: "Chief Neurologist", departmentId: 2, qualifications: "MBBS, MD, DM Neurology", experience: 18 },
+      { name: "Dr. Amit Singh", specialization: "Orthopedic Surgeon", departmentId: 3, qualifications: "MBBS, MS Orthopedics", experience: 12 },
+      { name: "Dr. Sunita Gupta", specialization: "Gynecologist & Obstetrician", departmentId: 4, qualifications: "MBBS, MS Gynecology", experience: 14 },
+      { name: "Dr. Anand Mehta", specialization: "Pediatrician & Neonatologist", departmentId: 5, qualifications: "MBBS, MD Pediatrics", experience: 10 },
+      { name: "Dr. Vikram Patel", specialization: "General Surgeon", departmentId: 6, qualifications: "MBBS, MS Surgery", experience: 16 },
+      { name: "Dr. Kavita Reddy", specialization: "Emergency Medicine Specialist", departmentId: 7, qualifications: "MBBS, MD Emergency Medicine", experience: 8 },
+      { name: "Dr. Suresh Rao", specialization: "Medical Oncologist", departmentId: 8, qualifications: "MBBS, MD, DM Oncology", experience: 20 },
+      { name: "Dr. Neha Jain", specialization: "Dermatologist", departmentId: 9, qualifications: "MBBS, MD Dermatology", experience: 9 },
+      { name: "Dr. Arjun Malhotra", specialization: "Psychiatrist", departmentId: 10, qualifications: "MBBS, MD Psychiatry", experience: 13 },
+      { name: "Dr. Ritu Agarwal", specialization: "Ophthalmologist", departmentId: 11, qualifications: "MBBS, MS Ophthalmology", experience: 11 },
+      { name: "Dr. Manoj Verma", specialization: "ENT Specialist", departmentId: 12, qualifications: "MBBS, MS ENT", experience: 12 },
+      { name: "Dr. Sanjay Nair", specialization: "Gastroenterologist", departmentId: 13, qualifications: "MBBS, MD, DM Gastroenterology", experience: 17 },
+      { name: "Dr. Deepika Soni", specialization: "Pulmonologist", departmentId: 14, qualifications: "MBBS, MD, DM Pulmonology", experience: 15 },
+      { name: "Dr. Rohit Sharma", specialization: "Interventional Cardiologist", departmentId: 1, qualifications: "MBBS, MD, DM Cardiology", experience: 19 },
     ];
 
     for (const doc of doctors) {

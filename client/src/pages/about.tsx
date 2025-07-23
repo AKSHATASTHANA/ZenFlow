@@ -59,7 +59,7 @@ export default function AboutSection() {
                     <Users className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-800">50K+</div>
+                    <div className="text-2xl font-bold text-blue-800">2.45L+</div>
                     <div className="text-sm text-gray-600">Patients Served</div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ export default function AboutSection() {
                     <Heart className="h-6 w-6 text-green-600" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-700">200+</div>
+                    <div className="text-2xl font-bold text-green-700">15+</div>
                     <div className="text-sm text-gray-600">Expert Doctors</div>
                   </div>
                 </div>

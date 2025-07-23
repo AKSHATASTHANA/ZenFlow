@@ -88,7 +88,7 @@ function AboutSection() {
                     <Users className="h-5 w-5 text-blue-600" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-blue-800">50K+</div>
+                    <div className="text-xl font-bold text-blue-800">2.45L+</div>
                     <div className="text-xs text-gray-600">Patients</div>
                   </div>
                 </div>
@@ -99,7 +99,7 @@ function AboutSection() {
                     <Users className="h-5 w-5 text-green-600" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-green-700">200+</div>
+                    <div className="text-xl font-bold text-green-700">15+</div>
                     <div className="text-xs text-gray-600">Doctors</div>
                   </div>
                 </div>
@@ -573,6 +573,120 @@ export default function HomePage() {
 
       <AboutSection />
 
+      {/* Healthcare Excellence Section */}
+      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+              Healthcare Excellence
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our commitment to delivering world-class healthcare services across four key pillars of excellence
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Excellence Pillar 1 - Blue Theme */}
+            <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
+                <Heart className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Medical Excellence</h3>
+              <div className="space-y-3">
+                <div className="flex items-center">
+                  <span className="text-3xl font-bold">2.45L+</span>
+                  <span className="ml-2 text-blue-100">Patients Treated</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">15+</span>
+                  <span className="ml-2 text-blue-100">Expert Doctors</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">14+</span>
+                  <span className="ml-2 text-blue-100">Departments</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Excellence Pillar 2 - Green Theme */}
+            <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
+                <Award className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Quality Care</h3>
+              <div className="space-y-3">
+                <div className="flex items-center">
+                  <span className="text-3xl font-bold">NABH</span>
+                  <span className="ml-2 text-green-100">Accredited</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">850+</span>
+                  <span className="ml-2 text-green-100">Bed Capacity</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">98%</span>
+                  <span className="ml-2 text-green-100">Success Rate</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Excellence Pillar 3 - Purple Theme */}
+            <div className="bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
+                <Clock className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">24/7 Services</h3>
+              <div className="space-y-3">
+                <div className="flex items-center">
+                  <span className="text-3xl font-bold">24/7</span>
+                  <span className="ml-2 text-purple-100">Emergency</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">15K+</span>
+                  <span className="ml-2 text-purple-100">Surgeries</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">365</span>
+                  <span className="ml-2 text-purple-100">Days/Year</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Excellence Pillar 4 - Orange Theme */}
+            <div className="bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Patient First</h3>
+              <div className="space-y-3">
+                <div className="flex items-center">
+                  <span className="text-3xl font-bold">39</span>
+                  <span className="ml-2 text-orange-100">Years Legacy</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">95%</span>
+                  <span className="ml-2 text-orange-100">Satisfaction</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold">100%</span>
+                  <span className="ml-2 text-orange-100">Dedication</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to action */}
+          <div className="text-center mt-16">
+            <Button 
+              onClick={() => setShowAppointmentForm(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300"
+            >
+              Experience Excellence - Book Your Appointment
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
         {/* Background Pattern */}
@@ -636,7 +750,7 @@ export default function HomePage() {
             >
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 group-hover:bg-white/20 transition-all duration-300 hover-lift">
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
-                  10,000+
+                  2.45L+
                 </div>
                 <div className="text-blue-100 font-medium">Happy Patients</div>
                 <div className="w-12 h-1 bg-white/30 rounded-full mx-auto mt-3 group-hover:bg-white/60 transition-colors duration-300"></div>
