@@ -102,6 +102,24 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  app.get("/api/doctors/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid doctor ID" });
+      }
+      
+      const doctor = await storage.getDoctorById(id);
+      if (!doctor) {
+        return res.status(404).json({ error: "Doctor not found" });
+      }
+      
+      res.json(doctor);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   app.post("/api/doctors", async (req, res) => {
     try {
       const data = insertDoctorSchema.parse(req.body);

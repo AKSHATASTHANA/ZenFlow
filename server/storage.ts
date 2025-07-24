@@ -28,6 +28,7 @@ export interface IStorage {
 
   // Doctor methods
   getDoctors(): Promise<Doctor[]>;
+  getDoctorById(id: number): Promise<Doctor | undefined>;
   getDoctorsByDepartment(departmentId: number): Promise<Doctor[]>;
   createDoctor(doctor: InsertDoctor): Promise<Doctor>;
 
@@ -278,6 +279,10 @@ export class MemStorage implements IStorage {
 
   async getDoctors(): Promise<Doctor[]> {
     return Array.from(this.doctors.values());
+  }
+
+  async getDoctorById(id: number): Promise<Doctor | undefined> {
+    return this.doctors.get(id);
   }
 
   async getDoctorsByDepartment(departmentId: number): Promise<Doctor[]> {

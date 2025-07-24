@@ -13,6 +13,8 @@ import NeurologyPage from "@/pages/departments/neurology";
 import OrthopedicsPage from "@/pages/departments/orthopedics";
 import PediatricsPage from "@/pages/departments/pediatrics";
 import GynecologyPage from "@/pages/departments/gynecology";
+import DoctorsPage from "@/pages/doctors";
+import DoctorProfile from "@/pages/doctors/doctor-profile";
 
 function Router() {
   return (
@@ -25,6 +27,8 @@ function Router() {
       <Route path="/departments/orthopedics" component={OrthopedicsPage} />
       <Route path="/departments/pediatrics" component={PediatricsPage} />
       <Route path="/departments/gynecology" component={GynecologyPage} />
+      <Route path="/doctors" component={DoctorsPage} />
+      <Route path="/doctors/:id" component={DoctorProfile} />
       <Route path="/" component={HomePage} />
       <Route component={NotFound} />
     </Switch>

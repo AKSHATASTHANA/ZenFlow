@@ -352,8 +352,11 @@ export default function HomePage() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+              <Link href="/doctors" className="text-gray-600 hover:text-blue-600">
+                Our Doctors
+              </Link>
               <a href="#doctors" className="text-gray-600 hover:text-blue-600">
-                Doctors
+                About Doctors
               </a>
               <a href="#contact" className="text-gray-600 hover:text-blue-600">
                 Contact
@@ -439,12 +442,19 @@ export default function HomePage() {
 
               {/* Mobile Navigation Links */}
               <div className="border-t pt-2">
+                <Link
+                  href="/doctors"
+                  className="block py-2 text-gray-600 hover:text-blue-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Our Doctors
+                </Link>
                 <a
                   href="#doctors"
                   className="block py-2 text-gray-600 hover:text-blue-600"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Doctors
+                  About Doctors
                 </a>
                 <a
                   href="#contact"
@@ -890,13 +900,15 @@ export default function HomePage() {
                   </div>
 
                   {/* Contact Button */}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="mt-4 w-full border-blue-200 text-blue-600 hover:bg-blue-50 group-hover:border-blue-400 transition-all duration-300"
-                  >
-                    View Profile
-                  </Button>
+                  <Link href={`/doctors/${doctor.id}`}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-4 w-full border-blue-200 text-blue-600 hover:bg-blue-50 group-hover:border-blue-400 transition-all duration-300"
+                    >
+                      View Profile
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -907,13 +919,15 @@ export default function HomePage() {
             className="text-center mt-16 animate-fadeInUp"
             style={{ animationDelay: "0.9s" }}
           >
-            <Button
-              size="lg"
-              variant="outline"
-              className="px-8 py-3 border-2 border-blue-500 text-blue-600 hover:bg-blue-50 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            >
-              View All Doctors
-            </Button>
+            <Link href="/doctors">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-3 border-2 border-blue-500 text-blue-600 hover:bg-blue-50 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
+                View All Doctors
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
