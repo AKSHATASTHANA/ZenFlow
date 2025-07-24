@@ -19,6 +19,10 @@ import {
   ChevronDown,
   Menu,
   X,
+  Activity,
+  Shield,
+  Stethoscope,
+  Zap,
 } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -474,68 +478,79 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-100">
-          <div className="absolute inset-0 opacity-5">
-            <svg className="w-full h-full" viewBox="0 0 100 100" fill="none">
-              <defs>
-                <pattern
-                  id="grid"
-                  width="10"
-                  height="10"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M 10 0 L 0 0 0 10"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="0.5"
-                  />
-                </pattern>
-              </defs>
-              <rect width="100" height="100" fill="url(#grid)" />
-            </svg>
+        {/* Enhanced Mobile-Optimized Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500">
+          {/* Animated Background Shapes */}
+          <div className="absolute inset-0 overflow-hidden">
+            {/* Large background circles */}
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full animate-pulse"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full animate-pulse" style={{ animationDelay: "1s" }}></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full animate-pulse" style={{ animationDelay: "2s" }}></div>
+            
+            {/* Medical cross pattern overlay */}
+            <div className="absolute inset-0 opacity-10">
+              <svg className="w-full h-full" viewBox="0 0 400 400" fill="none">
+                <defs>
+                  <pattern id="medical-cross" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <g fill="white">
+                      <rect x="30" y="20" width="20" height="40" />
+                      <rect x="20" y="30" width="40" height="20" />
+                    </g>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#medical-cross)" />
+              </svg>
+            </div>
           </div>
+          
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-blue-900/20"></div>
         </div>
 
-        {/* Floating Medical Icons */}
+        {/* Enhanced Floating Medical Icons */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
-            className="absolute top-20 left-10 text-blue-200 animate-bounce"
+            className="absolute top-20 left-4 md:left-10 text-white/30 animate-bounce"
             style={{ animationDelay: "0s", animationDuration: "3s" }}
           >
-            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
+            <Heart className="w-8 h-8 md:w-12 md:h-12" />
           </div>
           <div
-            className="absolute top-40 right-20 text-green-200 animate-pulse"
+            className="absolute top-40 right-4 md:right-20 text-white/25 animate-pulse"
             style={{ animationDelay: "1s" }}
           >
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
-            </svg>
+            <Activity className="w-6 h-6 md:w-10 md:h-10" />
           </div>
           <div
-            className="absolute bottom-32 left-20 text-blue-300 animate-bounce"
+            className="absolute bottom-32 left-4 md:left-20 text-white/20 animate-bounce"
             style={{ animationDelay: "2s", animationDuration: "4s" }}
           >
-            <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
+            <Shield className="w-7 h-7 md:w-12 md:h-12" />
+          </div>
+          <div
+            className="absolute top-1/3 right-8 md:right-32 text-white/15 animate-pulse"
+            style={{ animationDelay: "3s" }}
+          >
+            <Stethoscope className="w-6 h-6 md:w-10 md:h-10" />
+          </div>
+          <div
+            className="absolute bottom-1/4 right-4 md:right-16 text-white/25 animate-bounce"
+            style={{ animationDelay: "1.5s", animationDuration: "5s" }}
+          >
+            <Zap className="w-5 h-5 md:w-8 md:h-8" />
           </div>
         </div>
 
         <div className="relative max-w-7xl mx-auto text-center">
           <div className="animate-fadeInUp">
-            <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
               Your Health is Our
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-100">
                 {" "}
                 Priority
               </span>
             </h2>
-            <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
               Experience world-class healthcare with our team of expert doctors
               and state-of-the-art facilities. We provide comprehensive medical
               care with compassion and excellence.
@@ -549,7 +564,7 @@ export default function HomePage() {
             <Button
               size="lg"
               onClick={() => setShowAppointmentForm(true)}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="bg-gradient-to-r from-white to-yellow-100 text-blue-600 hover:from-yellow-50 hover:to-yellow-200 text-lg px-10 py-4 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 font-semibold border-2 border-white/20"
             >
               <Calendar className="w-5 h-5 mr-3" />
               Book Appointment
@@ -557,7 +572,7 @@ export default function HomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-10 py-4 rounded-full border-2 border-red-500 text-red-600 hover:bg-red-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="text-lg px-10 py-4 rounded-full border-2 border-white text-white hover:bg-white hover:text-red-600 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 font-semibold backdrop-blur-sm"
             >
               <Phone className="w-5 h-5 mr-3" />
               Emergency: 911
@@ -569,21 +584,21 @@ export default function HomePage() {
             className="mt-16 animate-fadeInUp"
             style={{ animationDelay: "0.6s" }}
           >
-            <p className="text-sm text-gray-500 mb-4">
-              Trusted by 10,000+ patients
+            <p className="text-sm text-white/80 mb-4 drop-shadow-md">
+              Trusted by 2.45L+ patients
             </p>
-            <div className="flex justify-center items-center space-x-8 opacity-60">
-              <div className="flex items-center space-x-1">
+            <div className="flex justify-center items-center space-x-8">
+              <div className="flex items-center space-x-1 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-4 h-4 text-yellow-400 fill-current"
+                    className="w-5 h-5 text-yellow-300 fill-current drop-shadow-sm"
                     viewBox="0 0 24 24"
                   >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                 ))}
-                <span className="ml-2 text-sm text-gray-600">4.9/5 Rating</span>
+                <span className="ml-3 text-sm text-white font-medium drop-shadow-sm">4.9/5 Rating</span>
               </div>
             </div>
           </div>
