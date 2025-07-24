@@ -719,58 +719,60 @@ export default function HomePage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-20 animate-fadeInUp">
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 gradient-text">
+          <div className="text-center mb-12 md:mb-20 animate-fadeInUp">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 gradient-text">
               Our Medical Departments
             </h3>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto px-2">
               Comprehensive healthcare services across multiple specialties with
               state-of-the-art facilities
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {departments?.map((department, index) => (
               <Card
                 key={department.id}
-                className="card-hover hover-lift group relative overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur-sm animate-fadeInUp"
+                className="card-hover hover-lift group relative overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur-sm animate-fadeInUp h-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Card Background Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                <CardHeader className="relative">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="medical-icon animate-float">
+                <CardHeader className="relative pb-3 sm:pb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-3 sm:mb-4">
+                    <div className="medical-icon animate-float flex-shrink-0">
                       <svg
-                        className="w-6 h-6"
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
                       </svg>
                     </div>
-                    <CardTitle className="text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
+                    <CardTitle className="text-lg sm:text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors leading-tight">
                       {department.name}
                     </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="relative">
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                <CardContent className="relative pt-0">
+                  <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
                     {department.description}
                   </p>
                   {department.headDoctor && (
-                    <div className="flex items-center text-sm text-gray-500 bg-gray-50 rounded-lg p-3">
-                      <Users className="w-4 h-4 mr-2 text-blue-500" />
-                      <span className="font-medium">Head Doctor:</span>
-                      <span className="ml-1">{department.headDoctor}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-gray-500 bg-gray-50 rounded-lg p-2 sm:p-3 space-y-1 sm:space-y-0 sm:space-x-2">
+                      <div className="flex items-center">
+                        <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-blue-500 flex-shrink-0" />
+                        <span className="font-medium">Head Doctor:</span>
+                      </div>
+                      <span className="sm:ml-1 break-words">{department.headDoctor}</span>
                     </div>
                   )}
 
-                  {/* Hover Effect Arrow */}
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                  {/* Hover Effect Arrow - Hidden on mobile for better touch experience */}
+                  <div className="hidden sm:block absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                     <svg
-                      className="w-5 h-5 text-blue-500"
+                      className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
