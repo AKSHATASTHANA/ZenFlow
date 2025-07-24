@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import logoImage from "@/images/logo.png";
 import {
   Calendar,
   Clock,
@@ -286,23 +287,14 @@ export default function HomePage() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
+            <div className="flex items-center space-x-3">
+              <img
+                src={logoImage}
+                alt="Shri Krishna Mission Hospital Logo"
+                className="w-12 h-12 object-contain"
+              />
               <h1 className="text-2xl font-bold text-gray-900">
-                {" "}
-                Shri Ram Krishan Mission Hospital
+                Shri Krishna Mission Hospital
               </h1>
             </div>
             {/* Desktop Navigation */}
@@ -484,14 +476,25 @@ export default function HomePage() {
           <div className="absolute inset-0 overflow-hidden">
             {/* Large background circles */}
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full animate-pulse"></div>
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full animate-pulse" style={{ animationDelay: "1s" }}></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full animate-pulse" style={{ animationDelay: "2s" }}></div>
-            
+            <div
+              className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full animate-pulse"
+              style={{ animationDelay: "1s" }}
+            ></div>
+            <div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full animate-pulse"
+              style={{ animationDelay: "2s" }}
+            ></div>
+
             {/* Medical cross pattern overlay */}
             <div className="absolute inset-0 opacity-10">
               <svg className="w-full h-full" viewBox="0 0 400 400" fill="none">
                 <defs>
-                  <pattern id="medical-cross" width="80" height="80" patternUnits="userSpaceOnUse">
+                  <pattern
+                    id="medical-cross"
+                    width="80"
+                    height="80"
+                    patternUnits="userSpaceOnUse"
+                  >
                     <g fill="white">
                       <rect x="30" y="20" width="20" height="40" />
                       <rect x="20" y="30" width="40" height="20" />
@@ -502,7 +505,7 @@ export default function HomePage() {
               </svg>
             </div>
           </div>
-          
+
           {/* Gradient overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-blue-900/20"></div>
         </div>
@@ -575,7 +578,7 @@ export default function HomePage() {
               className="text-lg px-10 py-4 rounded-full border-2 border-white text-white hover:bg-white hover:text-red-600 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 font-semibold backdrop-blur-sm"
             >
               <Phone className="w-5 h-5 mr-3" />
-              Emergency: 911
+              Emergency: 101
             </Button>
           </div>
 
@@ -598,7 +601,9 @@ export default function HomePage() {
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                 ))}
-                <span className="ml-3 text-sm text-white font-medium drop-shadow-sm">4.9/5 Rating</span>
+                <span className="ml-3 text-sm text-white font-medium drop-shadow-sm">
+                  4.9/5 Rating
+                </span>
               </div>
             </div>
           </div>
@@ -1126,21 +1131,24 @@ export default function HomePage() {
           {/* Hospital Location Map Section */}
           <div className="mb-12">
             <div className="text-center mb-8">
-              <h4 className="text-2xl font-bold text-white mb-4">Our Location</h4>
+              <h4 className="text-2xl font-bold text-white mb-4">
+                Our Location
+              </h4>
               <p className="text-gray-400 max-w-2xl mx-auto">
-                Visit us at our state-of-the-art facility located in the heart of the city, 
-                easily accessible and equipped with modern healthcare amenities.
+                Visit us at our state-of-the-art facility located in the heart
+                of the city, easily accessible and equipped with modern
+                healthcare amenities.
               </p>
             </div>
             <div className="flex justify-center">
               <div className="w-full max-w-4xl rounded-lg overflow-hidden shadow-2xl border-4 border-gray-700">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.8602943765654!2d82.7167783762586!3d26.812576676707092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3990cfee7d33c05f%3A0x220ef7c5e2883edf!2sShri%20Krishna%20Mission%20Hospital!5e0!3m2!1sen!2sin!4v1753333918054!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="350" 
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.8602943765654!2d82.7167783762586!3d26.812576676707092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3990cfee7d33c05f%3A0x220ef7c5e2883edf!2sShri%20Krishna%20Mission%20Hospital!5e0!3m2!1sen!2sin!4v1753333918054!5m2!1sen!2sin"
+                  width="100%"
+                  height="350"
                   style={{ border: 0 }}
                   allowFullScreen
-                  loading="lazy" 
+                  loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Shri Krishna Mission Hospital Location"
                 />
@@ -1149,7 +1157,10 @@ export default function HomePage() {
             <div className="text-center mt-6">
               <div className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg">
                 <MapPin className="w-5 h-5 mr-2" />
-                <span className="font-semibold">Shri Krishna Nagar Dhorika Road, Bargodwa Near Bodewan Basti 272001</span>
+                <span className="font-semibold">
+                  Shri Krishna Nagar Dhorika Road, Bargodwa Near Bodewan Basti
+                  272001
+                </span>
               </div>
             </div>
           </div>
