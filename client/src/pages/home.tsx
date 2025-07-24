@@ -88,7 +88,9 @@ function AboutSection() {
                     <Users className="h-5 w-5 text-blue-600" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-blue-800">2.45L+</div>
+                    <div className="text-xl font-bold text-blue-800">
+                      2.45L+
+                    </div>
                     <div className="text-xs text-gray-600">Patients</div>
                   </div>
                 </div>
@@ -241,7 +243,7 @@ export default function HomePage() {
           const scrollWidth = scrollContainer.scrollWidth;
           const clientWidth = scrollContainer.clientWidth;
           const maxScroll = scrollWidth - clientWidth;
-          
+
           if (scrollContainer.scrollLeft >= maxScroll) {
             scrollContainer.scrollLeft = 0;
           } else {
@@ -264,13 +266,13 @@ export default function HomePage() {
       startAutoScroll();
     }, 1000);
 
-    scrollContainer.addEventListener('mouseenter', handleMouseEnter);
-    scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+    scrollContainer.addEventListener("mouseenter", handleMouseEnter);
+    scrollContainer.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       clearInterval(intervalId);
-      scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
-      scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+      scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
+      scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
@@ -308,31 +310,46 @@ export default function HomePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <Link href="/departments/cardiology" className="flex items-center w-full">
+                    <Link
+                      href="/departments/cardiology"
+                      className="flex items-center w-full"
+                    >
                       <Heart className="mr-2 h-4 w-4 text-red-600" />
                       Cardiology
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href="/departments/neurology" className="flex items-center w-full">
+                    <Link
+                      href="/departments/neurology"
+                      className="flex items-center w-full"
+                    >
                       <Brain className="mr-2 h-4 w-4 text-purple-600" />
                       Neurology
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href="/departments/orthopedics" className="flex items-center w-full">
+                    <Link
+                      href="/departments/orthopedics"
+                      className="flex items-center w-full"
+                    >
                       <Bone className="mr-2 h-4 w-4 text-orange-600" />
                       Orthopedics
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href="/departments/pediatrics" className="flex items-center w-full">
+                    <Link
+                      href="/departments/pediatrics"
+                      className="flex items-center w-full"
+                    >
                       <Baby className="mr-2 h-4 w-4 text-green-600" />
                       Pediatrics
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href="/departments/gynecology" className="flex items-center w-full">
+                    <Link
+                      href="/departments/gynecology"
+                      className="flex items-center w-full"
+                    >
                       <User className="mr-2 h-4 w-4 text-pink-600" />
                       Gynecology
                     </Link>
@@ -377,42 +394,44 @@ export default function HomePage() {
             <div className="px-4 py-2 space-y-2">
               {/* Mobile Departments Section */}
               <div className="py-2">
-                <div className="text-sm font-semibold text-gray-700 mb-2">Departments</div>
+                <div className="text-sm font-semibold text-gray-700 mb-2">
+                  Departments
+                </div>
                 <div className="space-y-2 pl-4">
-                  <Link 
-                    href="/departments/cardiology" 
+                  <Link
+                    href="/departments/cardiology"
                     className="flex items-center py-2 text-gray-600 hover:text-red-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Heart className="mr-2 h-4 w-4 text-red-600" />
                     Cardiology
                   </Link>
-                  <Link 
-                    href="/departments/neurology" 
+                  <Link
+                    href="/departments/neurology"
                     className="flex items-center py-2 text-gray-600 hover:text-purple-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Brain className="mr-2 h-4 w-4 text-purple-600" />
                     Neurology
                   </Link>
-                  <Link 
-                    href="/departments/orthopedics" 
+                  <Link
+                    href="/departments/orthopedics"
                     className="flex items-center py-2 text-gray-600 hover:text-orange-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Bone className="mr-2 h-4 w-4 text-orange-600" />
                     Orthopedics
                   </Link>
-                  <Link 
-                    href="/departments/pediatrics" 
+                  <Link
+                    href="/departments/pediatrics"
                     className="flex items-center py-2 text-gray-600 hover:text-green-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Baby className="mr-2 h-4 w-4 text-green-600" />
                     Pediatrics
                   </Link>
-                  <Link 
-                    href="/departments/gynecology" 
+                  <Link
+                    href="/departments/gynecology"
                     className="flex items-center py-2 text-gray-600 hover:text-pink-600"
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -421,18 +440,18 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              
+
               {/* Mobile Navigation Links */}
               <div className="border-t pt-2">
-                <a 
-                  href="#doctors" 
+                <a
+                  href="#doctors"
                   className="block py-2 text-gray-600 hover:text-blue-600"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Doctors
                 </a>
-                <a 
-                  href="#contact" 
+                <a
+                  href="#contact"
                   className="block py-2 text-gray-600 hover:text-blue-600"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -581,7 +600,8 @@ export default function HomePage() {
               Healthcare Excellence
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our commitment to delivering world-class healthcare services across four key pillars of excellence
+              Our commitment to delivering world-class healthcare services
+              across four key pillars of excellence
             </p>
           </div>
 
@@ -677,7 +697,7 @@ export default function HomePage() {
 
           {/* Call to action */}
           <div className="text-center mt-16">
-            <Button 
+            <Button
               onClick={() => setShowAppointmentForm(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300"
             >
@@ -686,8 +706,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-
 
       {/* Services Section */}
       <section
@@ -901,7 +919,10 @@ export default function HomePage() {
           </div>
 
           <div className="overflow-x-auto scrollbar-hide" ref={scrollRef}>
-            <div className="flex space-x-8 pb-4" style={{ width: 'max-content' }}>
+            <div
+              className="flex space-x-8 pb-4"
+              style={{ width: "max-content" }}
+            >
               {[
                 {
                   name: "Sarah Johnson",
@@ -949,7 +970,7 @@ export default function HomePage() {
                 <Card
                   key={index}
                   className="p-8 border-0 shadow-xl bg-white/80 backdrop-blur-sm hover-lift animate-fadeInUp flex-shrink-0"
-                  style={{ animationDelay: `${index * 0.2}s`, width: '380px' }}
+                  style={{ animationDelay: `${index * 0.2}s`, width: "380px" }}
                 >
                   <CardContent className="space-y-6">
                     {/* Quote */}
@@ -1061,7 +1082,7 @@ export default function HomePage() {
             <div>
               <Phone className="w-8 h-8 mx-auto mb-4" />
               <h4 className="text-xl font-semibold mb-2">Phone</h4>
-              <p className="opacity-90">+1 (555) 123-4567</p>
+              <p className="opacity-90">9918982900</p>
               <p className="opacity-90">Emergency: 911</p>
             </div>
             <div>
@@ -1077,8 +1098,8 @@ export default function HomePage() {
             <div>
               <MapPin className="w-8 h-8 mx-auto mb-4" />
               <h4 className="text-xl font-semibold mb-2">Address</h4>
-              <p className="opacity-90">123 Medical Center Drive</p>
-              <p className="opacity-90">Healthcare City, HC 12345</p>
+              <p className="opacity-90">Shri Krishna Nagar Dhorika Road</p>
+              <p className="opacity-90">Bargodwa Near Bodewan Basti 272001</p>
             </div>
           </div>
         </div>
@@ -1087,6 +1108,37 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Hospital Location Map Section */}
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <h4 className="text-2xl font-bold text-white mb-4">Our Location</h4>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                Visit us at our state-of-the-art facility located in the heart of the city, 
+                easily accessible and equipped with modern healthcare amenities.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <div className="w-full max-w-4xl rounded-lg overflow-hidden shadow-2xl border-4 border-gray-700">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.8602943765654!2d82.7167783762586!3d26.812576676707092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3990cfee7d33c05f%3A0x220ef7c5e2883edf!2sShri%20Krishna%20Mission%20Hospital!5e0!3m2!1sen!2sin!4v1753333918054!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="350" 
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Shri Krishna Mission Hospital Location"
+                />
+              </div>
+            </div>
+            <div className="text-center mt-6">
+              <div className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg">
+                <MapPin className="w-5 h-5 mr-2" />
+                <span className="font-semibold">Shri Krishna Nagar Dhorika Road, Bargodwa Near Bodewan Basti 272001</span>
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h5 className="text-lg font-semibold mb-4">
