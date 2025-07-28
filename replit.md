@@ -92,6 +92,12 @@ A modern React-based project management dashboard that transforms VB.NET Gantt c
 
 ## Recent Changes
 
+- July 28, 2025: Added visual enhancements to About and Doctors pages
+  - Integrated chairman's image section in About page with professional layout and styling
+  - Added doctor image containers to doctors page with placeholder graphics
+  - Enhanced visual hierarchy with responsive image sections and overlay badges
+  - Maintained consistent medical theme throughout image containers
+
 - July 24, 2025: Enhanced hospital website with comprehensive improvements
   - Added Healthcare Excellence section with 4 different color themes (blue, green, purple, orange)
   - Expanded backend data to include 14+ departments and 15+ expert doctors

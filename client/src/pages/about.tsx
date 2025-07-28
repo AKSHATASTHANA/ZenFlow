@@ -146,16 +146,42 @@ Shri Krishna Mission Hospital, Basti
               `}
               </ReactMarkdown>
               
-              {/* Signature section with enhanced styling */}
+              {/* Chairman's Image and Signature section */}
               <div className="mt-8 pt-6 border-t border-blue-200">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-lg">BC</span>
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  {/* Chairman's Image */}
+                  <div className="flex-shrink-0">
+                    <div className="relative group">
+                      <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
+                      <div className="relative w-32 h-40 rounded-xl overflow-hidden shadow-xl bg-gradient-to-br from-blue-100 to-blue-50 border-4 border-white">
+                        {/* Placeholder for Chairman's image */}
+                        <div className="w-full h-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+                          <div className="text-center text-white">
+                            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                              <Users className="w-8 h-8 text-white" />
+                            </div>
+                            <div className="text-xs font-medium">Chairman</div>
+                          </div>
+                        </div>
+                        {/* Image overlay for when actual image is added */}
+                        {/* <img
+                          src="/images/chairman.jpg"
+                          alt="Shri Basant Chaudhary - Chairman"
+                          className="object-cover w-full h-full"
+                        /> */}
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-lg font-semibold text-blue-800">Shri Basant Chaudhary</div>
-                    <div className="text-sm text-gray-600">Chairman</div>
-                    <div className="text-sm text-blue-600">Shri Krishna Mission Hospital, Basti</div>
+                  
+                  {/* Chairman's Information */}
+                  <div className="text-center md:text-left">
+                    <div className="text-xl font-bold text-blue-800 mb-1">Shri Basant Chaudhary</div>
+                    <div className="text-sm font-medium text-gray-700 mb-1">Chairman & Founder</div>
+                    <div className="text-sm text-blue-600 mb-3">Shri Krishna Mission Hospital, Basti</div>
+                    <div className="text-xs text-gray-600 max-w-md">
+                      "Leading healthcare excellence in Eastern Uttar Pradesh since 1985, 
+                      with a vision to provide compassionate and world-class medical care to all."
+                    </div>
                   </div>
                 </div>
               </div>

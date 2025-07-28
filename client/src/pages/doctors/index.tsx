@@ -93,29 +93,57 @@ export default function DoctorsPage() {
             
             return (
               <Card key={doctor.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                      <Stethoscope className="w-8 h-8 text-white" />
+                {/* Doctor Image Section */}
+                <div className="relative h-48 bg-gradient-to-br from-blue-50 to-white overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
+                  {doctor.image ? (
+                    <img
+                      src={doctor.image}
+                      alt={`Dr. ${doctor.name}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    /* Placeholder doctor image container */
+                    <div className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="w-20 h-20 bg-white/30 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                          <Stethoscope className="w-10 h-10 text-blue-600" />
+                        </div>
+                        <div className="text-sm font-medium text-blue-700 bg-white/80 px-3 py-1 rounded-full">
+                          {doctor.specialization}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Experience badge overlay */}
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-blue-600 text-white shadow-lg">
+                      {doctor.experience} Years
+                    </Badge>
+                  </div>
+                </div>
+
+                <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                      <Award className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <CardTitle className="text-xl text-white">{doctor.name}</CardTitle>
-                      <p className="text-blue-100">{doctor.specialization}</p>
+                      <CardTitle className="text-lg text-white">{doctor.name}</CardTitle>
+                      <p className="text-blue-100 text-sm">{doctor.specialization}</p>
                     </div>
                   </div>
                 </CardHeader>
                 
                 <CardContent className="p-6">
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-center">
                       {department && (
                         <Badge className="bg-blue-100 text-blue-800">
                           {department.name}
                         </Badge>
                       )}
-                      <Badge variant="outline" className="border-green-200 text-green-700">
-                        {doctor.experience} Years
-                      </Badge>
                     </div>
                     
                     <div>
