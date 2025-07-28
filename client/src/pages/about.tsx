@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Award, Users, Heart, Shield, Clock, MapPin } from "lucide-react";
+import chairmanImage from "../images/chairman.jpeg";
 
 // You can adjust this image path to your hospital image
 const hospitalImageUrl = "/images/hospital.jpg"; // Replace with your actual image path
@@ -154,21 +155,17 @@ Shri Krishna Mission Hospital, Basti
                     <div className="relative group">
                       <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
                       <div className="relative w-32 h-40 rounded-xl overflow-hidden shadow-xl bg-gradient-to-br from-blue-100 to-blue-50 border-4 border-white">
-                        {/* Placeholder for Chairman's image */}
-                        <div className="w-full h-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
-                          <div className="text-center text-white">
-                            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                              <Users className="w-8 h-8 text-white" />
-                            </div>
+                        <img
+                          src={chairmanImage}
+                          alt="Shri Basant Chaudhary - Chairman"
+                          className="object-cover w-full h-full"
+                        />
+                        {/* Professional overlay badge */}
+                        <div className="absolute bottom-2 left-2 right-2 bg-gradient-to-r from-blue-800/90 to-blue-700/90 rounded-lg px-2 py-1">
+                          <div className="text-white text-center">
                             <div className="text-xs font-medium">Chairman</div>
                           </div>
                         </div>
-                        {/* Image overlay for when actual image is added */}
-                        {/* <img
-                          src="/images/chairman.jpg"
-                          alt="Shri Basant Chaudhary - Chairman"
-                          className="object-cover w-full h-full"
-                        /> */}
                       </div>
                     </div>
                   </div>

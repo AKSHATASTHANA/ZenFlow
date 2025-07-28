@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import logoImage from "@/images/logo.png";
+import chairmanImage from "@/images/chairman.jpeg";
+import drKhalidJameelImage from "@/images/Dr Khalid Jameel.jpeg";
+import drVishrutBhartiImage from "@/images/Dr Vishrut Bharti.jpeg";
+import drPPMishraImage from "@/images/P P Mishra.jpeg";
+import drSomaShawGuptaImage from "@/images/Soma Shaw Gupta.jpeg";
 import {
   Calendar,
   Clock,
@@ -24,6 +29,9 @@ import {
   Shield,
   Stethoscope,
   Zap,
+  Facebook,
+  Youtube,
+  Instagram,
 } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -36,6 +44,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+// Helper function to get doctor image based on name or ID
+const getDoctorImage = (doctorName: string, doctorId: number) => {
+  // Map doctor names to their images
+  const imageMap: { [key: string]: string } = {
+    "Dr. Khalid Jameel": drKhalidJameelImage,
+    "Dr. Vishrut Bharti": drVishrutBhartiImage,
+    "Dr. P P Mishra": drPPMishraImage,
+    "Dr. Soma Shaw Gupta": drSomaShawGuptaImage,
+  };
+  
+  // Try to match by name first, then fall back to ID-based mapping
+  return imageMap[doctorName] || 
+         imageMap[`Dr. ${doctorName.replace("Dr. ", "")}`] ||
+         Object.values(imageMap)[(doctorId - 1) % Object.values(imageMap).length];
+};
 
 function AboutSection() {
   return (
@@ -164,17 +188,68 @@ function AboutSection() {
                 </div>
               </div>
 
-              {/* Signature section */}
-              <div className="mt-6 pt-4 border-t border-blue-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-sm">BC</span>
+              {/* Chairman's Image and Signature section - Enhanced */}
+              <div className="mt-8 pt-6 border-t border-blue-200">
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  {/* Chairman's Image - Made larger and more prominent */}
+                  <div className="flex-shrink-0">
+                    <div className="relative group">
+                      <div className="absolute -inset-3 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
+                      <div className="relative w-32 h-40 rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-100 to-blue-50 border-4 border-white transform group-hover:scale-105 transition duration-300">
+                        <img
+                          src={chairmanImage}
+                          alt="Shri Basant Chaudhary - Chairman"
+                          className="object-cover w-full h-full"
+                        />
+                        {/* Professional overlay badge */}
+                        <div className="absolute bottom-2 left-2 right-2 bg-gradient-to-r from-blue-800/90 to-blue-700/90 rounded-lg px-2 py-1">
+                          <div className="text-white text-center">
+                            <div className="text-xs font-medium">Chairman</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-sm font-semibold text-blue-800">
+                  
+                  {/* Chairman's Information - Enhanced */}
+                  <div className="text-center md:text-left">
+                    <div className="text-xl font-bold text-blue-800 mb-1">
                       Shri Basant Chaudhary
                     </div>
-                    <div className="text-xs text-gray-600">Chairman</div>
+                    <div className="text-sm font-medium text-gray-700 mb-1">Chairman & Founder</div>
+                    <div className="text-sm text-blue-600 mb-3">Shri Krishna Mission Hospital, Basti</div>
+                    <div className="text-xs text-gray-600 max-w-md mb-4">
+                      "Leading healthcare excellence in Eastern Uttar Pradesh since 1985, 
+                      with a vision to provide compassionate and world-class medical care to all."
+                    </div>
+                    
+                    {/* Social Media Links */}
+                    <div className="flex items-center justify-center md:justify-start space-x-3">
+                      <a
+                        href="https://www.facebook.com/share/1B6cferwga/?mibextid=wwXIfr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300 group"
+                      >
+                        <Facebook className="w-4 h-4 text-white" />
+                      </a>
+                      <a
+                        href="https://youtube.com/@shrikrishnamissionhospital3376?si=dAwA02Upoef10ECt"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group"
+                      >
+                        <Youtube className="w-4 h-4 text-white" />
+                      </a>
+                      <a
+                        href="https://www.instagram.com/shrikrishnamissionhospital?igsh=MWZwOXZydHR1c3p2aQ=="
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-full flex items-center justify-center transition-all duration-300 group"
+                      >
+                        <Instagram className="w-4 h-4 text-white" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -284,21 +359,21 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white shadow-md border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-3">
             <div className="flex items-center space-x-3">
               <img
                 src={logoImage}
                 alt="Shri Krishna Mission Hospital Logo"
-                className="w-12 h-12 object-contain"
+                className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain"
               />
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
                 Shri Krishna Mission Hospital
               </h1>
             </div>
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8 items-center">
+            <nav className="hidden lg:flex items-center space-x-6">
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-blue-600">
                   Departments
@@ -352,6 +427,74 @@ export default function HomePage() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-blue-600">
+                  Facilities
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Activity className="mr-2 h-4 w-4 text-blue-600" />
+                      X-Ray
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Heart className="mr-2 h-4 w-4 text-red-600" />
+                      ICU, NICU, PICU
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Shield className="mr-2 h-4 w-4 text-green-600" />
+                      Pathology
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Activity className="mr-2 h-4 w-4 text-purple-600" />
+                      Blood Bank
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Stethoscope className="mr-2 h-4 w-4 text-orange-600" />
+                      Oralysis
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Activity className="mr-2 h-4 w-4 text-teal-600" />
+                      Endoscopy
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Heart className="mr-2 h-4 w-4 text-pink-600" />
+                      2D Echo & Ultrasound
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Activity className="mr-2 h-4 w-4 text-indigo-600" />
+                      Colour Doppler
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Zap className="mr-2 h-4 w-4 text-yellow-600" />
+                      Ventilator
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <div className="flex items-center w-full">
+                      <Users className="mr-2 h-4 w-4 text-cyan-600" />
+                      Physiotherapy
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Link href="/doctors" className="text-gray-600 hover:text-blue-600">
                 Our Doctors
               </Link>
@@ -363,14 +506,14 @@ export default function HomePage() {
               </a>
               <Button
                 onClick={() => setShowAppointmentForm(true)}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium"
               >
                 Book Appointment
               </Button>
             </nav>
 
             {/* Mobile Menu Toggle */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="icon"
@@ -389,7 +532,7 @@ export default function HomePage() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t shadow-lg">
+          <div className="lg:hidden bg-white border-t shadow-lg">
             <div className="px-4 py-2 space-y-2">
               {/* Mobile Departments Section */}
               <div className="py-2">
@@ -437,6 +580,55 @@ export default function HomePage() {
                     <User className="mr-2 h-4 w-4 text-pink-600" />
                     Gynecology
                   </Link>
+                </div>
+              </div>
+
+              {/* Mobile Facilities Section */}
+              <div className="py-2">
+                <div className="text-sm font-semibold text-gray-700 mb-2">
+                  Facilities
+                </div>
+                <div className="space-y-2 pl-4">
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Activity className="mr-2 h-4 w-4 text-blue-600" />
+                    X-Ray
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Heart className="mr-2 h-4 w-4 text-red-600" />
+                    ICU, NICU, PICU
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Shield className="mr-2 h-4 w-4 text-green-600" />
+                    Pathology
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Activity className="mr-2 h-4 w-4 text-purple-600" />
+                    Blood Bank
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Stethoscope className="mr-2 h-4 w-4 text-orange-600" />
+                    Oralysis
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Activity className="mr-2 h-4 w-4 text-teal-600" />
+                    Endoscopy
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Heart className="mr-2 h-4 w-4 text-pink-600" />
+                    2D Echo & Ultrasound
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Activity className="mr-2 h-4 w-4 text-indigo-600" />
+                    Colour Doppler
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Zap className="mr-2 h-4 w-4 text-yellow-600" />
+                    Ventilator
+                  </div>
+                  <div className="flex items-center py-2 text-gray-600">
+                    <Users className="mr-2 h-4 w-4 text-cyan-600" />
+                    Physiotherapy
+                  </div>
                 </div>
               </div>
 
@@ -759,7 +951,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {departments?.map((department, index) => (
               <Card
                 key={department.id}
@@ -770,8 +962,8 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                 <CardHeader className="relative">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="medical-icon animate-float">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 mb-4">
+                    <div className="medical-icon animate-float flex-shrink-0">
                       <svg
                         className="w-6 h-6"
                         fill="currentColor"
@@ -780,7 +972,7 @@ export default function HomePage() {
                         <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
                       </svg>
                     </div>
-                    <CardTitle className="text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
+                    <CardTitle className="text-lg sm:text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors text-center sm:text-left">
                       {department.name}
                     </CardTitle>
                   </div>
@@ -852,8 +1044,21 @@ export default function HomePage() {
                 <CardHeader className="relative pb-4">
                   {/* Doctor Avatar with Gradient Ring */}
                   <div className="relative mx-auto mb-6">
-                    <div className="w-28 h-28 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 animate-glow">
-                      <Users className="w-14 h-14 text-white" />
+                    <div className="w-28 h-28 rounded-full mx-auto overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300 animate-glow border-4 border-blue-400">
+                      <img
+                        src={getDoctorImage(doctor.name, doctor.id)}
+                        alt={doctor.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to default icon if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.parentElement!.classList.add('bg-gradient-to-br', 'from-blue-400', 'to-blue-600', 'flex', 'items-center', 'justify-center');
+                          const icon = document.createElement('div');
+                          icon.innerHTML = '<svg class="w-14 h-14 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+                          target.parentElement!.appendChild(icon);
+                        }}
+                      />
                     </div>
                     {/* Online Indicator */}
                     <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-md animate-pulse"></div>
@@ -897,6 +1102,34 @@ export default function HomePage() {
                       </svg>
                     ))}
                     <span className="ml-2 text-xs text-gray-500">(4.9)</span>
+                  </div>
+
+                  {/* Social Media Links */}
+                  <div className="flex justify-center space-x-3 mt-4">
+                    <a
+                      href={`https://www.facebook.com/doctor${doctor.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300 group/social"
+                    >
+                      <Facebook className="w-4 h-4 text-white group-hover/social:scale-110 transition-transform" />
+                    </a>
+                    <a
+                      href={`https://www.instagram.com/doctor${doctor.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-full flex items-center justify-center transition-all duration-300 group/social"
+                    >
+                      <Instagram className="w-4 h-4 text-white group-hover/social:scale-110 transition-transform" />
+                    </a>
+                    <a
+                      href={`https://youtube.com/@doctor${doctor.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300 group/social"
+                    >
+                      <Youtube className="w-4 h-4 text-white group-hover/social:scale-110 transition-transform" />
+                    </a>
                   </div>
 
                   {/* Contact Button */}
@@ -1184,10 +1417,38 @@ export default function HomePage() {
               <h5 className="text-lg font-semibold mb-4">
                 Shri Krishna Mission Hospital
               </h5>
-              <p className="text-gray-400">
+              <p className="text-gray-400 mb-4">
                 Providing exceptional healthcare services with compassion and
                 excellence.
               </p>
+              
+              {/* Social Media Links */}
+              <div className="flex space-x-3">
+                <a
+                  href="https://www.facebook.com/share/1B6cferwga/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300"
+                >
+                  <Facebook className="w-5 h-5 text-white" />
+                </a>
+                <a
+                  href="https://youtube.com/@shrikrishnamissionhospital3376?si=dAwA02Upoef10ECt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors duration-300"
+                >
+                  <Youtube className="w-5 h-5 text-white" />
+                </a>
+                <a
+                  href="https://www.instagram.com/shrikrishnamissionhospital?igsh=MWZwOXZydHR1c3p2aQ=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-full flex items-center justify-center transition-all duration-300"
+                >
+                  <Instagram className="w-5 h-5 text-white" />
+                </a>
+              </div>
             </div>
             <div>
               <h5 className="text-lg font-semibold mb-4">Quick Links</h5>

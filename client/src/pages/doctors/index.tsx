@@ -2,6 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import drKhalidJameelImage from "@/images/Dr Khalid Jameel.jpeg";
+import drVishrutBhartiImage from "@/images/Dr Vishrut Bharti.jpeg";
+import drPPMishraImage from "@/images/P P Mishra.jpeg";
+import drSomaShawGuptaImage from "@/images/Soma Shaw Gupta.jpeg";
 import { 
   Calendar, 
   Award, 
@@ -16,6 +20,20 @@ import { Link } from "wouter";
 import type { Doctor, Department } from "@shared/schema";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+
+// Helper function to get doctor image based on name or ID
+const getDoctorImage = (doctorName: string, doctorId: number) => {
+  const imageMap: { [key: string]: string } = {
+    "Dr. Khalid Jameel": drKhalidJameelImage,
+    "Dr. Vishrut Bharti": drVishrutBhartiImage,
+    "Dr. P P Mishra": drPPMishraImage,
+    "Dr. Soma Shaw Gupta": drSomaShawGuptaImage,
+  };
+  
+  return imageMap[doctorName] || 
+         imageMap[`Dr. ${doctorName.replace("Dr. ", "")}`] ||
+         Object.values(imageMap)[(doctorId - 1) % Object.values(imageMap).length];
+};
 
 export default function DoctorsPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -96,25 +114,32 @@ export default function DoctorsPage() {
                 {/* Doctor Image Section */}
                 <div className="relative h-48 bg-gradient-to-br from-blue-50 to-white overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
-                  {doctor.image ? (
-                    <img
-                      src={doctor.image}
-                      alt={`Dr. ${doctor.name}`}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    /* Placeholder doctor image container */
-                    <div className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-20 h-20 bg-white/30 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-                          <Stethoscope className="w-10 h-10 text-blue-600" />
+                  <img
+                    src={getDoctorImage(doctor.name, doctor.id)}
+                    alt={doctor.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Fallback to placeholder if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const container = target.parentElement!;
+                      container.innerHTML = `
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
+                        <div class="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                          <div class="text-center">
+                            <div class="w-20 h-20 bg-white/30 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                              <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                              </svg>
+                            </div>
+                            <div class="text-sm font-medium text-blue-700 bg-white/80 px-3 py-1 rounded-full">
+                              ${doctor.specialization}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-sm font-medium text-blue-700 bg-white/80 px-3 py-1 rounded-full">
-                          {doctor.specialization}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                      `;
+                    }}
+                  />
                   
                   {/* Experience badge overlay */}
                   <div className="absolute top-4 right-4">

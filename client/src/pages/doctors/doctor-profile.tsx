@@ -3,6 +3,10 @@ import { useParams } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import drKhalidJameelImage from "@/images/Dr Khalid Jameel.jpeg";
+import drVishrutBhartiImage from "@/images/Dr Vishrut Bharti.jpeg";
+import drPPMishraImage from "@/images/P P Mishra.jpeg";
+import drSomaShawGuptaImage from "@/images/Soma Shaw Gupta.jpeg";
 import { 
   Calendar, 
   Clock, 
@@ -18,6 +22,20 @@ import { Link } from "wouter";
 import type { Doctor, Department } from "@shared/schema";
 import { AppointmentForm } from "@/components/appointment-form";
 import { useState } from "react";
+
+// Helper function to get doctor image based on name or ID
+const getDoctorImage = (doctorName: string, doctorId: number) => {
+  const imageMap: { [key: string]: string } = {
+    "Dr. Khalid Jameel": drKhalidJameelImage,
+    "Dr. Vishrut Bharti": drVishrutBhartiImage,
+    "Dr. P P Mishra": drPPMishraImage,
+    "Dr. Soma Shaw Gupta": drSomaShawGuptaImage,
+  };
+  
+  return imageMap[doctorName] || 
+         imageMap[`Dr. ${doctorName.replace("Dr. ", "")}`] ||
+         Object.values(imageMap)[(doctorId - 1) % Object.values(imageMap).length];
+};
 
 export default function DoctorProfile() {
   const { id } = useParams<{ id: string }>();
@@ -86,8 +104,20 @@ export default function DoctorProfile() {
           <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-12">
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
               {/* Doctor Image */}
-              <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
-                <Stethoscope className="w-16 h-16 text-white" />
+              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white/30 shadow-xl">
+                <img
+                  src={getDoctorImage(doctor.name, doctor.id)}
+                  alt={doctor.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.classList.add('bg-white/20', 'flex', 'items-center', 'justify-center');
+                    const icon = document.createElement('div');
+                    icon.innerHTML = '<svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+                    target.parentElement!.appendChild(icon);
+                  }}
+                />
               </div>
               
               {/* Doctor Info */}
