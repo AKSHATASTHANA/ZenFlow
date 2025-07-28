@@ -6,6 +6,7 @@ import { Brain, Clock, Users, Award, Phone, Calendar } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
 import { useState } from "react";
 import type { Doctor } from "@shared/schema";
+import drSomaShawGuptaImage from "@/images/Soma Shaw Gupta.jpeg";
 
 export default function NeurologyPage() {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);

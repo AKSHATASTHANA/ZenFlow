@@ -6,6 +6,7 @@ import { Baby, Clock, Users, Award, Phone, Calendar } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
 import { useState } from "react";
 import type { Doctor } from "@shared/schema";
+import drSaurabhSinghImage from "@/images/Dr Saurabh singh.jpeg";
 
 export default function PediatricsPage() {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);

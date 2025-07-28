@@ -6,6 +6,7 @@ import { Heart, Clock, Users, Award, Phone, Calendar } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
 import { useState } from "react";
 import type { Doctor } from "@shared/schema";
+import drVishrutBhartiImage from "@/images/Dr Vishrut Bharti.jpeg";
 
 export default function CardiologyPage() {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);

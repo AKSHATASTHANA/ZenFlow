@@ -6,6 +6,9 @@ import drKhalidJameelImage from "@/images/Dr Khalid Jameel.jpeg";
 import drVishrutBhartiImage from "@/images/Dr Vishrut Bharti.jpeg";
 import drPPMishraImage from "@/images/P P Mishra.jpeg";
 import drSomaShawGuptaImage from "@/images/Soma Shaw Gupta.jpeg";
+import drDawadImage from "@/images/Dr Dawad.jpeg";
+import drSaurabhSinghImage from "@/images/Dr Saurabh singh.jpeg";
+import naveenKumarMauryaImage from "@/images/Naveen Kumar maurya.jpeg";
 import { 
   Calendar, 
   Award, 
@@ -25,9 +28,14 @@ import { useState } from "react";
 const getDoctorImage = (doctorName: string, doctorId: number) => {
   const imageMap: { [key: string]: string } = {
     "Dr. Khalid Jameel": drKhalidJameelImage,
+    "Dr. Khalid Jamed": drKhalidJameelImage,
     "Dr. Vishrut Bharti": drVishrutBhartiImage,
     "Dr. P P Mishra": drPPMishraImage,
+    "Dr. Pip Mishran": drPPMishraImage,
     "Dr. Soma Shaw Gupta": drSomaShawGuptaImage,
+    "Dr. Mohd. Dawd Akhtar": drDawadImage,
+    "Dr. Saurabh Singh": drSaurabhSinghImage,
+    "Dr. Naveen Kumar Maurya": naveenKumarMauryaImage,
   };
   
   return imageMap[doctorName] || 

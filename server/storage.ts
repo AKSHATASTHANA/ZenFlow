@@ -163,7 +163,7 @@ export class MemStorage implements IStorage {
         age: 35,
         gender: "Male",
         department: "Cardiology",
-        doctorId: 5, // Dr. Vishrut Bharti
+        doctorId: 5 as number, // Dr. Vishrut Bharti
         preferredDate: new Date("2025-01-15"),
         preferredTime: "10:00 AM",
         reasonForVisit: "Chest pain and shortness of breath",
@@ -176,7 +176,7 @@ export class MemStorage implements IStorage {
         age: 28,
         gender: "Female",
         department: "Neurology",
-        doctorId: 3, // Dr. Soma Shaw Gupta
+        doctorId: 3 as number, // Dr. Soma Shaw Gupta
         preferredDate: new Date("2025-01-16"),
         preferredTime: "2:00 PM",
         reasonForVisit: "Frequent headaches",
@@ -219,6 +219,7 @@ export class MemStorage implements IStorage {
     const appointment: Appointment = {
       id: this.currentAppointmentId++,
       ...insertAppointment,
+      doctorId: insertAppointment.doctorId || null,
       preferredDate: new Date(insertAppointment.preferredDate),
       status: "pending",
       createdAt: new Date(),
