@@ -1,12 +1,20 @@
-import type { 
-  User, InsertUser, 
-  Appointment, InsertAppointment,
-  Department, InsertDepartment,
-  Doctor, InsertDoctor,
-  Project, InsertProject,
-  Task, InsertTask,
-  Milestone, InsertMilestone,
-  TaskDependency, InsertTaskDependency
+import type {
+  User,
+  InsertUser,
+  Appointment,
+  InsertAppointment,
+  Department,
+  InsertDepartment,
+  Doctor,
+  InsertDoctor,
+  Project,
+  InsertProject,
+  Task,
+  InsertTask,
+  Milestone,
+  InsertMilestone,
+  TaskDependency,
+  InsertTaskDependency,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -19,8 +27,14 @@ export interface IStorage {
   createAppointment(appointment: InsertAppointment): Promise<Appointment>;
   getAppointments(limit?: number): Promise<Appointment[]>;
   getAppointmentById(id: number): Promise<Appointment | undefined>;
-  updateAppointmentStatus(id: number, status: string): Promise<Appointment | undefined>;
-  getAppointmentsByDateRange(startDate: Date, endDate: Date): Promise<Appointment[]>;
+  updateAppointmentStatus(
+    id: number,
+    status: string,
+  ): Promise<Appointment | undefined>;
+  getAppointmentsByDateRange(
+    startDate: Date,
+    endDate: Date,
+  ): Promise<Appointment[]>;
 
   // Department methods
   getDepartments(): Promise<Department[]>;
@@ -36,24 +50,35 @@ export interface IStorage {
   getProjects(): Promise<Project[]>;
   getProjectById(id: number): Promise<Project | undefined>;
   createProject(project: InsertProject): Promise<Project>;
-  updateProject(id: number, updates: Partial<InsertProject>): Promise<Project | undefined>;
+  updateProject(
+    id: number,
+    updates: Partial<InsertProject>,
+  ): Promise<Project | undefined>;
 
   // Task methods
   getTasks(projectId?: number): Promise<Task[]>;
   getTaskById(id: number): Promise<Task | undefined>;
   createTask(task: InsertTask): Promise<Task>;
-  updateTask(id: number, updates: Partial<InsertTask>): Promise<Task | undefined>;
+  updateTask(
+    id: number,
+    updates: Partial<InsertTask>,
+  ): Promise<Task | undefined>;
   deleteTask(id: number): Promise<boolean>;
 
   // Milestone methods
   getMilestones(projectId?: number): Promise<Milestone[]>;
   getMilestoneById(id: number): Promise<Milestone | undefined>;
   createMilestone(milestone: InsertMilestone): Promise<Milestone>;
-  updateMilestone(id: number, updates: Partial<InsertMilestone>): Promise<Milestone | undefined>;
+  updateMilestone(
+    id: number,
+    updates: Partial<InsertMilestone>,
+  ): Promise<Milestone | undefined>;
 
   // Task dependency methods
   getTaskDependencies(taskId: number): Promise<TaskDependency[]>;
-  createTaskDependency(dependency: InsertTaskDependency): Promise<TaskDependency>;
+  createTaskDependency(
+    dependency: InsertTaskDependency,
+  ): Promise<TaskDependency>;
   deleteTaskDependency(id: number): Promise<boolean>;
 }
 
@@ -111,15 +136,51 @@ export class MemStorage implements IStorage {
 
     // Create departments
     const departments = [
-      { name: "Cardiology", description: "Heart and cardiovascular system", headDoctor: "Dr. Vishrut Bharti" },
-      { name: "Neurology", description: "Brain and nervous system disorders", headDoctor: "Dr. Soma Shaw Gupta" },
-      { name: "General Medicine", description: "Internal medicine and general health", headDoctor: "Dr. Meetour Experut Doctor" },
-      { name: "General Surgery", description: "Surgical procedures and operations", headDoctor: "Dr. Khalid Jamed" },
-      { name: "Pediatrics", description: "Children's health and medical care", headDoctor: "Dr. Saurabh Singh" },
-      { name: "Emergency Medicine", description: "Critical care and emergency treatment", headDoctor: "Dr. Mayank Rajput" },
-      { name: "Neurosurgery", description: "Brain and spine surgical procedures", headDoctor: "Dr. Amit Patel" },
-      { name: "Pathology", description: "Disease diagnosis and laboratory services", headDoctor: "Dr. Mohd. Dawd Akhtar" },
-      { name: "Anesthesiology", description: "Anesthesia and pain management", headDoctor: "Dr. Asrar Ahmad" },
+      {
+        name: "Cardiology",
+        description: "Heart and cardiovascular system",
+        headDoctor: "Dr. Vishrut Bharti",
+      },
+      {
+        name: "Neurology",
+        description: "Brain and nervous system disorders",
+        headDoctor: "Dr. Soma Shaw Gupta",
+      },
+      {
+        name: "General Medicine",
+        description: "Internal medicine and general health",
+        headDoctor: "Dr. Meetour Experut Doctor",
+      },
+      {
+        name: "General Surgery",
+        description: "Surgical procedures and operations",
+        headDoctor: "Dr. Khalid Jamed",
+      },
+      {
+        name: "Pediatrics",
+        description: "Children's health and medical care",
+        headDoctor: "Dr. Saurabh Singh",
+      },
+      {
+        name: "Emergency Medicine",
+        description: "Critical care and emergency treatment",
+        headDoctor: "Dr. Mayank Rajput",
+      },
+      {
+        name: "Neurosurgery",
+        description: "Brain and spine surgical procedures",
+        headDoctor: "Dr. Amit Patel",
+      },
+      {
+        name: "Pathology",
+        description: "Disease diagnosis and laboratory services",
+        headDoctor: "Dr. Mohd. Dawd Akhtar",
+      },
+      {
+        name: "Anesthesiology",
+        description: "Anesthesia and pain management",
+        headDoctor: "Dr. Asrar Ahmad",
+      },
     ];
 
     for (const dept of departments) {
@@ -132,17 +193,76 @@ export class MemStorage implements IStorage {
 
     // Create doctors - Corrected authentic list
     const doctors = [
-      { name: "Dr. Meetour Experut Doctor", specialization: "Senior Medical Officer", departmentId: 3, qualifications: "MBBS, MD", experience: 15 },
-      { name: "Dr. Pip Mishran", specialization: "Medicine Specialist", departmentId: 3, qualifications: "MBBS, MD (Medicine)", experience: 12 },
-      { name: "Dr. Soma Shaw Gupta", specialization: "Medical Consultant", departmentId: 2, qualifications: "MBBS, MC", experience: 14 },
-      { name: "Dr. Khalid Jamed", specialization: "General Surgeon", departmentId: 4, qualifications: "MBBS, M.S", experience: 18 },
-      { name: "Dr. Vishrut Bharti", specialization: "Cardiologist", departmentId: 1, qualifications: "MBBS, MS, MCH (Cardiology)", experience: 20 },
-      { name: "Dr. Naveen Kumar Maurya", specialization: "General Surgeon", departmentId: 4, qualifications: "MBBS, MS", experience: 16 },
-      { name: "Dr. Saurabh Singh", specialization: "Pediatrician", departmentId: 5, qualifications: "MBBS, MD (Pediatrics)", experience: 10 },
-      { name: "Dr. Mayank Rajput", specialization: "Medical Officer", departmentId: 6, qualifications: "MBBS, MD", experience: 8 },
-      { name: "Dr. Amit Patel", specialization: "Neurosurgeon", departmentId: 7, qualifications: "MBBS, MS, MCH (Neurosurgery)", experience: 22 },
-      { name: "Dr. Mohd. Dawd Akhtar", specialization: "Pathologist", departmentId: 8, qualifications: "MBBS, MD (Pathology)", experience: 15 },
-      { name: "Dr. Asrar Ahmad", specialization: "Anesthesiologist", departmentId: 9, qualifications: "MD (Anesthesia)", experience: 13 },
+      {
+        name: "Dr. P P Mishra",
+        specialization: "Medicine Specialist",
+        departmentId: 3,
+        qualifications: "MBBS, MD (Medicine)",
+        experience: 12,
+      },
+      {
+        name: "Dr. Soma Shaw Gupta",
+        specialization: "Medical Consultant",
+        departmentId: 2,
+        qualifications: "MBBS, MC",
+        experience: 14,
+      },
+      {
+        name: "Dr. Khalid Jamed",
+        specialization: "General Surgeon",
+        departmentId: 4,
+        qualifications: "MBBS, M.S",
+        experience: 18,
+      },
+      {
+        name: "Dr. Vishrut Bharti",
+        specialization: "Cardiologist",
+        departmentId: 1,
+        qualifications: "MBBS, MS, MCH (Cardiology)",
+        experience: 20,
+      },
+      {
+        name: "Dr. Naveen Kumar Maurya",
+        specialization: "General Surgeon",
+        departmentId: 4,
+        qualifications: "MBBS, MS",
+        experience: 16,
+      },
+      {
+        name: "Dr. Saurabh Singh",
+        specialization: "Pediatrician",
+        departmentId: 5,
+        qualifications: "MBBS, MD (Pediatrics)",
+        experience: 10,
+      },
+      {
+        name: "Dr. Mayank Rajput",
+        specialization: "Medical Officer",
+        departmentId: 6,
+        qualifications: "MBBS, MD",
+        experience: 8,
+      },
+      {
+        name: "Dr. Amit Patel",
+        specialization: "Neurosurgeon",
+        departmentId: 7,
+        qualifications: "MBBS, MS, MCH (Neurosurgery)",
+        experience: 22,
+      },
+      {
+        name: "Dr. Mohd. Dawd Akhtar",
+        specialization: "Pathologist",
+        departmentId: 8,
+        qualifications: "MBBS, MD (Pathology)",
+        experience: 15,
+      },
+      {
+        name: "Dr. Asrar Ahmad",
+        specialization: "Anesthesiologist",
+        departmentId: 9,
+        qualifications: "MD (Anesthesia)",
+        experience: 13,
+      },
     ];
 
     for (const doc of doctors) {
@@ -167,7 +287,7 @@ export class MemStorage implements IStorage {
         preferredDate: new Date("2025-01-15"),
         preferredTime: "10:00 AM",
         reasonForVisit: "Chest pain and shortness of breath",
-        status: "pending"
+        status: "pending",
       },
       {
         patientName: "Jane Smith",
@@ -180,7 +300,7 @@ export class MemStorage implements IStorage {
         preferredDate: new Date("2025-01-16"),
         preferredTime: "2:00 PM",
         reasonForVisit: "Frequent headaches",
-        status: "confirmed"
+        status: "confirmed",
       },
     ];
 
@@ -200,7 +320,7 @@ export class MemStorage implements IStorage {
 
   async getUserByUsername(username: string): Promise<User | undefined> {
     const users = Array.from(this.users.values());
-    return users.find(user => user.username === username);
+    return users.find((user) => user.username === username);
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
@@ -215,7 +335,9 @@ export class MemStorage implements IStorage {
     return user;
   }
 
-  async createAppointment(insertAppointment: InsertAppointment): Promise<Appointment> {
+  async createAppointment(
+    insertAppointment: InsertAppointment,
+  ): Promise<Appointment> {
     const appointment: Appointment = {
       id: this.currentAppointmentId++,
       ...insertAppointment,
@@ -239,7 +361,10 @@ export class MemStorage implements IStorage {
     return this.appointments.get(id);
   }
 
-  async updateAppointmentStatus(id: number, status: string): Promise<Appointment | undefined> {
+  async updateAppointmentStatus(
+    id: number,
+    status: string,
+  ): Promise<Appointment | undefined> {
     const appointment = this.appointments.get(id);
     if (appointment) {
       appointment.status = status;
@@ -249,10 +374,13 @@ export class MemStorage implements IStorage {
     return undefined;
   }
 
-  async getAppointmentsByDateRange(startDate: Date, endDate: Date): Promise<Appointment[]> {
+  async getAppointmentsByDateRange(
+    startDate: Date,
+    endDate: Date,
+  ): Promise<Appointment[]> {
     const appointments = Array.from(this.appointments.values());
-    return appointments.filter(apt => 
-      apt.preferredDate >= startDate && apt.preferredDate <= endDate
+    return appointments.filter(
+      (apt) => apt.preferredDate >= startDate && apt.preferredDate <= endDate,
     );
   }
 
@@ -260,7 +388,9 @@ export class MemStorage implements IStorage {
     return Array.from(this.departments.values());
   }
 
-  async createDepartment(insertDepartment: InsertDepartment): Promise<Department> {
+  async createDepartment(
+    insertDepartment: InsertDepartment,
+  ): Promise<Department> {
     const department: Department = {
       id: this.currentDepartmentId++,
       name: insertDepartment.name,
@@ -281,7 +411,7 @@ export class MemStorage implements IStorage {
 
   async getDoctorsByDepartment(departmentId: number): Promise<Doctor[]> {
     const doctors = Array.from(this.doctors.values());
-    return doctors.filter(doc => doc.departmentId === departmentId);
+    return doctors.filter((doc) => doc.departmentId === departmentId);
   }
 
   async createDoctor(insertDoctor: InsertDoctor): Promise<Doctor> {
@@ -324,11 +454,15 @@ export class MemStorage implements IStorage {
     return project;
   }
 
-  async updateProject(id: number, updates: Partial<InsertProject>): Promise<Project | undefined> {
+  async updateProject(
+    id: number,
+    updates: Partial<InsertProject>,
+  ): Promise<Project | undefined> {
     const project = this.projects.get(id);
     if (project) {
       const updatedProject = { ...project, ...updates };
-      if (updates.startDate) updatedProject.startDate = new Date(updates.startDate);
+      if (updates.startDate)
+        updatedProject.startDate = new Date(updates.startDate);
       if (updates.endDate) updatedProject.endDate = new Date(updates.endDate);
       this.projects.set(id, updatedProject);
       return updatedProject;
@@ -339,7 +473,9 @@ export class MemStorage implements IStorage {
   // Task methods
   async getTasks(projectId?: number): Promise<Task[]> {
     const tasks = Array.from(this.tasks.values());
-    return projectId ? tasks.filter(task => task.projectId === projectId) : tasks;
+    return projectId
+      ? tasks.filter((task) => task.projectId === projectId)
+      : tasks;
   }
 
   async getTaskById(id: number): Promise<Task | undefined> {
@@ -357,8 +493,12 @@ export class MemStorage implements IStorage {
       subActivity: insertTask.subActivity || null,
       startDate: new Date(insertTask.startDate),
       endDate: new Date(insertTask.endDate),
-      actualStartDate: insertTask.actualStartDate ? new Date(insertTask.actualStartDate) : null,
-      actualEndDate: insertTask.actualEndDate ? new Date(insertTask.actualEndDate) : null,
+      actualStartDate: insertTask.actualStartDate
+        ? new Date(insertTask.actualStartDate)
+        : null,
+      actualEndDate: insertTask.actualEndDate
+        ? new Date(insertTask.actualEndDate)
+        : null,
       duration: insertTask.duration || 1,
       progress: insertTask.progress || 0,
       status: insertTask.status || "pending",
@@ -378,14 +518,20 @@ export class MemStorage implements IStorage {
     return task;
   }
 
-  async updateTask(id: number, updates: Partial<InsertTask>): Promise<Task | undefined> {
+  async updateTask(
+    id: number,
+    updates: Partial<InsertTask>,
+  ): Promise<Task | undefined> {
     const task = this.tasks.get(id);
     if (task) {
       const updatedTask = { ...task, ...updates, updatedAt: new Date() };
-      if (updates.startDate) updatedTask.startDate = new Date(updates.startDate);
+      if (updates.startDate)
+        updatedTask.startDate = new Date(updates.startDate);
       if (updates.endDate) updatedTask.endDate = new Date(updates.endDate);
-      if (updates.actualStartDate) updatedTask.actualStartDate = new Date(updates.actualStartDate);
-      if (updates.actualEndDate) updatedTask.actualEndDate = new Date(updates.actualEndDate);
+      if (updates.actualStartDate)
+        updatedTask.actualStartDate = new Date(updates.actualStartDate);
+      if (updates.actualEndDate)
+        updatedTask.actualEndDate = new Date(updates.actualEndDate);
       this.tasks.set(id, updatedTask);
       return updatedTask;
     }
@@ -399,7 +545,9 @@ export class MemStorage implements IStorage {
   // Milestone methods
   async getMilestones(projectId?: number): Promise<Milestone[]> {
     const milestones = Array.from(this.milestones.values());
-    return projectId ? milestones.filter(milestone => milestone.projectId === projectId) : milestones;
+    return projectId
+      ? milestones.filter((milestone) => milestone.projectId === projectId)
+      : milestones;
   }
 
   async getMilestoneById(id: number): Promise<Milestone | undefined> {
@@ -413,7 +561,9 @@ export class MemStorage implements IStorage {
       name: insertMilestone.name,
       description: insertMilestone.description || null,
       targetDate: new Date(insertMilestone.targetDate),
-      actualDate: insertMilestone.actualDate ? new Date(insertMilestone.actualDate) : null,
+      actualDate: insertMilestone.actualDate
+        ? new Date(insertMilestone.actualDate)
+        : null,
       status: insertMilestone.status || "pending",
       ownerId: insertMilestone.ownerId || null,
       createdAt: new Date(),
@@ -422,12 +572,17 @@ export class MemStorage implements IStorage {
     return milestone;
   }
 
-  async updateMilestone(id: number, updates: Partial<InsertMilestone>): Promise<Milestone | undefined> {
+  async updateMilestone(
+    id: number,
+    updates: Partial<InsertMilestone>,
+  ): Promise<Milestone | undefined> {
     const milestone = this.milestones.get(id);
     if (milestone) {
       const updatedMilestone = { ...milestone, ...updates };
-      if (updates.targetDate) updatedMilestone.targetDate = new Date(updates.targetDate);
-      if (updates.actualDate) updatedMilestone.actualDate = new Date(updates.actualDate);
+      if (updates.targetDate)
+        updatedMilestone.targetDate = new Date(updates.targetDate);
+      if (updates.actualDate)
+        updatedMilestone.actualDate = new Date(updates.actualDate);
       this.milestones.set(id, updatedMilestone);
       return updatedMilestone;
     }
@@ -437,10 +592,12 @@ export class MemStorage implements IStorage {
   // Task dependency methods
   async getTaskDependencies(taskId: number): Promise<TaskDependency[]> {
     const dependencies = Array.from(this.taskDependencies.values());
-    return dependencies.filter(dep => dep.taskId === taskId);
+    return dependencies.filter((dep) => dep.taskId === taskId);
   }
 
-  async createTaskDependency(insertDependency: InsertTaskDependency): Promise<TaskDependency> {
+  async createTaskDependency(
+    insertDependency: InsertTaskDependency,
+  ): Promise<TaskDependency> {
     const dependency: TaskDependency = {
       id: this.currentDependencyId++,
       taskId: insertDependency.taskId,
@@ -469,7 +626,7 @@ export class MemStorage implements IStorage {
         managerId: 1,
       },
       {
-        name: "Medical Equipment Installation", 
+        name: "Medical Equipment Installation",
         description: "Installation of critical medical equipment",
         startDate: new Date("2024-04-01"),
         endDate: new Date("2024-08-31"),
@@ -501,7 +658,8 @@ export class MemStorage implements IStorage {
       {
         projectId: 1,
         name: "Foundation Excavation",
-        description: "Excavate foundation area according to architectural plans",
+        description:
+          "Excavate foundation area according to architectural plans",
         activity: "Civil Work",
         subActivity: "Foundation",
         startDate: new Date("2024-01-01"),
@@ -517,7 +675,7 @@ export class MemStorage implements IStorage {
         projectId: 1,
         name: "Concrete Pouring",
         description: "Pour concrete for foundation base",
-        activity: "Civil Work", 
+        activity: "Civil Work",
         subActivity: "Foundation",
         startDate: new Date("2024-01-16"),
         endDate: new Date("2024-01-25"),
@@ -533,7 +691,7 @@ export class MemStorage implements IStorage {
         name: "Steel Frame Installation",
         description: "Install main steel framework structure",
         activity: "Structural Work",
-        subActivity: "Frame Installation", 
+        subActivity: "Frame Installation",
         startDate: new Date("2024-02-01"),
         endDate: new Date("2024-03-15"),
         duration: 44,
@@ -556,8 +714,10 @@ export class MemStorage implements IStorage {
         subActivity: taskData.subActivity,
         startDate: taskData.startDate,
         endDate: taskData.endDate,
-        actualStartDate: taskData.status === "completed" ? taskData.startDate : null,
-        actualEndDate: taskData.status === "completed" ? taskData.endDate : null,
+        actualStartDate:
+          taskData.status === "completed" ? taskData.startDate : null,
+        actualEndDate:
+          taskData.status === "completed" ? taskData.endDate : null,
         duration: taskData.duration,
         progress: taskData.progress,
         status: taskData.status,
@@ -592,7 +752,7 @@ export class MemStorage implements IStorage {
         name: "Structural Frame Complete",
         description: "Main steel framework installation finished",
         targetDate: new Date("2024-03-31"),
-        status: "in-progress", 
+        status: "in-progress",
         ownerId: 1,
       },
     ];
