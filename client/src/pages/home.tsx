@@ -26,6 +26,8 @@ import {
   Zap,
 } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
+import { DepartmentIcon } from "@/components/department-icons";
+import { DepartmentBackground } from "@/components/department-backgrounds";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { Department, Doctor } from "@shared/schema";
 import ReactMarkdown from "react-markdown";
@@ -763,55 +765,54 @@ export default function HomePage() {
             {departments?.map((department, index) => (
               <Card
                 key={department.id}
-                className="card-hover hover-lift group relative overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur-sm animate-fadeInUp"
+                className="card-hover hover-lift group relative overflow-hidden border-0 shadow-xl bg-white backdrop-blur-sm animate-fadeInUp transform hover:scale-105 transition-all duration-300"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {/* Department Background Pattern */}
+                <DepartmentBackground 
+                  department={department.name} 
+                  className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300" 
+                />
+                
                 {/* Card Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                 <CardHeader className="relative">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="medical-icon animate-float">
-                      <svg
-                        className="w-6 h-6"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
-                      </svg>
+                  <div className="flex flex-col items-center space-y-4 mb-4">
+                    <div className="transform group-hover:scale-110 transition-transform duration-300 animate-float">
+                      <DepartmentIcon 
+                        department={department.name} 
+                        className="w-16 h-16 md:w-20 md:h-20 drop-shadow-lg" 
+                      />
                     </div>
-                    <CardTitle className="text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors">
+                    <CardTitle className="text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors text-center">
                       {department.name}
                     </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent className="relative">
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                <CardContent className="relative z-10">
+                  <p className="text-gray-700 mb-6 leading-relaxed text-center">
                     {department.description}
                   </p>
                   {department.headDoctor && (
-                    <div className="flex items-center text-sm text-gray-500 bg-gray-50 rounded-lg p-3">
+                    <div className="flex items-center justify-center text-sm text-gray-600 bg-white/80 backdrop-blur-sm rounded-lg p-3 shadow-sm border border-gray-100">
                       <Users className="w-4 h-4 mr-2 text-blue-500" />
-                      <span className="font-medium">Head Doctor:</span>
-                      <span className="ml-1">{department.headDoctor}</span>
+                      <span className="font-medium">Head:</span>
+                      <span className="ml-1 text-blue-700">{department.headDoctor}</span>
                     </div>
                   )}
 
-                  {/* Hover Effect Arrow */}
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                    <svg
-                      className="w-5 h-5 text-blue-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                  {/* View Department Button */}
+                  <div className="mt-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <Link href={`/departments/${department.name.toLowerCase()}`}>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="w-full border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-400 transition-all duration-300"
+                      >
+                        Learn More
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
