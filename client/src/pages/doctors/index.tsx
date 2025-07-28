@@ -120,12 +120,12 @@ export default function DoctorsPage() {
             return (
               <Card key={doctor.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 {/* Doctor Image Section */}
-                <div className="relative h-48 bg-gradient-to-br from-blue-50 to-white overflow-hidden">
+                <div className="relative h-64 bg-gradient-to-br from-blue-50 to-white overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
                   <img
                     src={getDoctorImage(doctor.name, doctor.id)}
                     alt={doctor.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain object-center"
                     onError={(e) => {
                       // Fallback to placeholder if image fails to load
                       const target = e.target as HTMLImageElement;
