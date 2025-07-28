@@ -635,91 +635,91 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {/* Excellence Pillar 1 - Blue Theme */}
-            <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
-                <Heart className="h-8 w-8 text-white" />
+            <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+                <Heart className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Medical Excellence</h3>
-              <div className="space-y-3">
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">Medical Excellence</h3>
+              <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
-                  <span className="text-3xl font-bold">2.45L+</span>
-                  <span className="ml-2 text-blue-100">Patients Treated</span>
+                  <span className="text-xl md:text-3xl font-bold">2.45L+</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">Patients Treated</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">15+</span>
-                  <span className="ml-2 text-blue-100">Expert Doctors</span>
+                  <span className="text-lg md:text-2xl font-bold">15+</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">Expert Doctors</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">14+</span>
-                  <span className="ml-2 text-blue-100">Departments</span>
+                  <span className="text-lg md:text-2xl font-bold">14+</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">Departments</span>
                 </div>
               </div>
             </div>
 
             {/* Excellence Pillar 2 - Green Theme */}
-            <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
-                <Award className="h-8 w-8 text-white" />
+            <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+                <Award className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Quality Care</h3>
-              <div className="space-y-3">
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">Quality Care</h3>
+              <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
-                  <span className="text-3xl font-bold">NABH</span>
-                  <span className="ml-2 text-green-100">Accredited</span>
+                  <span className="text-xl md:text-3xl font-bold">NABH</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">Accredited</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">850+</span>
-                  <span className="ml-2 text-green-100">Bed Capacity</span>
+                  <span className="text-lg md:text-2xl font-bold">850+</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">Bed Capacity</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">98%</span>
-                  <span className="ml-2 text-green-100">Success Rate</span>
+                  <span className="text-lg md:text-2xl font-bold">98%</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">Success Rate</span>
                 </div>
               </div>
             </div>
 
             {/* Excellence Pillar 3 - Purple Theme */}
-            <div className="bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
-                <Clock className="h-8 w-8 text-white" />
+            <div className="bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+                <Clock className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">24/7 Services</h3>
-              <div className="space-y-3">
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">24/7 Services</h3>
+              <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
-                  <span className="text-3xl font-bold">24/7</span>
-                  <span className="ml-2 text-purple-100">Emergency</span>
+                  <span className="text-xl md:text-3xl font-bold">24/7</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">Emergency</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">15K+</span>
-                  <span className="ml-2 text-purple-100">Surgeries</span>
+                  <span className="text-lg md:text-2xl font-bold">15K+</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">Surgeries</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">365</span>
-                  <span className="ml-2 text-purple-100">Days/Year</span>
+                  <span className="text-lg md:text-2xl font-bold">365</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">Days/Year</span>
                 </div>
               </div>
             </div>
 
             {/* Excellence Pillar 4 - Orange Theme */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
-                <Users className="h-8 w-8 text-white" />
+            <div className="bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+                <Users className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Patient First</h3>
-              <div className="space-y-3">
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">Patient First</h3>
+              <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
-                  <span className="text-3xl font-bold">39</span>
-                  <span className="ml-2 text-orange-100">Years Legacy</span>
+                  <span className="text-xl md:text-3xl font-bold">39</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">Years Legacy</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">95%</span>
-                  <span className="ml-2 text-orange-100">Satisfaction</span>
+                  <span className="text-lg md:text-2xl font-bold">95%</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">Satisfaction</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold">100%</span>
-                  <span className="ml-2 text-orange-100">Dedication</span>
+                  <span className="text-lg md:text-2xl font-bold">100%</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">Dedication</span>
                 </div>
               </div>
             </div>
@@ -731,7 +731,7 @@ export default function HomePage() {
               onClick={() => setShowAppointmentForm(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300"
             >
-              Experience Excellence - Book Your Appointment
+              Book Your Appointment
             </Button>
           </div>
         </div>
