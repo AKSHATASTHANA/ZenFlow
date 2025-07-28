@@ -13,7 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { insertAppointmentSchema } from "@shared/schema";
-import type { Department, InsertAppointment } from "@shared/schema";
+import type { Department, Doctor, InsertAppointment } from "@shared/schema";
 
 interface AppointmentFormProps {
   onClose: () => void;
@@ -26,6 +26,10 @@ export function AppointmentForm({ onClose }: AppointmentFormProps) {
     queryKey: ["/api/departments"],
   });
 
+  const { data: doctors } = useQuery<Doctor[]>({
+    queryKey: ["/api/doctors"],
+  });
+
   const form = useForm<InsertAppointment>({
     resolver: zodResolver(insertAppointmentSchema),
     defaultValues: {
@@ -35,6 +39,7 @@ export function AppointmentForm({ onClose }: AppointmentFormProps) {
       age: 0,
       gender: "",
       department: "",
+      doctorId: undefined,
       preferredDate: "",
       preferredTime: "",
       reasonForVisit: "",
@@ -217,30 +222,63 @@ export function AppointmentForm({ onClose }: AppointmentFormProps) {
                   Appointment Details
                 </h3>
 
-                <FormField
-                  control={form.control}
-                  name="department"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Department</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select department" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {departments?.map((dept) => (
-                            <SelectItem key={dept.id} value={dept.name}>
-                              {dept.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="department"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Department</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select department" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {departments?.map((dept) => (
+                              <SelectItem key={dept.id} value={dept.name}>
+                                {dept.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="doctorId"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Preferred Doctor</FormLabel>
+                        <Select 
+                          onValueChange={(value) => field.onChange(value ? parseInt(value) : undefined)} 
+                          defaultValue={field.value?.toString()}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select doctor (optional)" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {doctors?.map((doctor) => (
+                              <SelectItem key={doctor.id} value={doctor.id.toString()}>
+                                <div className="flex flex-col">
+                                  <span className="font-medium">{doctor.name}</span>
+                                  <span className="text-sm text-gray-500">{doctor.specialization}</span>
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <FormField
