@@ -75,15 +75,138 @@ export default function PediatricsPage() {
               </div>
             </div>
 
-            {/* Image */}
+            {/* Medical Image */}
             <div className="relative">
-              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <Baby className="w-24 h-24 mx-auto mb-4 opacity-80" />
-                    <h3 className="text-2xl font-bold mb-2">Pediatrics Department</h3>
-                    <p className="text-green-100">Caring for Children's Health</p>
-                  </div>
+              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl bg-white">
+                <svg viewBox="0 0 400 300" className="w-full h-full">
+                  {/* Background */}
+                  <defs>
+                    <linearGradient id="pedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#f0fdf4" />
+                      <stop offset="100%" stopColor="#bbf7d0" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="400" height="300" fill="url(#pedGradient)" />
+                  
+                  {/* Child silhouette with growth chart */}
+                  <g transform="translate(120, 50)">
+                    {/* Growth chart background */}
+                    <rect x="0" y="0" width="160" height="200" fill="#ffffff" stroke="#16a34a" strokeWidth="2" opacity="0.9" />
+                    
+                    {/* Grid lines */}
+                    <g opacity="0.3">
+                      {[...Array(10)].map((_, i) => (
+                        <line key={i} x1="0" y1={i * 20} x2="160" y2={i * 20} stroke="#16a34a" strokeWidth="0.5" />
+                      ))}
+                      {[...Array(8)].map((_, i) => (
+                        <line key={i} x1={i * 20} y1="0" x2={i * 20} y2="200" stroke="#16a34a" strokeWidth="0.5" />
+                      ))}
+                    </g>
+                    
+                    {/* Growth curve */}
+                    <path d="M20,180 Q40,160 60,140 Q80,120 100,100 Q120,80 140,70" 
+                          stroke="#16a34a" strokeWidth="3" fill="none" strokeLinecap="round" />
+                    
+                    {/* Child figures at different ages */}
+                    <g transform="translate(30, 160)">
+                      {/* Baby */}
+                      <circle cx="0" cy="-5" r="8" fill="#16a34a" opacity="0.7" />
+                      <rect x="-6" y="3" width="12" height="20" fill="#16a34a" opacity="0.7" rx="6" />
+                      <rect x="-4" y="23" width="3" height="12" fill="#16a34a" opacity="0.7" />
+                      <rect x="1" y="23" width="3" height="12" fill="#16a34a" opacity="0.7" />
+                    </g>
+                    
+                    <g transform="translate(70, 130)">
+                      {/* Toddler */}
+                      <circle cx="0" cy="-5" r="10" fill="#16a34a" opacity="0.7" />
+                      <rect x="-7" y="5" width="14" height="25" fill="#16a34a" opacity="0.7" rx="7" />
+                      <rect x="-5" y="30" width="4" height="15" fill="#16a34a" opacity="0.7" />
+                      <rect x="1" y="30" width="4" height="15" fill="#16a34a" opacity="0.7" />
+                    </g>
+                    
+                    <g transform="translate(110, 100)">
+                      {/* Child */}
+                      <circle cx="0" cy="-5" r="12" fill="#16a34a" opacity="0.7" />
+                      <rect x="-8" y="7" width="16" height="30" fill="#16a34a" opacity="0.7" rx="8" />
+                      <rect x="-6" y="37" width="5" height="18" fill="#16a34a" opacity="0.7" />
+                      <rect x="1" y="37" width="5" height="18" fill="#16a34a" opacity="0.7" />
+                    </g>
+                    
+                    {/* Age labels */}
+                    <text x="30" y="195" textAnchor="middle" fontSize="12" fill="#16a34a" fontWeight="bold">1Y</text>
+                    <text x="70" y="195" textAnchor="middle" fontSize="12" fill="#16a34a" fontWeight="bold">3Y</text>
+                    <text x="110" y="195" textAnchor="middle" fontSize="12" fill="#16a34a" fontWeight="bold">7Y</text>
+                    
+                    {/* Height markers */}
+                    <text x="165" y="180" fontSize="10" fill="#16a34a">75cm</text>
+                    <text x="165" y="140" fontSize="10" fill="#16a34a">100cm</text>
+                    <text x="165" y="100" fontSize="10" fill="#16a34a">125cm</text>
+                  </g>
+                  
+                  {/* Medical toys and equipment */}
+                  <g transform="translate(50, 80)">
+                    {/* Stethoscope */}
+                    <circle cx="0" cy="0" r="8" fill="#16a34a" stroke="#15803d" strokeWidth="1" />
+                    <circle cx="0" cy="0" r="5" fill="#22c55e" />
+                    <path d="M0,-8 Q-12,-20 -20,-15 Q-24,-12 -20,-8 Q-12,0 0,8" 
+                          stroke="#15803d" strokeWidth="2" fill="none" strokeLinecap="round" />
+                    
+                    {/* Child-friendly colors */}
+                    <circle cx="-15" cy="-12" r="3" fill="#fbbf24" />
+                    <circle cx="-18" cy="-8" r="2" fill="#f59e0b" />
+                  </g>
+                  
+                  {/* Vaccine syringe */}
+                  <g transform="translate(320, 120)">
+                    <rect x="0" y="0" width="30" height="6" fill="#6b7280" rx="3" />
+                    <rect x="30" y="-2" width="8" height="10" fill="#374151" rx="1" />
+                    <rect x="38" y="1" width="15" height="4" fill="#9ca3af" />
+                    <circle cx="45" cy="3" r="2" fill="#16a34a" opacity="0.8" />
+                  </g>
+                  
+                  {/* NICU incubator */}
+                  <g transform="translate(30, 200)">
+                    <rect x="0" y="0" width="80" height="40" fill="#e5e7eb" stroke="#6b7280" strokeWidth="2" rx="5" />
+                    <rect x="5" y="5" width="70" height="30" fill="#f9fafb" stroke="#9ca3af" strokeWidth="1" rx="3" />
+                    
+                    {/* Baby inside */}
+                    <g transform="translate(40, 20)">
+                      <circle cx="0" cy="-3" r="4" fill="#fbbf24" opacity="0.8" />
+                      <rect x="-3" y="1" width="6" height="8" fill="#fbbf24" opacity="0.8" rx="3" />
+                    </g>
+                    
+                    {/* Monitor display */}
+                    <rect x="55" y="8" width="20" height="12" fill="#374151" />
+                    <path d="M58,14 L62,12 L66,16 L70,10 L72,14" stroke="#22c55e" strokeWidth="1" fill="none" />
+                  </g>
+                  
+                  {/* Playful elements */}
+                  <g opacity="0.6">
+                    {/* Blocks */}
+                    <rect x="350" y="200" width="15" height="15" fill="#ef4444" />
+                    <rect x="365" y="200" width="15" height="15" fill="#3b82f6" />
+                    <rect x="350" y="215" width="15" height="15" fill="#22c55e" />
+                    <rect x="365" y="215" width="15" height="15" fill="#fbbf24" />
+                    
+                    {/* Teddy bear */}
+                    <g transform="translate(300, 240)">
+                      <circle cx="0" cy="0" r="8" fill="#92400e" />
+                      <circle cx="-5" cy="-3" r="3" fill="#92400e" />
+                      <circle cx="5" cy="-3" r="3" fill="#92400e" />
+                      <circle cx="-2" cy="-1" r="1" fill="#000000" />
+                      <circle cx="2" cy="-1" r="1" fill="#000000" />
+                      <ellipse cx="0" cy="2" rx="1" ry="2" fill="#000000" />
+                    </g>
+                  </g>
+                  
+                  {/* Heartbeat line for vitals */}
+                  <path d="M20 40 L50 40 L55 30 L60 50 L65 20 L70 60 L75 40 L380 40" 
+                        stroke="#22c55e" strokeWidth="2" fill="none" opacity="0.7" strokeLinecap="round" />
+                </svg>
+                
+                <div className="absolute bottom-4 left-4 text-green-800">
+                  <h3 className="text-xl font-bold">Pediatrics Department</h3>
+                  <p className="text-green-600">Caring for Children's Health</p>
                 </div>
               </div>
             </div>

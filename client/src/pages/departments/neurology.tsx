@@ -74,15 +74,89 @@ export default function NeurologyPage() {
               </div>
             </div>
 
-            {/* Image */}
+            {/* Medical Image */}
             <div className="relative">
-              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <Brain className="w-24 h-24 mx-auto mb-4 opacity-80" />
-                    <h3 className="text-2xl font-bold mb-2">Neurology Department</h3>
-                    <p className="text-purple-100">Advanced Brain & Nerve Care</p>
-                  </div>
+              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl bg-white">
+                <svg viewBox="0 0 400 300" className="w-full h-full">
+                  {/* Background */}
+                  <defs>
+                    <linearGradient id="neuroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#f3e8ff" />
+                      <stop offset="100%" stopColor="#e9d5ff" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="400" height="300" fill="url(#neuroGradient)" />
+                  
+                  {/* Brain outline */}
+                  <g transform="translate(200, 150)">
+                    {/* Main brain shape */}
+                    <path d="M-60,-40 Q-80,-60 -60,-80 Q-40,-90 -20,-80 Q0,-85 20,-80 Q40,-90 60,-80 Q80,-60 60,-40 Q70,-20 60,0 Q70,20 60,40 Q40,60 20,50 Q0,55 -20,50 Q-40,60 -60,40 Q-70,20 -60,0 Q-70,-20 -60,-40 Z" 
+                          fill="#7c3aed" opacity="0.8" stroke="#6d28d9" strokeWidth="2" />
+                    
+                    {/* Brain hemispheres division */}
+                    <path d="M0,-80 L0,50" stroke="#6d28d9" strokeWidth="2" opacity="0.6" />
+                    
+                    {/* Brain lobes */}
+                    <circle cx="-30" cy="-30" r="15" fill="#8b5cf6" opacity="0.6" />
+                    <circle cx="30" cy="-30" r="15" fill="#8b5cf6" opacity="0.6" />
+                    <circle cx="-30" cy="10" r="12" fill="#8b5cf6" opacity="0.6" />
+                    <circle cx="30" cy="10" r="12" fill="#8b5cf6" opacity="0.6" />
+                    
+                    {/* Neural pathways */}
+                    <g opacity="0.7">
+                      <path d="M-40,-20 Q-20,-10 0,0 Q20,-10 40,-20" 
+                            stroke="#a855f7" strokeWidth="2" fill="none" strokeLinecap="round" />
+                      <path d="M-40,0 Q-20,10 0,20 Q20,10 40,0" 
+                            stroke="#a855f7" strokeWidth="2" fill="none" strokeLinecap="round" />
+                      <path d="M-30,-40 Q0,-30 30,-40" 
+                            stroke="#a855f7" strokeWidth="2" fill="none" strokeLinecap="round" />
+                    </g>
+                    
+                    {/* Electrical activity */}
+                    <g opacity="0.8">
+                      <circle cx="-25" cy="-25" r="3" fill="#fbbf24">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="25" cy="-25" r="3" fill="#fbbf24">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="1s" />
+                      </circle>
+                      <circle cx="0" cy="5" r="3" fill="#fbbf24">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" begin="0.5s" />
+                      </circle>
+                    </g>
+                  </g>
+                  
+                  {/* Spinal cord */}
+                  <g transform="translate(200, 220)">
+                    <rect x="-8" y="0" width="16" height="60" fill="#7c3aed" opacity="0.7" rx="8" />
+                    <path d="M-6,10 L6,10 M-6,20 L6,20 M-6,30 L6,30 M-6,40 L6,40 M-6,50 L6,50" 
+                          stroke="#6d28d9" strokeWidth="1" opacity="0.8" />
+                  </g>
+                  
+                  {/* MRI Scanner representation */}
+                  <g transform="translate(80, 100)">
+                    <rect x="0" y="0" width="80" height="40" fill="#374151" rx="20" />
+                    <rect x="10" y="10" width="60" height="20" fill="#6b7280" rx="10" />
+                    <circle cx="40" cy="20" r="8" fill="#9ca3af" />
+                  </g>
+                  
+                  {/* Neuron representation */}
+                  <g transform="translate(320, 80)">
+                    <circle cx="0" cy="0" r="8" fill="#7c3aed" />
+                    <path d="M8,0 L25,0 M-8,0 L-25,0 M0,-8 L0,-20 M0,8 L0,20" 
+                          stroke="#7c3aed" strokeWidth="2" strokeLinecap="round" />
+                    <circle cx="25" cy="0" r="2" fill="#7c3aed" />
+                    <circle cx="-25" cy="0" r="2" fill="#7c3aed" />
+                  </g>
+                  
+                  {/* EEG waves */}
+                  <path d="M50 250 Q80 240 110 250 T170 250 T230 250 T290 250 T350 250" 
+                        stroke="#7c3aed" strokeWidth="2" fill="none" opacity="0.6" />
+                </svg>
+                
+                <div className="absolute bottom-4 left-4 text-purple-800">
+                  <h3 className="text-xl font-bold">Neurology Department</h3>
+                  <p className="text-purple-600">Advanced Brain & Nerve Care</p>
                 </div>
               </div>
             </div>

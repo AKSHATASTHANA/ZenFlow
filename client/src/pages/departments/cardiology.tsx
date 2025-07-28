@@ -74,15 +74,77 @@ export default function CardiologyPage() {
               </div>
             </div>
 
-            {/* Image */}
+            {/* Medical Image */}
             <div className="relative">
-              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <Heart className="w-24 h-24 mx-auto mb-4 opacity-80" />
-                    <h3 className="text-2xl font-bold mb-2">Cardiology Department</h3>
-                    <p className="text-red-100">Advanced Heart Care</p>
-                  </div>
+              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl bg-white">
+                <svg viewBox="0 0 400 300" className="w-full h-full">
+                  {/* Background */}
+                  <defs>
+                    <linearGradient id="cardioGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#fee2e2" />
+                      <stop offset="100%" stopColor="#fecaca" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="400" height="300" fill="url(#cardioGradient)" />
+                  
+                  {/* EKG Line */}
+                  <path d="M20 150 L50 150 L65 100 L80 200 L95 50 L110 250 L125 150 L380 150" 
+                        stroke="#dc2626" strokeWidth="3" fill="none" strokeLinecap="round" />
+                  
+                  {/* Heart Anatomy */}
+                  <g transform="translate(200, 120)">
+                    {/* Main heart shape */}
+                    <path d="M0,20 C-30,-10 -60,10 -40,50 L0,80 L40,50 C60,10 30,-10 0,20 Z" 
+                          fill="#dc2626" opacity="0.8" />
+                    
+                    {/* Heart chambers */}
+                    <ellipse cx="-15" cy="30" rx="12" ry="15" fill="#b91c1c" opacity="0.6" />
+                    <ellipse cx="15" cy="30" rx="12" ry="15" fill="#b91c1c" opacity="0.6" />
+                    
+                    {/* Aorta */}
+                    <path d="M0,20 Q-10,5 -5,-5 Q0,-10 5,-5 Q10,5 0,20" 
+                          fill="#dc2626" opacity="0.7" />
+                    
+                    {/* Pulse lines */}
+                    <g opacity="0.6">
+                      <circle cx="-20" cy="35" r="2" fill="#ef4444">
+                        <animate attributeName="r" values="2;6;2" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="20" cy="35" r="2" fill="#ef4444">
+                        <animate attributeName="r" values="2;6;2" dur="1s" repeatCount="indefinite" begin="0.5s" />
+                        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" begin="0.5s" />
+                      </circle>
+                    </g>
+                  </g>
+                  
+                  {/* Medical equipment */}
+                  <g transform="translate(320, 50)">
+                    {/* Stethoscope */}
+                    <circle cx="0" cy="0" r="15" fill="#374151" stroke="#6b7280" strokeWidth="2" />
+                    <circle cx="0" cy="0" r="8" fill="#9ca3af" />
+                    <path d="M0,-15 Q-20,-30 -35,-20 Q-40,-15 -35,-10 Q-20,0 0,15" 
+                          stroke="#374151" strokeWidth="3" fill="none" strokeLinecap="round" />
+                  </g>
+                  
+                  {/* Medical cross */}
+                  <g transform="translate(50, 50)">
+                    <rect x="-3" y="-12" width="6" height="24" fill="#dc2626" />
+                    <rect x="-12" y="-3" width="24" height="6" fill="#dc2626" />
+                  </g>
+                  
+                  {/* ECG Grid */}
+                  <defs>
+                    <pattern id="ecgGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#fca5a5" strokeWidth="0.5" opacity="0.3" />
+                    </pattern>
+                  </defs>
+                  <rect width="400" height="300" fill="url(#ecgGrid)" />
+                </svg>
+                
+                <div className="absolute bottom-4 left-4 text-red-800">
+                  <h3 className="text-xl font-bold">Cardiology Department</h3>
+                  <p className="text-red-600">Advanced Heart Care</p>
                 </div>
               </div>
             </div>

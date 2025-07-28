@@ -75,15 +75,102 @@ export default function OrthopedicsPage() {
               </div>
             </div>
 
-            {/* Image */}
+            {/* Medical Image */}
             <div className="relative">
-              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-600 to-orange-800 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <Bone className="w-24 h-24 mx-auto mb-4 opacity-80" />
-                    <h3 className="text-2xl font-bold mb-2">Orthopedics Department</h3>
-                    <p className="text-orange-100">Advanced Bone & Joint Care</p>
-                  </div>
+              <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl bg-white">
+                <svg viewBox="0 0 400 300" className="w-full h-full">
+                  {/* Background */}
+                  <defs>
+                    <linearGradient id="orthoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#fff7ed" />
+                      <stop offset="100%" stopColor="#fed7aa" />
+                    </linearGradient>
+                  </defs>
+                  <rect width="400" height="300" fill="url(#orthoGradient)" />
+                  
+                  {/* Skeleton/Bone structure */}
+                  <g transform="translate(200, 150)">
+                    {/* Femur bone */}
+                    <g transform="translate(-30, -60)">
+                      <ellipse cx="0" cy="-15" rx="12" ry="8" fill="#ea580c" opacity="0.8" />
+                      <rect x="-6" y="-15" width="12" height="80" fill="#ea580c" opacity="0.8" />
+                      <ellipse cx="0" cy="65" rx="15" ry="10" fill="#ea580c" opacity="0.8" />
+                      
+                      {/* Bone marrow */}
+                      <rect x="-3" y="-10" width="6" height="70" fill="#fb923c" opacity="0.6" />
+                    </g>
+                    
+                    {/* Tibia */}
+                    <g transform="translate(-30, 60)">
+                      <ellipse cx="0" cy="0" rx="13" ry="8" fill="#ea580c" opacity="0.8" />
+                      <rect x="-5" y="0" width="10" height="70" fill="#ea580c" opacity="0.8" />
+                      <ellipse cx="0" cy="70" rx="10" ry="6" fill="#ea580c" opacity="0.8" />
+                    </g>
+                    
+                    {/* Knee joint */}
+                    <g transform="translate(-30, 50)">
+                      <circle cx="0" cy="0" r="18" fill="#fdba74" opacity="0.7" stroke="#ea580c" strokeWidth="2" />
+                      <circle cx="0" cy="0" r="12" fill="#fed7aa" opacity="0.8" />
+                      
+                      {/* Joint lines */}
+                      <path d="M-12,0 L12,0 M0,-12 L0,12" stroke="#ea580c" strokeWidth="1" opacity="0.6" />
+                    </g>
+                    
+                    {/* Hip joint */}
+                    <g transform="translate(-30, -75)">
+                      <circle cx="0" cy="0" r="20" fill="#fdba74" opacity="0.7" stroke="#ea580c" strokeWidth="2" />
+                      <circle cx="0" cy="0" r="14" fill="#fed7aa" opacity="0.8" />
+                    </g>
+                    
+                    {/* Spine representation */}
+                    <g transform="translate(40, -80)">
+                      {[...Array(8)].map((_, i) => (
+                        <g key={i} transform={`translate(0, ${i * 20})`}>
+                          <ellipse cx="0" cy="0" rx="8" ry="6" fill="#ea580c" opacity="0.8" />
+                          <rect x="-6" y="-3" width="12" height="6" fill="#fb923c" opacity="0.6" />
+                        </g>
+                      ))}
+                    </g>
+                    
+                    {/* X-ray effect lines */}
+                    <g opacity="0.3">
+                      <path d="M-80,-100 L80,100 M-80,100 L80,-100" stroke="#ea580c" strokeWidth="1" />
+                      <path d="M-100,-50 L100,50 M-100,50 L100,-50" stroke="#ea580c" strokeWidth="1" />
+                    </g>
+                  </g>
+                  
+                  {/* Medical instruments */}
+                  <g transform="translate(320, 60)">
+                    {/* Scalpel */}
+                    <rect x="0" y="0" width="40" height="4" fill="#6b7280" />
+                    <polygon points="40,0 50,2 40,4" fill="#9ca3af" />
+                    <rect x="0" y="-2" width="15" height="8" fill="#374151" />
+                  </g>
+                  
+                  {/* Joint replacement implant */}
+                  <g transform="translate(80, 200)">
+                    <circle cx="0" cy="0" r="12" fill="#6b7280" stroke="#374151" strokeWidth="1" />
+                    <rect x="-3" y="0" width="6" height="25" fill="#6b7280" />
+                    <circle cx="0" cy="25" r="8" fill="#6b7280" />
+                  </g>
+                  
+                  {/* Orthopedic screws */}
+                  <g transform="translate(60, 120)">
+                    <circle cx="0" cy="0" r="3" fill="#6b7280" />
+                    <circle cx="0" cy="0" r="1.5" fill="#374151" />
+                    <rect x="-1" y="0" width="2" height="20" fill="#6b7280" />
+                  </g>
+                  
+                  <g transform="translate(70, 140)">
+                    <circle cx="0" cy="0" r="3" fill="#6b7280" />
+                    <circle cx="0" cy="0" r="1.5" fill="#374151" />
+                    <rect x="-1" y="0" width="2" height="20" fill="#6b7280" />
+                  </g>
+                </svg>
+                
+                <div className="absolute bottom-4 left-4 text-orange-800">
+                  <h3 className="text-xl font-bold">Orthopedics Department</h3>
+                  <p className="text-orange-600">Advanced Bone & Joint Care</p>
                 </div>
               </div>
             </div>
