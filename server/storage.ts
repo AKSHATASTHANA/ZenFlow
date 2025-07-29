@@ -7,6 +7,10 @@ import type {
   InsertDepartment,
   Doctor,
   InsertDoctor,
+  NewsEvent,
+  InsertNewsEvent,
+  GalleryImage,
+  InsertGalleryImage,
   Project,
   InsertProject,
   Task,
@@ -45,6 +49,20 @@ export interface IStorage {
   getDoctorById(id: number): Promise<Doctor | undefined>;
   getDoctorsByDepartment(departmentId: number): Promise<Doctor[]>;
   createDoctor(doctor: InsertDoctor): Promise<Doctor>;
+
+  // News and Events methods
+  getNewsEvents(type?: "news" | "event"): Promise<NewsEvent[]>;
+  getNewsEventById(id: number): Promise<NewsEvent | undefined>;
+  createNewsEvent(newsEvent: InsertNewsEvent): Promise<NewsEvent>;
+  updateNewsEvent(id: number, updates: Partial<InsertNewsEvent>): Promise<NewsEvent | undefined>;
+  deleteNewsEvent(id: number): Promise<boolean>;
+
+  // Gallery methods
+  getGalleryImages(category?: string): Promise<GalleryImage[]>;
+  getGalleryImageById(id: number): Promise<GalleryImage | undefined>;
+  createGalleryImage(galleryImage: InsertGalleryImage): Promise<GalleryImage>;
+  updateGalleryImage(id: number, updates: Partial<InsertGalleryImage>): Promise<GalleryImage | undefined>;
+  deleteGalleryImage(id: number): Promise<boolean>;
 
   // Project methods
   getProjects(): Promise<Project[]>;
@@ -87,6 +105,8 @@ export class MemStorage implements IStorage {
   private appointments: Map<number, Appointment>;
   private departments: Map<number, Department>;
   private doctors: Map<number, Doctor>;
+  private newsEvents: Map<number, NewsEvent>;
+  private galleryImages: Map<number, GalleryImage>;
   private projects: Map<number, Project>;
   private tasks: Map<number, Task>;
   private milestones: Map<number, Milestone>;
@@ -95,6 +115,8 @@ export class MemStorage implements IStorage {
   private currentAppointmentId: number;
   private currentDepartmentId: number;
   private currentDoctorId: number;
+  private currentNewsEventId: number;
+  private currentGalleryImageId: number;
   private currentProjectId: number;
   private currentTaskId: number;
   private currentMilestoneId: number;
@@ -105,6 +127,8 @@ export class MemStorage implements IStorage {
     this.appointments = new Map();
     this.departments = new Map();
     this.doctors = new Map();
+    this.newsEvents = new Map();
+    this.galleryImages = new Map();
     this.projects = new Map();
     this.tasks = new Map();
     this.milestones = new Map();
@@ -113,6 +137,8 @@ export class MemStorage implements IStorage {
     this.currentAppointmentId = 1;
     this.currentDepartmentId = 1;
     this.currentDoctorId = 1;
+    this.currentNewsEventId = 1;
+    this.currentGalleryImageId = 1;
     this.currentProjectId = 1;
     this.currentTaskId = 1;
     this.currentMilestoneId = 1;
@@ -120,6 +146,8 @@ export class MemStorage implements IStorage {
 
     // Initialize with sample data
     this.initializeSampleData();
+    this.initializeNewsEvents();
+    this.initializeGallery();
     this.initializeProjectData();
   }
 
@@ -311,6 +339,89 @@ export class MemStorage implements IStorage {
         createdAt: new Date(),
       };
       this.appointments.set(appointment.id, appointment);
+    }
+  }
+
+  private async initializeNewsEvents() {
+    const sampleNewsEvents = [
+      {
+        title: "New Cardiology Wing Opens",
+        content: "We are excited to announce the opening of our state-of-the-art cardiology wing with advanced diagnostic equipment and treatment facilities.",
+        type: "news",
+        imageUrl: null,
+        eventDate: null,
+        isPublished: true
+      },
+      {
+        title: "Free Health Checkup Camp",
+        content: "Join us for a comprehensive free health checkup camp on January 30th, 2025. Services include blood pressure monitoring, diabetes screening, and general consultation.",
+        type: "event",
+        imageUrl: null,
+        eventDate: new Date("2025-01-30"),
+        isPublished: true
+      },
+      {
+        title: "Hospital Accreditation Achievement",
+        content: "Shri Krishna Mission Hospital has successfully received NABH accreditation, marking our commitment to quality healthcare services.",
+        type: "news",
+        imageUrl: null,
+        eventDate: null,
+        isPublished: true
+      }
+    ];
+
+    for (const newsEvent of sampleNewsEvents) {
+      const item: NewsEvent = {
+        id: this.currentNewsEventId++,
+        title: newsEvent.title,
+        content: newsEvent.content,
+        type: newsEvent.type as "news" | "event",
+        imageUrl: newsEvent.imageUrl,
+        eventDate: newsEvent.eventDate,
+        isPublished: newsEvent.isPublished,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      this.newsEvents.set(item.id, item);
+    }
+  }
+
+  private async initializeGallery() {
+    const sampleGalleryImages = [
+      {
+        title: "Modern Operation Theater",
+        description: "State-of-the-art surgical facilities with advanced equipment",
+        imageUrl: "/images/hospital.jpeg",
+        category: "facility",
+        isVisible: true
+      },
+      {
+        title: "Emergency Department",
+        description: "24/7 emergency services with rapid response capabilities",
+        imageUrl: "/images/hospital.jpeg",
+        category: "facility",
+        isVisible: true
+      },
+      {
+        title: "Medical Equipment",
+        description: "Latest diagnostic and treatment equipment",
+        imageUrl: "/images/hospital.jpeg",
+        category: "equipment",
+        isVisible: true
+      }
+    ];
+
+    for (const galleryImage of sampleGalleryImages) {
+      const item: GalleryImage = {
+        id: this.currentGalleryImageId++,
+        title: galleryImage.title,
+        description: galleryImage.description,
+        imageUrl: galleryImage.imageUrl,
+        category: galleryImage.category,
+        isVisible: galleryImage.isVisible,
+        createdAt: new Date()
+      };
+      this.galleryImages.set(item.id, item);
     }
   }
 
@@ -610,6 +721,95 @@ export class MemStorage implements IStorage {
 
   async deleteTaskDependency(id: number): Promise<boolean> {
     return this.taskDependencies.delete(id);
+  }
+
+  // News and Events methods
+  async getNewsEvents(type?: "news" | "event"): Promise<NewsEvent[]> {
+    const newsEvents = Array.from(this.newsEvents.values());
+    const filtered = type ? newsEvents.filter(item => item.type === type) : newsEvents;
+    return filtered
+      .filter(item => item.isPublished)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getNewsEventById(id: number): Promise<NewsEvent | undefined> {
+    return this.newsEvents.get(id);
+  }
+
+  async createNewsEvent(insertNewsEvent: InsertNewsEvent): Promise<NewsEvent> {
+    const newsEvent: NewsEvent = {
+      id: this.currentNewsEventId++,
+      title: insertNewsEvent.title,
+      content: insertNewsEvent.content,
+      type: insertNewsEvent.type,
+      imageUrl: insertNewsEvent.imageUrl || null,
+      eventDate: insertNewsEvent.eventDate ? new Date(insertNewsEvent.eventDate) : null,
+      isPublished: insertNewsEvent.isPublished ?? true,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    this.newsEvents.set(newsEvent.id, newsEvent);
+    return newsEvent;
+  }
+
+  async updateNewsEvent(id: number, updates: Partial<InsertNewsEvent>): Promise<NewsEvent | undefined> {
+    const newsEvent = this.newsEvents.get(id);
+    if (newsEvent) {
+      const updatedNewsEvent = { 
+        ...newsEvent, 
+        ...updates,
+        updatedAt: new Date()
+      };
+      if (updates.eventDate) updatedNewsEvent.eventDate = new Date(updates.eventDate);
+      this.newsEvents.set(id, updatedNewsEvent);
+      return updatedNewsEvent;
+    }
+    return undefined;
+  }
+
+  async deleteNewsEvent(id: number): Promise<boolean> {
+    return this.newsEvents.delete(id);
+  }
+
+  // Gallery methods
+  async getGalleryImages(category?: string): Promise<GalleryImage[]> {
+    const galleryImages = Array.from(this.galleryImages.values());
+    const filtered = category ? galleryImages.filter(item => item.category === category) : galleryImages;
+    return filtered
+      .filter(item => item.isVisible)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getGalleryImageById(id: number): Promise<GalleryImage | undefined> {
+    return this.galleryImages.get(id);
+  }
+
+  async createGalleryImage(insertGalleryImage: InsertGalleryImage): Promise<GalleryImage> {
+    const galleryImage: GalleryImage = {
+      id: this.currentGalleryImageId++,
+      title: insertGalleryImage.title,
+      description: insertGalleryImage.description || null,
+      imageUrl: insertGalleryImage.imageUrl,
+      category: insertGalleryImage.category,
+      isVisible: insertGalleryImage.isVisible ?? true,
+      createdAt: new Date()
+    };
+    this.galleryImages.set(galleryImage.id, galleryImage);
+    return galleryImage;
+  }
+
+  async updateGalleryImage(id: number, updates: Partial<InsertGalleryImage>): Promise<GalleryImage | undefined> {
+    const galleryImage = this.galleryImages.get(id);
+    if (galleryImage) {
+      const updatedGalleryImage = { ...galleryImage, ...updates };
+      this.galleryImages.set(id, updatedGalleryImage);
+      return updatedGalleryImage;
+    }
+    return undefined;
+  }
+
+  async deleteGalleryImage(id: number): Promise<boolean> {
+    return this.galleryImages.delete(id);
   }
 
   private async initializeProjectData() {

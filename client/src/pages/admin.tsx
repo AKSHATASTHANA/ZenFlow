@@ -20,10 +20,14 @@ import {
   XCircle,
   AlertCircle,
   BarChart3,
-  TrendingUp
+  TrendingUp,
+  Image,
+  Newspaper
 } from "lucide-react";
 import { useLocation } from "wouter";
 import { AnalyticsDashboard } from "@/components/analytics-dashboard";
+import { AdminGallery } from "@/components/admin-gallery";
+import { AdminNewsEvents } from "@/components/admin-news-events";
 import type { Appointment } from "@shared/schema";
 
 export default function AdminPage() {
@@ -189,6 +193,28 @@ export default function AdminPage() {
           >
             <Calendar className="w-4 h-4 inline mr-2" />
             Appointments
+          </button>
+          <button
+            onClick={() => setActiveTab("gallery")}
+            className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 ${
+              activeTab === "gallery"
+                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
+                : "text-gray-600 hover:text-gray-900 hover:bg-white/50"
+            }`}
+          >
+            <Image className="w-4 h-4 inline mr-2" />
+            Gallery
+          </button>
+          <button
+            onClick={() => setActiveTab("news-events")}
+            className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 ${
+              activeTab === "news-events"
+                ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
+                : "text-gray-600 hover:text-gray-900 hover:bg-white/50"
+            }`}
+          >
+            <Newspaper className="w-4 h-4 inline mr-2" />
+            News & Events
           </button>
           <button
             onClick={() => setActiveTab("analytics")}
@@ -370,6 +396,12 @@ export default function AdminPage() {
             </CardContent>
           </Card>
         )}
+
+        {/* Gallery Management */}
+        {activeTab === "gallery" && <AdminGallery />}
+
+        {/* News & Events Management */}
+        {activeTab === "news-events" && <AdminNewsEvents />}
 
         {/* Analytics Dashboard */}
         {activeTab === "analytics" && appointments && (

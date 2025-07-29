@@ -43,6 +43,28 @@ export const doctors = pgTable("doctors", {
   image: text("image"),
 });
 
+export const newsEvents = pgTable("news_events", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  type: text("type").notNull(), // "news" or "event"
+  imageUrl: text("image_url"),
+  eventDate: timestamp("event_date"),
+  isPublished: boolean("is_published").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const galleryImages = pgTable("gallery_images", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description"),
+  imageUrl: text("image_url").notNull(),
+  category: text("category").notNull(), // "facility", "staff", "equipment", "events"
+  isVisible: boolean("is_visible").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
@@ -80,6 +102,23 @@ export const insertDoctorSchema = createInsertSchema(doctors).pick({
   image: true,
 });
 
+export const insertNewsEventSchema = createInsertSchema(newsEvents).pick({
+  title: true,
+  content: true,
+  type: true,
+  imageUrl: true,
+  eventDate: true,
+  isPublished: true,
+});
+
+export const insertGalleryImageSchema = createInsertSchema(galleryImages).pick({
+  title: true,
+  description: true,
+  imageUrl: true,
+  category: true,
+  isVisible: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -89,6 +128,10 @@ export type Department = typeof departments.$inferSelect;
 export type InsertDepartment = z.infer<typeof insertDepartmentSchema>;
 export type Doctor = typeof doctors.$inferSelect;
 export type InsertDoctor = z.infer<typeof insertDoctorSchema>;
+export type NewsEvent = typeof newsEvents.$inferSelect;
+export type InsertNewsEvent = z.infer<typeof insertNewsEventSchema>;
+export type GalleryImage = typeof galleryImages.$inferSelect;
+export type InsertGalleryImage = z.infer<typeof insertGalleryImageSchema>;
 
 // Project Management Tables
 export const projects = pgTable("projects", {

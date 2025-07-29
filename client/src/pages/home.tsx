@@ -506,6 +506,12 @@ export default function HomePage() {
               <Link href="/doctors" className="text-gray-600 hover:text-blue-600">
                 Our Doctors
               </Link>
+              <Link href="/gallery" className="text-gray-600 hover:text-blue-600">
+                Gallery
+              </Link>
+              <Link href="/news-events" className="text-gray-600 hover:text-blue-600">
+                News & Events
+              </Link>
               <a href="#doctors" className="text-gray-600 hover:text-blue-600">
                 About Doctors
               </a>
@@ -648,6 +654,20 @@ export default function HomePage() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Our Doctors
+                </Link>
+                <Link
+                  href="/gallery"
+                  className="block py-2 text-gray-600 hover:text-blue-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Gallery
+                </Link>
+                <Link
+                  href="/news-events"
+                  className="block py-2 text-gray-600 hover:text-blue-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  News & Events
                 </Link>
                 <a
                   href="#doctors"

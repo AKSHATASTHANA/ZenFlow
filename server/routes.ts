@@ -6,6 +6,8 @@ import {
   insertDepartmentSchema, 
   insertDoctorSchema,
   insertUserSchema,
+  insertNewsEventSchema,
+  insertGalleryImageSchema,
   insertProjectSchema,
   insertTaskSchema,
   insertMilestoneSchema
@@ -151,6 +153,128 @@ export function registerRoutes(app: Express): Server {
       }
       
       res.json({ id: user.id, username: user.username, role: user.role });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // News and Events routes
+  app.get("/api/news-events", async (req, res) => {
+    try {
+      const type = req.query.type as "news" | "event" | undefined;
+      const newsEvents = await storage.getNewsEvents(type);
+      res.json(newsEvents);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/news-events/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const newsEvent = await storage.getNewsEventById(id);
+      if (!newsEvent) {
+        return res.status(404).json({ error: "News/Event not found" });
+      }
+      res.json(newsEvent);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/news-events", async (req, res) => {
+    try {
+      const data = insertNewsEventSchema.parse(req.body);
+      const newsEvent = await storage.createNewsEvent(data);
+      res.status(201).json(newsEvent);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/news-events/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = insertNewsEventSchema.partial().parse(req.body);
+      const newsEvent = await storage.updateNewsEvent(id, updates);
+      if (!newsEvent) {
+        return res.status(404).json({ error: "News/Event not found" });
+      }
+      res.json(newsEvent);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.delete("/api/news-events/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const deleted = await storage.deleteNewsEvent(id);
+      if (!deleted) {
+        return res.status(404).json({ error: "News/Event not found" });
+      }
+      res.status(204).send();
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Gallery routes
+  app.get("/api/gallery", async (req, res) => {
+    try {
+      const category = req.query.category as string | undefined;
+      const galleryImages = await storage.getGalleryImages(category);
+      res.json(galleryImages);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/gallery/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const galleryImage = await storage.getGalleryImageById(id);
+      if (!galleryImage) {
+        return res.status(404).json({ error: "Gallery image not found" });
+      }
+      res.json(galleryImage);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/gallery", async (req, res) => {
+    try {
+      const data = insertGalleryImageSchema.parse(req.body);
+      const galleryImage = await storage.createGalleryImage(data);
+      res.status(201).json(galleryImage);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/gallery/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = insertGalleryImageSchema.partial().parse(req.body);
+      const galleryImage = await storage.updateGalleryImage(id, updates);
+      if (!galleryImage) {
+        return res.status(404).json({ error: "Gallery image not found" });
+      }
+      res.json(galleryImage);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.delete("/api/gallery/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const deleted = await storage.deleteGalleryImage(id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Gallery image not found" });
+      }
+      res.status(204).send();
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
