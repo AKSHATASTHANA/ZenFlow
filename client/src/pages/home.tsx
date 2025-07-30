@@ -446,22 +446,22 @@ export default function HomePage() {
       <header className="bg-white shadow-md border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-3">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               <img
                 src={logoImage}
                 alt="Shri Krishna Mission Hospital Logo"
-                className="w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 object-contain"
+                className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain"
               />
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
                 Shri Krishna Mission Hospital
               </h1>
             </div>
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-4">
+            <nav className="hidden lg:flex items-center space-x-6">
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center px-4 py-2 rounded-lg bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-200 border border-gray-200 hover:border-blue-200">
+                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-blue-600">
                   Departments
-                  <ChevronDown className="ml-2 h-4 w-4" />
+                  <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
@@ -512,9 +512,9 @@ export default function HomePage() {
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center px-4 py-2 rounded-lg bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-200 border border-gray-200 hover:border-blue-200">
+                <DropdownMenuTrigger className="flex items-center text-gray-600 hover:text-blue-600">
                   Facilities
-                  <ChevronDown className="ml-2 h-4 w-4" />
+                  <ChevronDown className="ml-1 h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
@@ -584,37 +584,31 @@ export default function HomePage() {
               </DropdownMenu>
               <Link
                 href="/doctors"
-                className="px-4 py-2 rounded-lg bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-200 border border-gray-200 hover:border-blue-200"
+                className="text-gray-600 hover:text-blue-600"
               >
                 Our Doctors
               </Link>
               <Link
                 href="/gallery"
-                className="px-4 py-2 rounded-lg bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-200 border border-gray-200 hover:border-blue-200"
+                className="text-gray-600 hover:text-blue-600"
               >
                 Gallery
               </Link>
               <Link
                 href="/news-events"
-                className="px-4 py-2 rounded-lg bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-200 border border-gray-200 hover:border-blue-200"
+                className="text-gray-600 hover:text-blue-600"
               >
                 News & Events
               </Link>
-              <a 
-                href="#doctors" 
-                className="px-4 py-2 rounded-lg bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-200 border border-gray-200 hover:border-blue-200"
-              >
+              <a href="#doctors" className="text-gray-600 hover:text-blue-600">
                 About Doctors
               </a>
-              <a 
-                href="#contact" 
-                className="px-4 py-2 rounded-lg bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-200 border border-gray-200 hover:border-blue-200"
-              >
+              <a href="#contact" className="text-gray-600 hover:text-blue-600">
                 Contact
               </a>
               <Button
                 onClick={() => setShowAppointmentForm(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-sm hover:shadow-md transition-all duration-200 border border-blue-600 hover:border-blue-700"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-medium"
               >
                 Book Appointment
               </Button>
