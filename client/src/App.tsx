@@ -17,6 +17,13 @@ import DoctorsPage from "@/pages/doctors";
 import DoctorProfile from "@/pages/doctors/doctor-profile";
 import Gallery from "@/pages/gallery";
 import NewsEventsPage from "@/pages/news-events";
+import XRayPage from "@/pages/facilities/x-ray";
+import ICUPage from "@/pages/facilities/icu";
+import PathologyPage from "@/pages/facilities/pathology";
+import BloodBankPage from "@/pages/facilities/blood-bank";
+import EndoscopyPage from "@/pages/facilities/endoscopy";
+import EchoUltrasoundPage from "@/pages/facilities/echo-ultrasound";
+import PhysiotherapyPage from "@/pages/facilities/physiotherapy";
 
 function Router() {
   return (
@@ -33,6 +40,13 @@ function Router() {
       <Route path="/doctors/:id" component={DoctorProfile} />
       <Route path="/gallery" component={Gallery} />
       <Route path="/news-events" component={NewsEventsPage} />
+      <Route path="/facilities/x-ray" component={XRayPage} />
+      <Route path="/facilities/icu" component={ICUPage} />
+      <Route path="/facilities/pathology" component={PathologyPage} />
+      <Route path="/facilities/blood-bank" component={BloodBankPage} />
+      <Route path="/facilities/endoscopy" component={EndoscopyPage} />
+      <Route path="/facilities/echo-ultrasound" component={EchoUltrasoundPage} />
+      <Route path="/facilities/physiotherapy" component={PhysiotherapyPage} />
       <Route path="/" component={HomePage} />
       <Route component={NotFound} />
     </Switch>

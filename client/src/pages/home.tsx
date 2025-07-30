@@ -518,64 +518,67 @@ export default function HomePage() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
-                    <div className="flex items-center w-full">
+                    <Link
+                      href="/facilities/x-ray"
+                      className="flex items-center w-full"
+                    >
                       <Activity className="mr-2 h-4 w-4 text-blue-600" />
                       X-Ray
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <div className="flex items-center w-full">
+                    <Link
+                      href="/facilities/icu"
+                      className="flex items-center w-full"
+                    >
                       <Heart className="mr-2 h-4 w-4 text-red-600" />
                       ICU, NICU, PICU
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <div className="flex items-center w-full">
+                    <Link
+                      href="/facilities/pathology"
+                      className="flex items-center w-full"
+                    >
                       <Shield className="mr-2 h-4 w-4 text-green-600" />
                       Pathology
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <div className="flex items-center w-full">
+                    <Link
+                      href="/facilities/blood-bank"
+                      className="flex items-center w-full"
+                    >
                       <Activity className="mr-2 h-4 w-4 text-purple-600" />
                       Blood Bank
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <div className="flex items-center w-full">
-                      <Stethoscope className="mr-2 h-4 w-4 text-orange-600" />
-                      Oralysis
-                    </div>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <div className="flex items-center w-full">
+                    <Link
+                      href="/facilities/endoscopy"
+                      className="flex items-center w-full"
+                    >
                       <Activity className="mr-2 h-4 w-4 text-teal-600" />
                       Endoscopy
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <div className="flex items-center w-full">
+                    <Link
+                      href="/facilities/echo-ultrasound"
+                      className="flex items-center w-full"
+                    >
                       <Heart className="mr-2 h-4 w-4 text-pink-600" />
                       2D Echo & Ultrasound
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <div className="flex items-center w-full">
-                      <Activity className="mr-2 h-4 w-4 text-indigo-600" />
-                      Colour Doppler
-                    </div>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <div className="flex items-center w-full">
-                      <Zap className="mr-2 h-4 w-4 text-yellow-600" />
-                      Ventilator
-                    </div>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <div className="flex items-center w-full">
+                    <Link
+                      href="/facilities/physiotherapy"
+                      className="flex items-center w-full"
+                    >
                       <Users className="mr-2 h-4 w-4 text-cyan-600" />
                       Physiotherapy
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -709,46 +712,62 @@ export default function HomePage() {
                 
                 {facilitiesOpen && (
                   <div className="space-y-2 pl-4 mt-2 animate-in slide-in-from-top-2 duration-200">
-                    <div className="flex items-center py-2 text-gray-600">
+                    <Link
+                      href="/facilities/x-ray"
+                      className="flex items-center py-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Activity className="mr-2 h-4 w-4 text-blue-600" />
                       X-Ray
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
+                    </Link>
+                    <Link
+                      href="/facilities/icu"
+                      className="flex items-center py-2 text-gray-600 hover:text-red-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Heart className="mr-2 h-4 w-4 text-red-600" />
                       ICU, NICU, PICU
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
+                    </Link>
+                    <Link
+                      href="/facilities/pathology"
+                      className="flex items-center py-2 text-gray-600 hover:text-green-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Shield className="mr-2 h-4 w-4 text-green-600" />
                       Pathology
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
+                    </Link>
+                    <Link
+                      href="/facilities/blood-bank"
+                      className="flex items-center py-2 text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Activity className="mr-2 h-4 w-4 text-purple-600" />
                       Blood Bank
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
-                      <Stethoscope className="mr-2 h-4 w-4 text-orange-600" />
-                      Oralysis
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
+                    </Link>
+                    <Link
+                      href="/facilities/endoscopy"
+                      className="flex items-center py-2 text-gray-600 hover:text-teal-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Activity className="mr-2 h-4 w-4 text-teal-600" />
                       Endoscopy
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
+                    </Link>
+                    <Link
+                      href="/facilities/echo-ultrasound"
+                      className="flex items-center py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Heart className="mr-2 h-4 w-4 text-pink-600" />
                       2D Echo & Ultrasound
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
-                      <Activity className="mr-2 h-4 w-4 text-indigo-600" />
-                      Colour Doppler
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
-                      <Zap className="mr-2 h-4 w-4 text-yellow-600" />
-                      Ventilator
-                    </div>
-                    <div className="flex items-center py-2 text-gray-600">
+                    </Link>
+                    <Link
+                      href="/facilities/physiotherapy"
+                      className="flex items-center py-2 text-gray-600 hover:text-cyan-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Users className="mr-2 h-4 w-4 text-cyan-600" />
                       Physiotherapy
-                    </div>
+                    </Link>
                   </div>
                 )}
               </div>
