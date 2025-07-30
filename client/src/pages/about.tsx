@@ -43,7 +43,9 @@ export default function AboutSection() {
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
                   <div className="text-white text-center">
                     <div className="text-2xl font-bold">Since 1985</div>
-                    <div className="text-sm opacity-90">Serving with Excellence</div>
+                    <div className="text-sm opacity-90">
+                      Serving with Excellence
+                    </div>
                   </div>
                 </div>
               </div>
@@ -60,7 +62,9 @@ export default function AboutSection() {
                     <Users className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-800">2.45L+</div>
+                    <div className="text-2xl font-bold text-blue-800">
+                      2.45L+
+                    </div>
                     <div className="text-sm text-gray-600">Patients Served</div>
                   </div>
                 </div>
@@ -82,7 +86,9 @@ export default function AboutSection() {
                     <Award className="h-6 w-6 text-purple-600" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-purple-700">NABH</div>
+                    <div className="text-xl font-bold text-purple-700">
+                      NABH
+                    </div>
                     <div className="text-sm text-gray-600">Accredited</div>
                   </div>
                 </div>
@@ -104,13 +110,13 @@ export default function AboutSection() {
             <div className="bg-white/90 backdrop-blur-sm border border-blue-100 rounded-2xl shadow-xl p-8 relative overflow-hidden">
               {/* Decorative corner element */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-600/10 to-transparent rounded-bl-full"></div>
-              
+
               <h3 className="text-3xl md:text-4xl font-bold text-blue-800 mb-6 flex items-center gap-3">
                 <MapPin className="h-8 w-8 text-blue-600" />
                 Shri Krishna Mission Hospital
               </h3>
-            <ReactMarkdown>
-              {`
+              <ReactMarkdown>
+                {`
 It gives me immense pride and satisfaction to welcome you to **Shri Krishna Mission Hospital** – a place where compassion meets care, and healing is guided by dedication and ethics.
 
 ## Our Legacy
@@ -146,7 +152,7 @@ I am deeply grateful to everyone – our team, our patients, and our well-wisher
 Shri Krishna Mission Hospital, Basti
               `}
               </ReactMarkdown>
-              
+
               {/* Chairman's Image and Signature section */}
               <div className="mt-8 pt-6 border-t border-blue-200">
                 <div className="flex flex-col md:flex-row items-center gap-6">
@@ -169,15 +175,38 @@ Shri Krishna Mission Hospital, Basti
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Chairman's Information */}
                   <div className="text-center md:text-left">
-                    <div className="text-xl font-bold text-blue-800 mb-1">Shri Basant Chaudhary</div>
-                    <div className="text-sm font-medium text-gray-700 mb-1">Chairman & Founder</div>
-                    <div className="text-sm text-blue-600 mb-3">Shri Krishna Mission Hospital, Basti</div>
+                    <div className="text-xl font-bold text-blue-800 mb-1">
+                      Shri Basant Chaudhary
+                    </div>
+                    <div className="text-sm font-medium text-gray-700 mb-1">
+                      Chairman & Founder
+                    </div>
+                    <div className="text-sm text-blue-600 mb-3">
+                      Shri Krishna Mission Hospital, Basti
+                    </div>
                     <div className="text-xs text-gray-600 max-w-md">
-                      "Leading healthcare excellence in Eastern Uttar Pradesh since 1985, 
-                      with a vision to provide compassionate and world-class medical care to all."
+                      "आपका *श्री कृष्णा मिशन अस्पताल* में हार्दिक स्वागत करते
+                      हुए मुझे अत्यंत गर्व और संतोष की अनुभूति हो रही है। यह
+                      संस्थान करुणा, सेवा और समर्पण के मूल्यों पर आधारित एक ऐसा
+                      केंद्र है जहाँ उपचार केवल एक प्रक्रिया नहीं, बल्कि एक
+                      पवित्र कर्तव्य है। श्री कृष्ण जी की शिक्षाओं से प्रेरित
+                      होकर, हमारा उद्देश्य है मानवता की निःस्वार्थ सेवा करना। हम
+                      यह सुनिश्चित करते हैं कि हर व्यक्ति को सर्वोत्तम, सुलभ और
+                      किफायती स्वास्थ्य सेवाएं प्राप्त हों, चाहे उसकी सामाजिक या
+                      आर्थिक पृष्ठभूमि कुछ भी हो। हमारे कुशल चिकित्सकों,
+                      सहानुभूतिपूर्ण नर्सों और समर्पित स्टाफ की टीम के साथ, हम
+                      आधुनिक चिकित्सा की श्रेष्ठ सेवाएं प्रदान कर रहे हैं, साथ
+                      ही मानवीय मूल्यों को भी आत्मसात करते हैं। हम निरंतर तकनीकी
+                      उन्नति, बुनियादी ढांचे के विकास और प्रशिक्षण में निवेश कर
+                      रहे हैं ताकि आपके स्वास्थ्य की बदलती ज़रूरतों को पूरा कर
+                      सकें। मैं उन सभी का हृदय से आभार व्यक्त करता हूँ – हमारे
+                      सहयोगी, मरीज, और शुभचिंतक – जिन्होंने हम पर विश्वास किया।
+                      आइए, हम सभी मिलकर एक स्वस्थ और आशावान भविष्य की ओर कदम
+                      बढ़ाएँ। सादर, *श्री बसंत चौधरी* (चेयरमैन) श्री कृष्ण मिशन
+                      हॉस्पिटल-बस्ती"
                     </div>
                   </div>
                 </div>
@@ -188,19 +217,54 @@ Shri Krishna Mission Hospital, Basti
 
         {/* Centers of Excellence Section */}
         <div className="mt-20">
-          <h3 className="text-3xl font-bold text-blue-800 text-center mb-12">Centers of Excellence</h3>
+          <h3 className="text-3xl font-bold text-blue-800 text-center mb-12">
+            Centers of Excellence
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: "Cardiac Care", icon: "❤️", description: "Advanced cardiac surgery and interventional cardiology" },
-              { name: "Neuroscience", icon: "🧠", description: "Comprehensive neurological and neurosurgical services" },
-              { name: "Orthopedics", icon: "🦴", description: "State-of-the-art orthopedic treatments" },
-              { name: "Oncology", icon: "🎗️", description: "Comprehensive cancer care with latest protocols" },
-              { name: "Emergency & Trauma", icon: "🚑", description: "24/7 emergency services with Level-1 trauma care" },
-              { name: "Maternity & Child Care", icon: "👶", description: "Complete mother and child healthcare services" }
+              {
+                name: "Cardiac Care",
+                icon: "❤️",
+                description:
+                  "Advanced cardiac surgery and interventional cardiology",
+              },
+              {
+                name: "Neuroscience",
+                icon: "🧠",
+                description:
+                  "Comprehensive neurological and neurosurgical services",
+              },
+              {
+                name: "Orthopedics",
+                icon: "🦴",
+                description: "State-of-the-art orthopedic treatments",
+              },
+              {
+                name: "Oncology",
+                icon: "🎗️",
+                description: "Comprehensive cancer care with latest protocols",
+              },
+              {
+                name: "Emergency & Trauma",
+                icon: "🚑",
+                description: "24/7 emergency services with Level-1 trauma care",
+              },
+              {
+                name: "Maternity & Child Care",
+                icon: "👶",
+                description: "Complete mother and child healthcare services",
+              },
             ].map((center, index) => (
-              <div key={index} className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{center.icon}</div>
-                <h4 className="text-xl font-semibold text-blue-800 mb-2">{center.name}</h4>
+              <div
+                key={index}
+                className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {center.icon}
+                </div>
+                <h4 className="text-xl font-semibold text-blue-800 mb-2">
+                  {center.name}
+                </h4>
                 <p className="text-gray-600 text-sm">{center.description}</p>
               </div>
             ))}
@@ -209,13 +273,24 @@ Shri Krishna Mission Hospital, Basti
 
         {/* Accreditations Section */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
-          <h3 className="text-2xl font-bold text-center mb-8">Recognition & Accreditations</h3>
+          <h3 className="text-2xl font-bold text-center mb-8">
+            Recognition & Accreditations
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "NABH Accredited", desc: "National Board for Hospitals" },
+              {
+                title: "NABH Accredited",
+                desc: "National Board for Hospitals",
+              },
               { title: "ISO 9001:2015", desc: "Quality Management System" },
-              { title: "Best Hospital 2023", desc: "Healthcare Excellence Awards" },
-              { title: "Green Initiative", desc: "Environment-friendly practices" }
+              {
+                title: "Best Hospital 2023",
+                desc: "Healthcare Excellence Awards",
+              },
+              {
+                title: "Green Initiative",
+                desc: "Environment-friendly practices",
+              },
             ].map((item, index) => (
               <div key={index} className="text-center">
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
