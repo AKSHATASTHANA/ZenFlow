@@ -371,6 +371,8 @@ function AboutSection() {
 export default function HomePage() {
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [departmentsOpen, setDepartmentsOpen] = useState(false);
+  const [facilitiesOpen, setFacilitiesOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const { data: departments } = useQuery<Department[]>({
@@ -633,100 +635,122 @@ export default function HomePage() {
             <div className="px-4 py-2 space-y-2">
               {/* Mobile Departments Section */}
               <div className="py-2">
-                <div className="text-sm font-semibold text-gray-700 mb-2">
-                  Departments
-                </div>
-                <div className="space-y-2 pl-4">
-                  <Link
-                    href="/departments/cardiology"
-                    className="flex items-center py-2 text-gray-600 hover:text-red-600"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Heart className="mr-2 h-4 w-4 text-red-600" />
-                    Cardiology
-                  </Link>
-                  <Link
-                    href="/departments/neurology"
-                    className="flex items-center py-2 text-gray-600 hover:text-purple-600"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Brain className="mr-2 h-4 w-4 text-purple-600" />
-                    Neurology
-                  </Link>
-                  <Link
-                    href="/departments/orthopedics"
-                    className="flex items-center py-2 text-gray-600 hover:text-orange-600"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Bone className="mr-2 h-4 w-4 text-orange-600" />
-                    Orthopedics
-                  </Link>
-                  <Link
-                    href="/departments/pediatrics"
-                    className="flex items-center py-2 text-gray-600 hover:text-green-600"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Baby className="mr-2 h-4 w-4 text-green-600" />
-                    Pediatrics
-                  </Link>
-                  <Link
-                    href="/departments/gynecology"
-                    className="flex items-center py-2 text-gray-600 hover:text-pink-600"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <User className="mr-2 h-4 w-4 text-pink-600" />
-                    Gynecology
-                  </Link>
-                </div>
+                <button
+                  onClick={() => setDepartmentsOpen(!departmentsOpen)}
+                  className="flex items-center justify-between w-full text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                >
+                  <span>Departments</span>
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      departmentsOpen ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                
+                {departmentsOpen && (
+                  <div className="space-y-2 pl-4 mt-2 animate-in slide-in-from-top-2 duration-200">
+                    <Link
+                      href="/departments/cardiology"
+                      className="flex items-center py-2 text-gray-600 hover:text-red-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Heart className="mr-2 h-4 w-4 text-red-600" />
+                      Cardiology
+                    </Link>
+                    <Link
+                      href="/departments/neurology"
+                      className="flex items-center py-2 text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Brain className="mr-2 h-4 w-4 text-purple-600" />
+                      Neurology
+                    </Link>
+                    <Link
+                      href="/departments/orthopedics"
+                      className="flex items-center py-2 text-gray-600 hover:text-orange-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Bone className="mr-2 h-4 w-4 text-orange-600" />
+                      Orthopedics
+                    </Link>
+                    <Link
+                      href="/departments/pediatrics"
+                      className="flex items-center py-2 text-gray-600 hover:text-green-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Baby className="mr-2 h-4 w-4 text-green-600" />
+                      Pediatrics
+                    </Link>
+                    <Link
+                      href="/departments/gynecology"
+                      className="flex items-center py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <User className="mr-2 h-4 w-4 text-pink-600" />
+                      Gynecology
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Mobile Facilities Section */}
               <div className="py-2">
-                <div className="text-sm font-semibold text-gray-700 mb-2">
-                  Facilities
-                </div>
-                <div className="space-y-2 pl-4">
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Activity className="mr-2 h-4 w-4 text-blue-600" />
-                    X-Ray
+                <button
+                  onClick={() => setFacilitiesOpen(!facilitiesOpen)}
+                  className="flex items-center justify-between w-full text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                >
+                  <span>Facilities</span>
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      facilitiesOpen ? 'rotate-180' : ''
+                    }`} 
+                  />
+                </button>
+                
+                {facilitiesOpen && (
+                  <div className="space-y-2 pl-4 mt-2 animate-in slide-in-from-top-2 duration-200">
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Activity className="mr-2 h-4 w-4 text-blue-600" />
+                      X-Ray
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Heart className="mr-2 h-4 w-4 text-red-600" />
+                      ICU, NICU, PICU
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Shield className="mr-2 h-4 w-4 text-green-600" />
+                      Pathology
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Activity className="mr-2 h-4 w-4 text-purple-600" />
+                      Blood Bank
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Stethoscope className="mr-2 h-4 w-4 text-orange-600" />
+                      Oralysis
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Activity className="mr-2 h-4 w-4 text-teal-600" />
+                      Endoscopy
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Heart className="mr-2 h-4 w-4 text-pink-600" />
+                      2D Echo & Ultrasound
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Activity className="mr-2 h-4 w-4 text-indigo-600" />
+                      Colour Doppler
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Zap className="mr-2 h-4 w-4 text-yellow-600" />
+                      Ventilator
+                    </div>
+                    <div className="flex items-center py-2 text-gray-600">
+                      <Users className="mr-2 h-4 w-4 text-cyan-600" />
+                      Physiotherapy
+                    </div>
                   </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Heart className="mr-2 h-4 w-4 text-red-600" />
-                    ICU, NICU, PICU
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Shield className="mr-2 h-4 w-4 text-green-600" />
-                    Pathology
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Activity className="mr-2 h-4 w-4 text-purple-600" />
-                    Blood Bank
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Stethoscope className="mr-2 h-4 w-4 text-orange-600" />
-                    Oralysis
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Activity className="mr-2 h-4 w-4 text-teal-600" />
-                    Endoscopy
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Heart className="mr-2 h-4 w-4 text-pink-600" />
-                    2D Echo & Ultrasound
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Activity className="mr-2 h-4 w-4 text-indigo-600" />
-                    Colour Doppler
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Zap className="mr-2 h-4 w-4 text-yellow-600" />
-                    Ventilator
-                  </div>
-                  <div className="flex items-center py-2 text-gray-600">
-                    <Users className="mr-2 h-4 w-4 text-cyan-600" />
-                    Physiotherapy
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* Mobile Navigation Links */}
