@@ -62,11 +62,36 @@ const getDoctorImage = (doctorName: string, doctorId: number) => {
     "Dr. Saurabh Singh": drSaurabhSinghImage,
     "Dr. Naveen Kumar Maurya": naveenKumarMauryaImage,
   };
-  
+
   // Try to match by name first, then fall back to ID-based mapping
-  return imageMap[doctorName] || 
-         imageMap[`Dr. ${doctorName.replace("Dr. ", "")}`] ||
-         Object.values(imageMap)[(doctorId - 1) % Object.values(imageMap).length];
+  return (
+    imageMap[doctorName] ||
+    imageMap[`Dr. ${doctorName.replace("Dr. ", "")}`] ||
+    Object.values(imageMap)[(doctorId - 1) % Object.values(imageMap).length]
+  );
+};
+
+// Helper function to get relevant medical icon for each department
+const getDepartmentIcon = (departmentName: string) => {
+  const iconMap: { [key: string]: { icon: any; color: string } } = {
+    "Cardiology": { icon: Heart, color: "text-red-500" },
+    "Neurology": { icon: Brain, color: "text-purple-500" },
+    "Orthopedics": { icon: Bone, color: "text-orange-500" },
+    "Pediatrics": { icon: Baby, color: "text-green-500" },
+    "Gynecology": { icon: User, color: "text-pink-500" },
+    "Emergency": { icon: Zap, color: "text-yellow-500" },
+    "Surgery": { icon: Activity, color: "text-blue-500" },
+    "Radiology": { icon: Activity, color: "text-indigo-500" },
+    "Pathology": { icon: Shield, color: "text-teal-500" },
+    "General Medicine": { icon: Stethoscope, color: "text-blue-600" },
+    "ICU": { icon: Heart, color: "text-red-600" },
+    "Dentistry": { icon: Users, color: "text-cyan-500" },
+    "Dermatology": { icon: Shield, color: "text-amber-500" },
+    "Ophthalmology": { icon: Activity, color: "text-emerald-500" },
+  };
+
+  // Default to stethoscope icon for unknown departments
+  return iconMap[departmentName] || { icon: Stethoscope, color: "text-blue-500" };
 };
 
 function AboutSection() {
@@ -175,16 +200,21 @@ function AboutSection() {
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-600/10 to-transparent rounded-bl-full"></div>
 
               <div className="prose prose-sm text-gray-700 leading-relaxed">
-                <p className="mb-4">
-                  Welcome to <strong>Shri Krishna Mission Hospital</strong> –
-                  where compassion meets care, and healing is guided by
-                  dedication and ethics.
-                </p>
-                <p className="mb-4">
-                  Since 1985, we've served as a beacon of hope across Uttar
-                  Pradesh, providing accessible, affordable, and world-class
-                  healthcare inspired by Lord Shri Krishna's teachings.
-                </p>
+                <div className="text-sm text-gray-700 max-w-2xl whitespace-pre-line">
+                  *Shri Krishna Mission Hospital, established in **2015, stands
+                  as one of the most trusted and advanced healthcare
+                  institutions in **Basti, Uttar Pradesh. Located on **Dhorika
+                  Road*, our hospital has been a symbol of compassionate care
+                  and medical excellence since its inception. With a capacity of
+                  *100 beds, our facility is equipped to provide
+                  **comprehensive, affordable, and quality healthcare services*
+                  to the people of Basti and neighboring regions. We are
+                  committed to bringing the *latest medical technology, highly
+                  experienced doctors, and dedicated healthcare staff* under one
+                  roof to ensure that every patient receives the best possible
+                  care.
+                </div>
+
                 <div className="mb-4">
                   <h4 className="font-semibold text-blue-800 mb-2">
                     Centers of Excellence:
@@ -218,19 +248,63 @@ function AboutSection() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Chairman's Information - Enhanced */}
                   <div className="text-center md:text-left">
                     <div className="text-xl font-bold text-blue-800 mb-1">
                       Shri Basant Chaudhary
                     </div>
-                    <div className="text-sm font-medium text-gray-700 mb-1">Chairman & Founder</div>
-                    <div className="text-sm text-blue-600 mb-3">Shri Krishna Mission Hospital, Basti</div>
-                    <div className="text-xs text-gray-600 max-w-md mb-4">
-                      "Leading healthcare excellence in Eastern Uttar Pradesh since 1985, 
-                      with a vision to provide compassionate and world-class medical care to all."
+                    <div className="text-sm font-medium text-gray-700 mb-1">
+                      Chairman & Founder
                     </div>
-                    
+                    <div className="text-sm text-blue-600 mb-3">
+                      Shri Krishna Mission Hospital, Basti
+                    </div>
+                    <div className="text-xs text-gray-600 max-w-md mb-4">
+                      *श्री कृष्णा मिशन अस्पताल* में आपका हार्दिक स्वागत करते
+                      हुए मुझे अत्यंत गर्व एवं संतोष की अनुभूति हो रही है।
+                      <br />
+                      <br />
+                      यह संस्थान करुणा, सेवा और समर्पण के मूल्यों पर आधारित एक
+                      ऐसा केंद्र है जहाँ उपचार केवल एक प्रक्रिया नहीं, बल्कि एक
+                      पवित्र कर्तव्य है।
+                      <br />
+                      <br />
+                      श्रीकृष्ण जी की शिक्षाओं से प्रेरित होकर, हमारा उद्देश्य
+                      मानवता की निःस्वार्थ सेवा करना है।
+                      <br />
+                      हम यह सुनिश्चित करते हैं कि हर व्यक्ति को सर्वोत्तम, सुलभ
+                      एवं किफायती स्वास्थ्य सेवाएं प्राप्त हों — चाहे उसकी
+                      सामाजिक या आर्थिक पृष्ठभूमि कुछ भी हो।
+                      <br />
+                      <br />
+                      हमारे कुशल चिकित्सकों, सहानुभूतिपूर्ण नर्सों और समर्पित
+                      स्टाफ की टीम के साथ हम आधुनिक चिकित्सा की श्रेष्ठ सेवाएं
+                      प्रदान कर रहे हैं, साथ ही मानवीय मूल्यों को भी आत्मसात कर
+                      रहे हैं।
+                      <br />
+                      <br />
+                      हम निरंतर तकनीकी उन्नयन, बुनियादी ढांचे के विकास और
+                      प्रशिक्षण में निवेश कर रहे हैं ताकि आपके स्वास्थ्य की
+                      बदलती ज़रूरतों को पूरा किया जा सके।
+                      <br />
+                      <br />
+                      मैं उन सभी का हृदय से आभार व्यक्त करता हूँ — हमारे सहयोगी,
+                      मरीज, और शुभचिंतक — जिन्होंने हम पर विश्वास किया।
+                      <br />
+                      आइए, हम सभी मिलकर एक स्वस्थ और आशावान भविष्य की ओर कदम
+                      बढ़ाएँ।
+                      <br />
+                      <br />
+                      सादर,
+                      <br />
+                      <strong>श्री बसंत चौधरी</strong>
+                      <br />
+                      (चेयरमैन)
+                      <br />
+                      श्री कृष्णा मिशन अस्पताल, बस्ती
+                    </div>
+
                     {/* Social Media Links */}
                     <div className="flex items-center justify-center md:justify-start space-x-3">
                       <a
@@ -503,13 +577,22 @@ export default function HomePage() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Link href="/doctors" className="text-gray-600 hover:text-blue-600">
+              <Link
+                href="/doctors"
+                className="text-gray-600 hover:text-blue-600"
+              >
                 Our Doctors
               </Link>
-              <Link href="/gallery" className="text-gray-600 hover:text-blue-600">
+              <Link
+                href="/gallery"
+                className="text-gray-600 hover:text-blue-600"
+              >
                 Gallery
               </Link>
-              <Link href="/news-events" className="text-gray-600 hover:text-blue-600">
+              <Link
+                href="/news-events"
+                className="text-gray-600 hover:text-blue-600"
+              >
                 News & Events
               </Link>
               <a href="#doctors" className="text-gray-600 hover:text-blue-600">
@@ -861,19 +944,27 @@ export default function HomePage() {
               <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
                 <Heart className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">Medical Excellence</h3>
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
+                Medical Excellence
+              </h3>
               <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
                   <span className="text-xl md:text-3xl font-bold">2.45L+</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">Patients Treated</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">
+                    Patients Treated
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">15+</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">Expert Doctors</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">
+                    Expert Doctors
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">14+</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">Departments</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-100">
+                    Departments
+                  </span>
                 </div>
               </div>
             </div>
@@ -883,19 +974,27 @@ export default function HomePage() {
               <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
                 <Award className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">Quality Care</h3>
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
+                Quality Care
+              </h3>
               <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
                   <span className="text-xl md:text-3xl font-bold">NABH</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">Accredited</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">
+                    Accredited
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">850+</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">Bed Capacity</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">
+                    Bed Capacity
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">98%</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">Success Rate</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">
+                    Success Rate
+                  </span>
                 </div>
               </div>
             </div>
@@ -905,19 +1004,27 @@ export default function HomePage() {
               <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
                 <Clock className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">24/7 Services</h3>
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
+                24/7 Services
+              </h3>
               <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
                   <span className="text-xl md:text-3xl font-bold">24/7</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">Emergency</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">
+                    Emergency
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">15K+</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">Surgeries</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">
+                    Surgeries
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">365</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">Days/Year</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">
+                    Days/Year
+                  </span>
                 </div>
               </div>
             </div>
@@ -927,19 +1034,27 @@ export default function HomePage() {
               <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
                 <Users className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">Patient First</h3>
+              <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
+                Patient First
+              </h3>
               <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
                   <span className="text-xl md:text-3xl font-bold">39</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">Years Legacy</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">
+                    Years Legacy
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">95%</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">Satisfaction</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">
+                    Satisfaction
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">100%</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">Dedication</span>
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">
+                    Dedication
+                  </span>
                 </div>
               </div>
             </div>
@@ -992,13 +1107,14 @@ export default function HomePage() {
                 <CardHeader className="relative">
                   <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 mb-4">
                     <div className="medical-icon animate-float flex-shrink-0">
-                      <svg
-                        className="w-6 h-6"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h2V6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2h-2v2H4V8z" />
-                      </svg>
+                      {(() => {
+                        const { icon: IconComponent, color } = getDepartmentIcon(department.name);
+                        return (
+                          <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-white to-gray-50 border-2 border-gray-100 flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 ${color}`}>
+                            <IconComponent className="w-6 h-6" />
+                          </div>
+                        );
+                      })()}
                     </div>
                     <CardTitle className="text-lg sm:text-xl font-bold text-blue-600 group-hover:text-blue-700 transition-colors text-center sm:text-left">
                       {department.name}
@@ -1080,10 +1196,18 @@ export default function HomePage() {
                         onError={(e) => {
                           // Fallback to default icon if image fails to load
                           const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.parentElement!.classList.add('bg-gradient-to-br', 'from-blue-400', 'to-blue-600', 'flex', 'items-center', 'justify-center');
-                          const icon = document.createElement('div');
-                          icon.innerHTML = '<svg class="w-14 h-14 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+                          target.style.display = "none";
+                          target.parentElement!.classList.add(
+                            "bg-gradient-to-br",
+                            "from-blue-400",
+                            "to-blue-600",
+                            "flex",
+                            "items-center",
+                            "justify-center",
+                          );
+                          const icon = document.createElement("div");
+                          icon.innerHTML =
+                            '<svg class="w-14 h-14 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
                           target.parentElement!.appendChild(icon);
                         }}
                       />
@@ -1449,7 +1573,7 @@ export default function HomePage() {
                 Providing exceptional healthcare services with compassion and
                 excellence.
               </p>
-              
+
               {/* Social Media Links */}
               <div className="flex space-x-3">
                 <a
