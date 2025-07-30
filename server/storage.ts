@@ -165,9 +165,9 @@ export class MemStorage implements IStorage {
     // Create departments
     const departments = [
       {
-        name: "Cardiology",
-        description: "Heart and cardiovascular system",
-        headDoctor: "Dr. Vishrut Bharti",
+        name: "Gynecology",
+        description: "Women's health and reproductive system",
+        headDoctor: "Dr. Soma Shaw Gupta",
       },
       {
         name: "Neurology",
@@ -244,9 +244,9 @@ export class MemStorage implements IStorage {
       },
       {
         name: "Dr. Vishrut Bharti",
-        specialization: "Cardiologist",
+        specialization: "Gynecologist",
         departmentId: 1,
-        qualifications: "MBBS, MS, MCH (Cardiology)",
+        qualifications: "MBBS, MS, MCH (Gynecology)",
         experience: 20,
       },
       {
@@ -310,8 +310,8 @@ export class MemStorage implements IStorage {
         phone: "555-0123",
         age: 35,
         gender: "Male",
-        department: "Cardiology",
-        doctorId: 5 as number, // Dr. Vishrut Bharti
+        department: "Gynecology",
+        doctorId: 4 as number, // Dr. Vishrut Bharti
         preferredDate: new Date("2025-01-15"),
         preferredTime: "10:00 AM",
         reasonForVisit: "Chest pain and shortness of breath",

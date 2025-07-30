@@ -466,11 +466,11 @@ export default function HomePage() {
                 <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
-                      href="/departments/cardiology"
+                      href="/departments/gynecology"
                       className="flex items-center w-full"
                     >
-                      <Heart className="mr-2 h-4 w-4 text-red-600" />
-                      Cardiology
+                      <User className="mr-2 h-4 w-4 text-pink-600" />
+                      Gynecology
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
@@ -653,12 +653,12 @@ export default function HomePage() {
                 {departmentsOpen && (
                   <div className="space-y-2 pl-4 mt-2 animate-in slide-in-from-top-2 duration-200">
                     <Link
-                      href="/departments/cardiology"
-                      className="flex items-center py-2 text-gray-600 hover:text-red-600 transition-colors duration-200"
+                      href="/departments/gynecology"
+                      className="flex items-center py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <Heart className="mr-2 h-4 w-4 text-red-600" />
-                      Cardiology
+                      <User className="mr-2 h-4 w-4 text-pink-600" />
+                      Gynecology
                     </Link>
                     <Link
                       href="/departments/neurology"
@@ -683,14 +683,6 @@ export default function HomePage() {
                     >
                       <Baby className="mr-2 h-4 w-4 text-green-600" />
                       Pediatrics
-                    </Link>
-                    <Link
-                      href="/departments/gynecology"
-                      className="flex items-center py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <User className="mr-2 h-4 w-4 text-pink-600" />
-                      Gynecology
                     </Link>
                   </div>
                 )}
