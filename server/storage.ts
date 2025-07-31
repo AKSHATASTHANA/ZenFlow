@@ -54,14 +54,20 @@ export interface IStorage {
   getNewsEvents(type?: "news" | "event"): Promise<NewsEvent[]>;
   getNewsEventById(id: number): Promise<NewsEvent | undefined>;
   createNewsEvent(newsEvent: InsertNewsEvent): Promise<NewsEvent>;
-  updateNewsEvent(id: number, updates: Partial<InsertNewsEvent>): Promise<NewsEvent | undefined>;
+  updateNewsEvent(
+    id: number,
+    updates: Partial<InsertNewsEvent>,
+  ): Promise<NewsEvent | undefined>;
   deleteNewsEvent(id: number): Promise<boolean>;
 
   // Gallery methods
   getGalleryImages(category?: string): Promise<GalleryImage[]>;
   getGalleryImageById(id: number): Promise<GalleryImage | undefined>;
   createGalleryImage(galleryImage: InsertGalleryImage): Promise<GalleryImage>;
-  updateGalleryImage(id: number, updates: Partial<InsertGalleryImage>): Promise<GalleryImage | undefined>;
+  updateGalleryImage(
+    id: number,
+    updates: Partial<InsertGalleryImage>,
+  ): Promise<GalleryImage | undefined>;
   deleteGalleryImage(id: number): Promise<boolean>;
 
   // Project methods
@@ -172,17 +178,17 @@ export class MemStorage implements IStorage {
       {
         name: "Neurology",
         description: "Brain and nervous system disorders",
-        headDoctor: "Dr. Soma Shaw Gupta",
+        headDoctor: "Dr. Amit Patel",
       },
       {
         name: "General Medicine",
         description: "Internal medicine and general health",
-        headDoctor: "Dr. Meetour Experut Doctor",
+        headDoctor: "Dr. P P Mishra",
       },
       {
         name: "General Surgery",
         description: "Surgical procedures and operations",
-        headDoctor: "Dr. Khalid Jamed",
+        headDoctor: "Dr. Naveen Kumar Maurya",
       },
       {
         name: "Pediatrics",
@@ -346,28 +352,31 @@ export class MemStorage implements IStorage {
     const sampleNewsEvents = [
       {
         title: "New Cardiology Wing Opens",
-        content: "We are excited to announce the opening of our state-of-the-art cardiology wing with advanced diagnostic equipment and treatment facilities.",
+        content:
+          "We are excited to announce the opening of our state-of-the-art cardiology wing with advanced diagnostic equipment and treatment facilities.",
         type: "news",
         imageUrl: null,
         eventDate: null,
-        isPublished: true
+        isPublished: true,
       },
       {
         title: "Free Health Checkup Camp",
-        content: "Join us for a comprehensive free health checkup camp on January 30th, 2025. Services include blood pressure monitoring, diabetes screening, and general consultation.",
+        content:
+          "Join us for a comprehensive free health checkup camp on January 30th, 2025. Services include blood pressure monitoring, diabetes screening, and general consultation.",
         type: "event",
         imageUrl: null,
         eventDate: new Date("2025-01-30"),
-        isPublished: true
+        isPublished: true,
       },
       {
         title: "Hospital Accreditation Achievement",
-        content: "Shri Krishna Mission Hospital has successfully received NABH accreditation, marking our commitment to quality healthcare services.",
+        content:
+          "Shri Krishna Mission Hospital has successfully received NABH accreditation, marking our commitment to quality healthcare services.",
         type: "news",
         imageUrl: null,
         eventDate: null,
-        isPublished: true
-      }
+        isPublished: true,
+      },
     ];
 
     for (const newsEvent of sampleNewsEvents) {
@@ -380,7 +389,7 @@ export class MemStorage implements IStorage {
         eventDate: newsEvent.eventDate,
         isPublished: newsEvent.isPublished,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
       this.newsEvents.set(item.id, item);
     }
@@ -390,25 +399,26 @@ export class MemStorage implements IStorage {
     const sampleGalleryImages = [
       {
         title: "Modern Operation Theater",
-        description: "State-of-the-art surgical facilities with advanced equipment",
+        description:
+          "State-of-the-art surgical facilities with advanced equipment",
         imageUrl: "/images/hospital.jpeg",
         category: "facility",
-        isVisible: true
+        isVisible: true,
       },
       {
         title: "Emergency Department",
         description: "24/7 emergency services with rapid response capabilities",
         imageUrl: "/images/hospital.jpeg",
         category: "facility",
-        isVisible: true
+        isVisible: true,
       },
       {
         title: "Medical Equipment",
         description: "Latest diagnostic and treatment equipment",
         imageUrl: "/images/hospital.jpeg",
         category: "equipment",
-        isVisible: true
-      }
+        isVisible: true,
+      },
     ];
 
     for (const galleryImage of sampleGalleryImages) {
@@ -419,7 +429,7 @@ export class MemStorage implements IStorage {
         imageUrl: galleryImage.imageUrl,
         category: galleryImage.category,
         isVisible: galleryImage.isVisible,
-        createdAt: new Date()
+        createdAt: new Date(),
       };
       this.galleryImages.set(item.id, item);
     }
@@ -726,9 +736,11 @@ export class MemStorage implements IStorage {
   // News and Events methods
   async getNewsEvents(type?: "news" | "event"): Promise<NewsEvent[]> {
     const newsEvents = Array.from(this.newsEvents.values());
-    const filtered = type ? newsEvents.filter(item => item.type === type) : newsEvents;
+    const filtered = type
+      ? newsEvents.filter((item) => item.type === type)
+      : newsEvents;
     return filtered
-      .filter(item => item.isPublished)
+      .filter((item) => item.isPublished)
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 
@@ -743,24 +755,30 @@ export class MemStorage implements IStorage {
       content: insertNewsEvent.content,
       type: insertNewsEvent.type,
       imageUrl: insertNewsEvent.imageUrl || null,
-      eventDate: insertNewsEvent.eventDate ? new Date(insertNewsEvent.eventDate) : null,
+      eventDate: insertNewsEvent.eventDate
+        ? new Date(insertNewsEvent.eventDate)
+        : null,
       isPublished: insertNewsEvent.isPublished ?? true,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
     this.newsEvents.set(newsEvent.id, newsEvent);
     return newsEvent;
   }
 
-  async updateNewsEvent(id: number, updates: Partial<InsertNewsEvent>): Promise<NewsEvent | undefined> {
+  async updateNewsEvent(
+    id: number,
+    updates: Partial<InsertNewsEvent>,
+  ): Promise<NewsEvent | undefined> {
     const newsEvent = this.newsEvents.get(id);
     if (newsEvent) {
-      const updatedNewsEvent = { 
-        ...newsEvent, 
+      const updatedNewsEvent = {
+        ...newsEvent,
         ...updates,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
-      if (updates.eventDate) updatedNewsEvent.eventDate = new Date(updates.eventDate);
+      if (updates.eventDate)
+        updatedNewsEvent.eventDate = new Date(updates.eventDate);
       this.newsEvents.set(id, updatedNewsEvent);
       return updatedNewsEvent;
     }
@@ -774,9 +792,11 @@ export class MemStorage implements IStorage {
   // Gallery methods
   async getGalleryImages(category?: string): Promise<GalleryImage[]> {
     const galleryImages = Array.from(this.galleryImages.values());
-    const filtered = category ? galleryImages.filter(item => item.category === category) : galleryImages;
+    const filtered = category
+      ? galleryImages.filter((item) => item.category === category)
+      : galleryImages;
     return filtered
-      .filter(item => item.isVisible)
+      .filter((item) => item.isVisible)
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 
@@ -784,7 +804,9 @@ export class MemStorage implements IStorage {
     return this.galleryImages.get(id);
   }
 
-  async createGalleryImage(insertGalleryImage: InsertGalleryImage): Promise<GalleryImage> {
+  async createGalleryImage(
+    insertGalleryImage: InsertGalleryImage,
+  ): Promise<GalleryImage> {
     const galleryImage: GalleryImage = {
       id: this.currentGalleryImageId++,
       title: insertGalleryImage.title,
@@ -792,13 +814,16 @@ export class MemStorage implements IStorage {
       imageUrl: insertGalleryImage.imageUrl,
       category: insertGalleryImage.category,
       isVisible: insertGalleryImage.isVisible ?? true,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
     this.galleryImages.set(galleryImage.id, galleryImage);
     return galleryImage;
   }
 
-  async updateGalleryImage(id: number, updates: Partial<InsertGalleryImage>): Promise<GalleryImage | undefined> {
+  async updateGalleryImage(
+    id: number,
+    updates: Partial<InsertGalleryImage>,
+  ): Promise<GalleryImage | undefined> {
     const galleryImage = this.galleryImages.get(id);
     if (galleryImage) {
       const updatedGalleryImage = { ...galleryImage, ...updates };
