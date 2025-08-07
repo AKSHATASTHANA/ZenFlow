@@ -974,9 +974,13 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-            {/* Excellence Pillar 1 - Blue Theme */}
-            <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+            {/* Excellence Pillar 1 - Navy Blue Theme */}
+            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl relative overflow-hidden">
+              {/* Background Graphics */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -translate-y-10 translate-x-10"></div>
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full translate-y-8 -translate-x-8"></div>
+              <div className="absolute top-1/2 right-1/4 w-12 h-12 bg-white/3 rounded-full"></div>
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6 relative z-10">
                 <Heart className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
               <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
@@ -1004,9 +1008,13 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Excellence Pillar 2 - Green Theme */}
-            <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+            {/* Excellence Pillar 2 - Navy Blue Theme */}
+            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl relative overflow-hidden">
+              {/* Background Graphics */}
+              <div className="absolute top-0 left-0 w-24 h-24 bg-white/5 rounded-full -translate-y-12 -translate-x-12"></div>
+              <div className="absolute bottom-0 right-0 w-18 h-18 bg-white/5 rounded-full translate-y-9 translate-x-9"></div>
+              <div className="absolute top-1/3 left-1/3 w-10 h-10 bg-white/3 rounded-full"></div>
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6 relative z-10">
                 <Award className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
               <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
@@ -1015,28 +1023,32 @@ export default function HomePage() {
               <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
                   <span className="text-xl md:text-3xl font-bold">NABH</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Accredited
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">850+</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Bed Capacity
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">98%</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-green-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Success Rate
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Excellence Pillar 3 - Purple Theme */}
-            <div className="bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+            {/* Excellence Pillar 3 - Navy Blue Theme */}
+            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl relative overflow-hidden">
+              {/* Background Graphics */}
+              <div className="absolute top-1/4 right-0 w-22 h-22 bg-white/5 rounded-full translate-x-11 -translate-y-11"></div>
+              <div className="absolute bottom-1/4 left-0 w-14 h-14 bg-white/5 rounded-full -translate-x-7 translate-y-7"></div>
+              <div className="absolute bottom-1/2 right-1/3 w-8 h-8 bg-white/3 rounded-full"></div>
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6 relative z-10">
                 <Clock className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
               <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
@@ -1045,28 +1057,32 @@ export default function HomePage() {
               <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
                   <span className="text-xl md:text-3xl font-bold">24/7</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Emergency
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">15K+</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Surgeries
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">365</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-purple-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Days/Year
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Excellence Pillar 4 - Orange Theme */}
-            <div className="bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl">
-              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6">
+            {/* Excellence Pillar 4 - Navy Blue Theme */}
+            <div className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-2xl p-4 md:p-8 text-white transform hover:scale-105 transition duration-300 shadow-xl relative overflow-hidden">
+              {/* Background Graphics */}
+              <div className="absolute top-0 left-1/3 w-26 h-26 bg-white/5 rounded-full -translate-y-13 translate-x-13"></div>
+              <div className="absolute bottom-0 right-1/4 w-20 h-20 bg-white/5 rounded-full translate-y-10 translate-x-10"></div>
+              <div className="absolute top-2/3 left-1/4 w-6 h-6 bg-white/3 rounded-full"></div>
+              <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-white/20 rounded-xl mb-4 md:mb-6 relative z-10">
                 <Users className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
               <h3 className="text-lg md:text-2xl font-bold mb-3 md:mb-4">
@@ -1075,19 +1091,19 @@ export default function HomePage() {
               <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center">
                   <span className="text-xl md:text-3xl font-bold">39</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Years Legacy
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">95%</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Satisfaction
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-lg md:text-2xl font-bold">100%</span>
-                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-orange-100">
+                  <span className="ml-1 md:ml-2 text-xs md:text-sm text-blue-200">
                     Dedication
                   </span>
                 </div>
