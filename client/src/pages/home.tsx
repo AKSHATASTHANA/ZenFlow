@@ -826,7 +826,6 @@ export default function HomePage() {
             alt="Doctor Background" 
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 via-blue-500/60 to-cyan-500/70"></div>
         </div>
         {/* Enhanced Mobile-Optimized Background Effects */}
         <div className="absolute inset-0">
