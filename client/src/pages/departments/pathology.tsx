@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 
 const doctorImages = {
   "Dr. Dawad": "/src/images/Dr Dawad.jpeg",
-  "Soma Shaw Gupta": "/src/images/Soma Shaw Gupta.jpeg",
 };
 
 const getImagePath = (doctorName: string) => {
@@ -31,12 +30,6 @@ export default function Pathology() {
       qualification: "MBBS, MD (Pathology)",
       experience: "16+ years",
       specialization: "Clinical Pathology & Diagnostics"
-    },
-    {
-      name: "Soma Shaw Gupta",
-      qualification: "MBBS, MD (Pathology)",
-      experience: "14+ years",
-      specialization: "Histopathology & Cytology"
     }
   ];
 
@@ -138,8 +131,8 @@ export default function Pathology() {
 
         {/* Doctors Section */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Pathology Experts</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Pathology Expert</h2>
+          <div className="grid md:grid-cols-1 gap-6 max-w-md mx-auto">
             {doctors.map((doctor, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <CardContent className="p-0">
