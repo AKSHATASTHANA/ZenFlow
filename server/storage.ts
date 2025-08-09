@@ -173,12 +173,12 @@ export class MemStorage implements IStorage {
       {
         name: "Gynecology",
         description: "Women's health and reproductive system",
-        headDoctor: "Dr. P P Mishra",
+        headDoctor: "Dr. Soma Shaw Gupta",
       },
       {
         name: "Neurology",
         description: "Brain and nervous system disorders",
-        headDoctor: "Dr. P P Mishra",
+        headDoctor: "Dr. Amit Patel",
       },
       {
         name: "General Medicine",
@@ -203,7 +203,7 @@ export class MemStorage implements IStorage {
       {
         name: "Neurosurgery",
         description: "Brain and spine surgical procedures",
-        headDoctor: "Dr. P P Mishra",
+        headDoctor: "Dr. Amit Patel",
       },
       {
         name: "Pathology",
@@ -234,7 +234,13 @@ export class MemStorage implements IStorage {
         qualifications: "MBBS, MD (Medicine)",
         experience: 12,
       },
-
+      {
+        name: "Dr. Soma Shaw Gupta",
+        specialization: "Medical Consultant",
+        departmentId: 1,
+        qualifications: "MBBS, MC",
+        experience: 14,
+      },
       {
         name: "Dr. Khalid Jamed",
         specialization: "General Surgeon",
@@ -270,7 +276,13 @@ export class MemStorage implements IStorage {
         qualifications: "MBBS, MD",
         experience: 8,
       },
-
+      {
+        name: "Dr. Amit Patel",
+        specialization: "Neurosurgeon",
+        departmentId: 7,
+        qualifications: "MBBS, MS, MCH (Neurosurgery)",
+        experience: 22,
+      },
       {
         name: "Dr. Mohd. Dawd Akhtar",
         specialization: "Pathologist",
@@ -318,7 +330,7 @@ export class MemStorage implements IStorage {
         age: 28,
         gender: "Female",
         department: "Neurology",
-        doctorId: 1 as number, // Dr. P P Mishra
+        doctorId: 3 as number, // Dr. Soma Shaw Gupta
         preferredDate: new Date("2025-01-16"),
         preferredTime: "2:00 PM",
         reasonForVisit: "Frequent headaches",
