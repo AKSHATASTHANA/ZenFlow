@@ -824,7 +824,7 @@ export default function HomePage() {
           <img 
             src={doctorBgImage} 
             alt="Doctor Background" 
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center md:object-top"
           />
         </div>
         {/* Enhanced Mobile-Optimized Background Effects */}
