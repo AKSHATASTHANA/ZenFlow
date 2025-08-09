@@ -5,8 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const doctorImages = {
-  "Dr. Khalid Jameel": "/src/images/Dr Khalid Jameel.jpeg",
-  "Dr. Dawad": "/src/images/Dr Dawad.jpeg",
+  "Dr. Mayank Rajput": "/src/images/doctor.jpg",
+  "Dr. Pritam Das": "/src/images/doctor.jpg",
 };
 
 const getImagePath = (doctorName: string) => {
@@ -27,13 +27,13 @@ export default function Gastroenterology() {
 
   const doctors = [
     {
-      name: "Dr. Khalid Jameel",
+      name: "Dr. Mayank Rajput",
       qualification: "MBBS, MD, DM (Gastroenterology)",
       experience: "16+ years",
       specialization: "Liver Diseases & Endoscopy"
     },
     {
-      name: "Dr. Dawad",
+      name: "Dr. Pritam Das",
       qualification: "MBBS, MD (Gastroenterology)",
       experience: "13+ years",
       specialization: "IBD & Digestive Disorders"
