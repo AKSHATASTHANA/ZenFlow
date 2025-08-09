@@ -13,6 +13,12 @@ import NeurologyPage from "@/pages/departments/neurology";
 import OrthopedicsPage from "@/pages/departments/orthopedics";
 import PediatricsPage from "@/pages/departments/pediatrics";
 import GynecologyPage from "@/pages/departments/gynecology";
+import GeneralMedicinePage from "@/pages/departments/general-medicine";
+import GeneralSurgeryPage from "@/pages/departments/general-surgery";
+import GastroenterologyPage from "@/pages/departments/gastroenterology";
+import UrologyPage from "@/pages/departments/urology";
+import PathologyDeptPage from "@/pages/departments/pathology";
+import AnesthesiologyPage from "@/pages/departments/anesthesiology";
 import DoctorsPage from "@/pages/doctors";
 import DoctorProfile from "@/pages/doctors/doctor-profile";
 import Gallery from "@/pages/gallery";
@@ -36,6 +42,12 @@ function Router() {
       <Route path="/departments/orthopedics" component={OrthopedicsPage} />
       <Route path="/departments/pediatrics" component={PediatricsPage} />
       <Route path="/departments/gynecology" component={GynecologyPage} />
+      <Route path="/departments/general-medicine" component={GeneralMedicinePage} />
+      <Route path="/departments/general-surgery" component={GeneralSurgeryPage} />
+      <Route path="/departments/gastroenterology" component={GastroenterologyPage} />
+      <Route path="/departments/urology" component={UrologyPage} />
+      <Route path="/departments/pathology" component={PathologyDeptPage} />
+      <Route path="/departments/anesthesiology" component={AnesthesiologyPage} />
       <Route path="/doctors" component={DoctorsPage} />
       <Route path="/doctors/:id" component={DoctorProfile} />
       <Route path="/gallery" component={Gallery} />

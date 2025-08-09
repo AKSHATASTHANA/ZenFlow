@@ -32,6 +32,7 @@ import {
   Activity,
   Shield,
   Stethoscope,
+  Microscope,
   Zap,
   Facebook,
   Youtube,
@@ -503,11 +504,56 @@ export default function HomePage() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/departments/gynecology"
+                      href="/departments/general-medicine"
                       className="flex items-center w-full"
                     >
-                      <User className="mr-2 h-4 w-4 text-pink-600" />
-                      Gynecology
+                      <Stethoscope className="mr-2 h-4 w-4 text-blue-600" />
+                      General Medicine
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/departments/general-surgery"
+                      className="flex items-center w-full"
+                    >
+                      <Zap className="mr-2 h-4 w-4 text-green-600" />
+                      General Surgery
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/departments/gastroenterology"
+                      className="flex items-center w-full"
+                    >
+                      <Activity className="mr-2 h-4 w-4 text-purple-600" />
+                      Gastroenterology
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/departments/urology"
+                      className="flex items-center w-full"
+                    >
+                      <Zap className="mr-2 h-4 w-4 text-orange-600" />
+                      Urology
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/departments/pathology"
+                      className="flex items-center w-full"
+                    >
+                      <Microscope className="mr-2 h-4 w-4 text-teal-600" />
+                      Pathology
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/departments/anesthesiology"
+                      className="flex items-center w-full"
+                    >
+                      <Heart className="mr-2 h-4 w-4 text-indigo-600" />
+                      Anesthesiology
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -684,6 +730,54 @@ export default function HomePage() {
                     >
                       <Baby className="mr-2 h-4 w-4 text-green-600" />
                       Pediatrics
+                    </Link>
+                    <Link
+                      href="/departments/general-medicine"
+                      className="flex items-center py-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Stethoscope className="mr-2 h-4 w-4 text-blue-600" />
+                      General Medicine
+                    </Link>
+                    <Link
+                      href="/departments/general-surgery"
+                      className="flex items-center py-2 text-gray-600 hover:text-green-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Zap className="mr-2 h-4 w-4 text-green-600" />
+                      General Surgery
+                    </Link>
+                    <Link
+                      href="/departments/gastroenterology"
+                      className="flex items-center py-2 text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Activity className="mr-2 h-4 w-4 text-purple-600" />
+                      Gastroenterology
+                    </Link>
+                    <Link
+                      href="/departments/urology"
+                      className="flex items-center py-2 text-gray-600 hover:text-orange-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Zap className="mr-2 h-4 w-4 text-orange-600" />
+                      Urology
+                    </Link>
+                    <Link
+                      href="/departments/pathology"
+                      className="flex items-center py-2 text-gray-600 hover:text-teal-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Microscope className="mr-2 h-4 w-4 text-teal-600" />
+                      Pathology
+                    </Link>
+                    <Link
+                      href="/departments/anesthesiology"
+                      className="flex items-center py-2 text-gray-600 hover:text-indigo-600 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Heart className="mr-2 h-4 w-4 text-indigo-600" />
+                      Anesthesiology
                     </Link>
                   </div>
                 )}

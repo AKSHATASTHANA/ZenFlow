@@ -92,7 +92,10 @@ A modern React-based project management dashboard that transforms VB.NET Gantt c
 
 ## Recent Changes
 
-- August 9, 2025: Enhanced hero section with doctor background and hospital name update
+- August 9, 2025: Added 6 new department pages and enhanced hero section
+  - Created individual pages for General Medicine, General Surgery, Gastroenterology, Urology, Pathology, and Anesthesiology
+  - Each department page features specialized color themes, expert doctor profiles, and comprehensive service listings
+  - Updated navigation menus (desktop and mobile) to include links to all new department pages
   - Added doctor.jpg as background image for hero section on both mobile and desktop
   - Changed hero text from "Your Health is Our Priority" to "Shri Ram Krishna Mission Hospital"
   - Updated all Healthcare Excellence blocks to navy blue theme with decorative background graphics
