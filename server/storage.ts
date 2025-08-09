@@ -237,7 +237,7 @@ export class MemStorage implements IStorage {
       {
         name: "Dr. Soma Shaw Gupta",
         specialization: "Medical Consultant",
-        departmentId: 2,
+        departmentId: 1,
         qualifications: "MBBS, MC",
         experience: 14,
       },
@@ -251,7 +251,7 @@ export class MemStorage implements IStorage {
       {
         name: "Dr. Vishrut Bharti",
         specialization: "Gynecologist",
-        departmentId: 1,
+        departmentId: 2,
         qualifications: "MBBS, MS, MCH (Gynecology)",
         experience: 20,
       },

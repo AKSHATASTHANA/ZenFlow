@@ -12,6 +12,7 @@ import drSomaShawGuptaImage from "@/images/Soma Shaw Gupta.jpeg";
 import drDawadImage from "@/images/Dr Dawad.jpeg";
 import drSaurabhSinghImage from "@/images/Dr Saurabh singh.jpeg";
 import naveenKumarMauryaImage from "@/images/Naveen Kumar maurya.jpeg";
+import doctorBgImage from "@/images/doctor.jpg";
 import {
   Calendar,
   Clock,
@@ -818,8 +819,17 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Enhanced Mobile-Optimized Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-500">
+        {/* Doctor Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={doctorBgImage} 
+            alt="Doctor Background" 
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 via-blue-500/60 to-cyan-500/70"></div>
+        </div>
+        {/* Enhanced Mobile-Optimized Background Effects */}
+        <div className="absolute inset-0">
           {/* Animated Background Shapes */}
           <div className="absolute inset-0 overflow-hidden">
             {/* Large background circles */}
@@ -895,10 +905,10 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto text-center">
           <div className="animate-fadeInUp">
             <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Your Health is Our
+              Shri Ram Krishna
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-100">
                 {" "}
-                Priority
+                Mission Hospital
               </span>
             </h2>
             <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
