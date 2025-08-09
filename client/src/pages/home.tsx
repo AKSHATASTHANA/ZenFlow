@@ -484,15 +484,7 @@ export default function HomePage() {
                       Neurology
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link
-                      href="/departments/orthopedics"
-                      className="flex items-center w-full"
-                    >
-                      <Bone className="mr-2 h-4 w-4 text-orange-600" />
-                      Orthopedics
-                    </Link>
-                  </DropdownMenuItem>
+
                   <DropdownMenuItem>
                     <Link
                       href="/departments/pediatrics"
@@ -715,14 +707,7 @@ export default function HomePage() {
                       <Brain className="mr-2 h-4 w-4 text-purple-600" />
                       Neurology
                     </Link>
-                    <Link
-                      href="/departments/orthopedics"
-                      className="flex items-center py-2 text-gray-600 hover:text-orange-600 transition-colors duration-200"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <Bone className="mr-2 h-4 w-4 text-orange-600" />
-                      Orthopedics
-                    </Link>
+
                     <Link
                       href="/departments/pediatrics"
                       className="flex items-center py-2 text-gray-600 hover:text-green-600 transition-colors duration-200"
