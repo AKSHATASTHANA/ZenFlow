@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,7 @@ import drDawadImage from "@/images/Dr Dawad.jpeg";
 import drSaurabhSinghImage from "@/images/Dr Saurabh singh.jpeg";
 import naveenKumarMauryaImage from "@/images/Naveen Kumar maurya.jpeg";
 import doctorBgImage from "@/images/doctor.jpg";
+import hospitalImage from "@/images/hospital.jpeg";
 import {
   Calendar,
   Clock,
@@ -39,9 +40,9 @@ import {
   Instagram,
 } from "lucide-react";
 import { AppointmentForm } from "@/components/appointment-form";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+
 import type { Department, Doctor } from "@shared/schema";
-import ReactMarkdown from "react-markdown";
+
 import { Link } from "wouter";
 import {
   DropdownMenu,
@@ -125,14 +126,14 @@ function AboutSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
               <div className="relative w-full max-w-md h-80 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-200 to-blue-50 transform group-hover:scale-105 transition duration-300">
                 <img
-                  src="src/images/hospital.jpeg"
+                  src={hospitalImage}
                   alt="Shri Krishna Mission Hospital"
                   className="object-cover w-full h-full rounded-2xl border-4 border-white shadow-xl"
                 />
                 {/* Overlay with hospital stats */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                   <div className="text-white text-center">
-                    <div className="text-xl font-bold">Since 1985</div>
+                    <div className="text-xl font-bold">Since 2015</div>
                     <div className="text-sm opacity-90">
                       Serving with Excellence
                     </div>
@@ -385,22 +386,12 @@ export default function HomePage() {
     queryKey: ["/api/doctors"],
   });
 
-  const { data: stats } = useQuery<{
-    totalAppointments: number;
-    pendingAppointments: number;
-    confirmedAppointments: number;
-    totalDepartments: number;
-    totalDoctors: number;
-  }>({
-    queryKey: ["/api/stats"],
-  });
-
   // Auto-scroll functionality for testimonials
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
-    let intervalId: NodeJS.Timeout;
+    let intervalId: ReturnType<typeof setInterval> | undefined;
     let isHovered = false;
 
     const startAutoScroll = () => {
@@ -436,7 +427,7 @@ export default function HomePage() {
     scrollContainer.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      clearInterval(intervalId);
+      if (intervalId) clearInterval(intervalId);
       scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
       scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
     };
@@ -983,7 +974,7 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto text-center">
           <div className="animate-fadeInUp">
             <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Shri Ram Krishna
+              Shri Krishna
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-100">
                 {" "}
                 Mission Hospital
